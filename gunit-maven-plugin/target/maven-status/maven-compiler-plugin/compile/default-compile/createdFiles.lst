@@ -1,0 +1,10 @@
+edu\chl\gunit\plugin\input\InputProvider.class
+edu\chl\gunit\plugin\csv\CSV.class
+edu\chl\gunit\plugin\input\jacoco\JaCoCoCSVReader.class
+edu\chl\gunit\plugin\input\jacoco\JaCoCoResultException.class
+edu\chl\gunit\plugin\input\junit\JUnitResultException.class
+edu\chl\gunit\plugin\input\junit\TestCase.class
+edu\chl\gunit\plugin\input\junit\JUnitXMLReader.class
+edu\chl\gunit\plugin\csv\CSVReader.class
+edu\chl\gunit\plugin\input\junit\TestSuiteResults.class
+GUnitMojo.class

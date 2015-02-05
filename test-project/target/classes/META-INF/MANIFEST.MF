@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: David Arnarsson
+Main-Class: edu.david.linkedlist.TestStuff
+SHA-Digest: a0f1490a20d0211c997b44bc357e1972deab8ae3
