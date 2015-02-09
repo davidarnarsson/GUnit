@@ -1,6 +1,7 @@
 package edu.chl.gunit.plugin.csv;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,6 +32,10 @@ public class CSV {
 
     public void addRow(List<String> row) {
         rows.add(row);
+    }
+
+    public List<List<String>> getRows() {
+        return rows;
     }
 
 }

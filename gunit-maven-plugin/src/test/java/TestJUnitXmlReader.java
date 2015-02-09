@@ -11,9 +11,9 @@ public class TestJUnitXmlReader {
 
     @Test
     public void testReadSuccessfully() {
-        final String path = "C:\\Code\\GUnit\\test-project\\target\\surefire-reports\\TEST-TestWallet.xml";
-
+        final String path = getClass().getClassLoader().getResource("TEST-TestWallet.xml").getFile();
         JUnitXMLReader reader = new JUnitXMLReader();
+
         try {
             TestSuiteResults results = reader.read(path);
             Assert.assertEquals(results.getName(), "TestWallet");
