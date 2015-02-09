@@ -1,7 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-test-project,edu.chl.coverage,CoverageRunner,231,0,8,0,44,0,10,0,5,0
-test-project,edu.chl.coverage,CoverageRunner.MemoryClassLoader,36,0,2,0,8,0,4,0,3,0
-test-project,edu.chl.bank,Wallet,0,28,0,0,0,7,0,4,0,4
-test-project,edu.chl.linkedlist,LinkedList.Node,0,27,0,0,0,10,0,7,0,7
-test-project,edu.chl.linkedlist,TestStuff,18,0,0,0,7,0,2,0,2,0
-test-project,edu.chl.linkedlist,LinkedList,23,109,9,19,4,34,7,15,1,7
