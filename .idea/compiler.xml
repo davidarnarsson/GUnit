@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="gunit-maven-plugin" />
         <module name="test-project" />
+        <module name="testhound-maven-plugin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

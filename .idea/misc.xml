@@ -9,6 +9,7 @@
       <list>
         <option value="$PROJECT_DIR$/gunit-maven-plugin/pom.xml" />
         <option value="$PROJECT_DIR$/test-project/pom.xml" />
+        <option value="$PROJECT_DIR$/testhound-maven-plugin/pom.xml" />
       </list>
     </option>
   </component>

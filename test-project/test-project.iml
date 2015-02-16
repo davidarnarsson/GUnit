@@ -11,8 +11,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.11" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.jacoco:org.jacoco.core:0.7.2.201409121644" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-debug-all:5.0.1" level="project" />
     <orderEntry type="library" name="Maven: etse:core:1.0" level="project" />

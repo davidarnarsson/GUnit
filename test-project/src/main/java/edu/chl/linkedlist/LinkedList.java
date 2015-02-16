@@ -103,6 +103,17 @@ public class LinkedList<T> {
         }
     }
 
+    private int firstIndexOf(T value) {
+        Node curr = head;
+        int i = 0;
+
+        while ((curr = curr.getNext()) != null && !curr.getValue().equals(value)) {
+            ++i;
+        }
+
+        return i;
+    }
+
     public int size() {
         int count = 0;
         Node curr = head;
