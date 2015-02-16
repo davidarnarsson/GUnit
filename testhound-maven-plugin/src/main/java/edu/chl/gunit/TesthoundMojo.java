@@ -42,8 +42,20 @@ public class TesthoundMojo
      */
     private File outputDirectory;
 
-    public void execute() throws MojoExecutionException
-    {
+    /**
+     * Location of the test output
+     * @parameter expression="${test}
+     * */
+    private File testOutputDirectory;
+
+    /**
+     * Location of the test source directory
+     * @parameter expression="${project.build.testSourceDirectory}
+     * */
+    private File testSourceDirectory;
+
+
+    public void execute() throws MojoExecutionException {
 
     }
 }

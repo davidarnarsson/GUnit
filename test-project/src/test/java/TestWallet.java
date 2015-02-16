@@ -21,9 +21,10 @@ public class TestWallet {
     public void testWithdrawAcceptableAmount() {
         Wallet w = new Wallet();
         w.deposit(100);
+
         double withdrawn = w.withdraw(50);
 
-        assertEquals("Withdrawn == 50", withdrawn, 00, 1);
-        assertEquals("Remainder == 50", w.getAmount(), 50, 1);
+        assertEquals("Withdrawn == 50", 50, withdrawn, 1);
+        assertEquals("Remainder == 50", 50, w.getAmount(), 1);
     }
 }

@@ -20,7 +20,7 @@ import java.util.HashSet;
 public class TestStuff extends ExperiementMain {
 
     public static void main(String[] args) throws MalformedURLException, ClassNotFoundException {
-        /*HashSet<String> testClasses = new HashSet<String>();
+        HashSet<String> testClasses = new HashSet<String>();
 
         testClasses.add("edu.david.linkedlisttests.LinkedListTests");
         File dir = new File("/Users/davida/Code/linkedlist/out/test/LinkedList");
@@ -35,7 +35,7 @@ public class TestStuff extends ExperiementMain {
         FixtureAnalyser analyser = new FixtureAnalyser(loader);
         AllReportGenerator allReportGenerator = new AllReportGenerator("/Users/davida/Code/linkedlist/out", "/Users/davida/Code/TestHound/report/HTML version/template");
         TestSuiteResult result = analyseTestSuite(testClasses,analyser,allReportGenerator);
-        */
+
 
 
 
