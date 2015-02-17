@@ -81,6 +81,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>edu.chl.gunit</groupId>
+                <artifactId>testhound-maven-plugin</artifactId>
+                <version>0.0.1</version>
+            </plugin>
         </plugins>
     </build>
 </project>

@@ -30,6 +30,7 @@
     <bytecodeTargetLevel>
       <module name="gunit-maven-plugin" target="1.7" />
       <module name="test-project" target="1.7" />
+      <module name="testhound-maven-plugin" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

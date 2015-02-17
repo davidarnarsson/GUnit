@@ -34,7 +34,7 @@ public class TestStuff extends ExperiementMain {
 
         FixtureAnalyser analyser = new FixtureAnalyser(loader);
         AllReportGenerator allReportGenerator = new AllReportGenerator("/Users/davida/Code/linkedlist/out", "/Users/davida/Code/TestHound/report/HTML version/template");
-        TestSuiteResult result = analyseTestSuite(testClasses,analyser,allReportGenerator);
+        TestSuiteResult result = analyseTestSuite(testClasses, analyser, allReportGenerator);
 
 
 
