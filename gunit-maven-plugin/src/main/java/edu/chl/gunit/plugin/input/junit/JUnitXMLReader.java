@@ -1,5 +1,7 @@
 package edu.chl.gunit.plugin.input.junit;
 
+import edu.chl.gunit.core.data.TestCase;
+import edu.chl.gunit.core.data.TestSuiteResults;
 import edu.chl.gunit.plugin.xml.XMLReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

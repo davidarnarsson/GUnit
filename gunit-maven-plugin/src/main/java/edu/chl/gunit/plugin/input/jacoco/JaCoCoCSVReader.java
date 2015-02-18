@@ -1,5 +1,6 @@
 package edu.chl.gunit.plugin.input.jacoco;
 
+import edu.chl.gunit.core.data.JaCoCoResult;
 import edu.chl.gunit.plugin.csv.CSV;
 import edu.chl.gunit.plugin.csv.CSVReader;
 import org.codehaus.plexus.util.FileUtils;

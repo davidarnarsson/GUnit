@@ -1,4 +1,4 @@
-package edu.chl.gunit.plugin.input.junit;
+package edu.chl.gunit.core.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;

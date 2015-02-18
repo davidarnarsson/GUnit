@@ -19,21 +19,24 @@ package edu.chl.gunit;
 import etse.core.classloader.ClazzLoader;
 import etse.core.testorganizer.fixture.ClassSetupUsage;
 import etse.core.testorganizer.fixture.FieldIdentifier;
-import etse.core.testorganizer.fixture.TestSuiteResult;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
+import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.FilenameFilter;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.*;
+import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.RUNTIME;
 
 /**
  * Goal which runs the TestHound test smell detecting tool by
@@ -70,17 +73,43 @@ public class TesthoundMojo
             defaultValue = "${project.build.testSourceDirectory}")
     private File testSourceDirectory;
 
+    @Parameter(
+            property = "java.class.path",
+            defaultValue = "${java.class.path}")
+    private File javaClassPath;
+
+    @Parameter(
+            property = "java.library.path",
+            defaultValue = "${java.library.path}")
+    private File javaLibraryPath;
+
+    @Parameter(property = "localRepository", defaultValue = "${localRepository}")
+    private File localRepository;
+
+    @Parameter(property = "project.file", defaultValue = "${project.file}")
+    private File pomFile;
+
 
     public void execute() throws MojoExecutionException {
         getLog().info(getFileString(outputDirectory, "No output directory!"));
         getLog().info(getFileString(testOutputDirectory, "No test output directory!"));
         getLog().info(getFileString(testSourceDirectory, "No test source directory!"));
 
+        MavenProject project = (MavenProject) getPluginContext().get("project");
+
+        PomEquippedResolveStage stage = Maven.resolver().loadPomFromFile(pomFile);
+        File[] libs = stage.importDependencies()
+                .resolve()
+                .withTransitivity()
+                .asFile();
+
+
+
         if (testOutputDirectory == null) {
             throw new MojoExecutionException("Unable to locate test output directory!");
         }
 
-        ClazzLoader loader = new ClazzLoader(testOutputDirectory);
+        ClazzLoader loader = new ClazzLoader(testOutputDirectory, libs);
         ClassFinder finder = new ClassFinder(loader);
 
         HashSet<String> classes = finder.getClassNames(testOutputDirectory);

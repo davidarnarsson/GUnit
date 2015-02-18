@@ -1,10 +1,9 @@
-package edu.chl.gunit.plugin.input.junit;
+package edu.chl.gunit.core.data;
 
 /**
  * Created by davida on 4.2.2015.
  */
 public class TestCase {
-
     private String name;
     private Boolean succeeded;
     private String error;

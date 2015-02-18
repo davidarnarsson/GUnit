@@ -1,4 +1,4 @@
-package edu.chl.gunit.plugin.input.jacoco;
+package edu.chl.gunit.core.data;
 
 /**
  * Contains the JaCoCo CSV results.

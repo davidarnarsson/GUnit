@@ -49,7 +49,7 @@ public class TestLinkedList {
 
     @Test
     public void testGetLinkedListNonExistent() {
-        LinkedList<String> ll = new LinkedList<String>();
+        LinkedList<String> ll = new LinkedList<>();
         assertThat("Non-existant get should return null",null,is(equalTo(ll.get(1))));
     }
 

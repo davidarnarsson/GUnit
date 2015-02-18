@@ -22,6 +22,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="gunit-core" />
         <module name="gunit-maven-plugin" />
         <module name="test-project" />
         <module name="testhound-maven-plugin" />
