@@ -12,9 +12,13 @@ import org.junit.Test;
 
 
 public class TestLinkedList {
-
+    String a;
+    String b;
     @Before
     public void setup() {
+        b = null;
+        a = "2";
+
         System.out.println("This is before");
     }
 

@@ -16,27 +16,39 @@ package edu.chl.gunit;
  * limitations under the License.
  */
 
+import edu.chl.gunit.output.XmlReportGenerator;
+import edu.chl.gunit.output.XmlSerializer;
 import etse.core.classloader.ClazzLoader;
 import etse.core.testorganizer.fixture.ClassSetupUsage;
-import etse.core.testorganizer.fixture.FieldIdentifier;
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.repository.MavenArtifactRepository;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
-import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
+import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
+import org.eclipse.aether.DefaultRepositorySystemSession;
+import org.eclipse.aether.RepositorySystem;
+import org.eclipse.aether.RepositorySystemSession;
+import org.eclipse.aether.artifact.DefaultArtifact;
+import org.eclipse.aether.impl.ArtifactResolver;
+import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.resolution.ArtifactRequest;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
+import org.eclipse.aether.resolution.ArtifactResult;
+import org.w3c.dom.Document;
 
+import javax.inject.Inject;
+import javax.xml.transform.TransformerException;
 import java.io.File;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
-import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.*;
-import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.RUNTIME;
 
 /**
  * Goal which runs the TestHound test smell detecting tool by
@@ -64,55 +76,73 @@ public class TesthoundMojo
             defaultValue = "${project.build.testOutputDirectory}")
     private File testOutputDirectory;
 
+
+    @Inject
+    protected RepositorySystem repositorySystem;
+
     /**
-     * Location of the test source directory
-     * */
+     * Used to look up Artifacts in the remote repository.
+     *
+     */
+    @Inject
+    protected ArtifactResolver artifactResolver;
 
-    @Parameter(
-            property = "project.build.testSourceDirectory",
-            defaultValue = "${project.build.testSourceDirectory}")
-    private File testSourceDirectory;
+    /**
+     * List of Remote Repositories used by the resolver
+     *
+     * @parameter expression="${project.remoteArtifactRepositories}"
+     * @readonly
+     * @required
+     */
+    @Parameter(property = "project.remoteArtifactRepositories")
+    protected List remoteRepositories;
 
-    @Parameter(
-            property = "java.class.path",
-            defaultValue = "${java.class.path}")
-    private File javaClassPath;
-
-    @Parameter(
-            property = "java.library.path",
-            defaultValue = "${java.library.path}")
-    private File javaLibraryPath;
-
-    @Parameter(property = "localRepository", defaultValue = "${localRepository}")
-    private File localRepository;
-
-    @Parameter(property = "project.file", defaultValue = "${project.file}")
-    private File pomFile;
+    /**
+     * Location of the local repository.
+     *
+     * @parameter expression="${localRepository}"
+     * @readonly
+     * @required
+     */
+    @Parameter(property = "localRepository")
+    protected ArtifactRepository localRepository;
 
 
     public void execute() throws MojoExecutionException {
-        getLog().info(getFileString(outputDirectory, "No output directory!"));
-        getLog().info(getFileString(testOutputDirectory, "No test output directory!"));
-        getLog().info(getFileString(testSourceDirectory, "No test source directory!"));
 
-        MavenProject project = (MavenProject) getPluginContext().get("project");
+        MavenProject project = (MavenProject)getPluginContext().get("project");
+        RepositorySystemSession session = newSession(project);
 
-        PomEquippedResolveStage stage = Maven.resolver().loadPomFromFile(pomFile);
-        File[] libs = stage.importDependencies()
-                .resolve()
-                .withTransitivity()
-                .asFile();
+        // create a lib file list and add the project code into it
+        List<File> libs = new ArrayList<>();
 
+        libs.add(new File("/Users/davida/Code/GUnit/test-project/target/test-project-0.0.2.jar"));
+
+        // resolve project deps
+        for (Artifact a : project.getDependencyArtifacts()) {
+            org.eclipse.aether.artifact.Artifact aetherArtifact = fromMavenArtifact(a);
+            try {
+                ArtifactRequest request = new ArtifactRequest(aetherArtifact, null, null);
+                ArtifactResult result = artifactResolver.resolveArtifact(session,request);
+
+                libs.add(result.getArtifact().getFile());
+            } catch (ArtifactResolutionException e) {
+                throw new MojoExecutionException("Unable to resolve dependency " + aetherArtifact.toString());
+            }
+        }
 
 
         if (testOutputDirectory == null) {
             throw new MojoExecutionException("Unable to locate test output directory!");
         }
 
-        ClazzLoader loader = new ClazzLoader(testOutputDirectory, libs);
+        // create a project class loader
+        ClazzLoader loader = new ClazzLoader(testOutputDirectory, libs.toArray(new File[libs.size()]));
         ClassFinder finder = new ClassFinder(loader);
 
+        // get the test class names to scan
         HashSet<String> classes = finder.getClassNames(testOutputDirectory);
+
 
         TestHoundRunner runner = new TestHoundRunner();
         File reportOut = new File(outputDirectory.getAbsolutePath() + "/testhound-reports");
@@ -120,21 +150,42 @@ public class TesthoundMojo
             throw new MojoExecutionException("Unable to make out directory " + reportOut.getAbsolutePath());
         }
 
+        // run testhound
         List<ClassSetupUsage> result = runner.run(classes, loader, reportOut);
 
-        Log l = getLog();
-        l.info("TestHound results: ");
-        for(ClassSetupUsage u : result) {
-            l.info(u.getTestCaseName());
-            l.info("\tDead fields: ");
 
-            Set<FieldIdentifier> keys = u.getDeadFields().keySet();
-            for(FieldIdentifier k : keys) {
-                l.info("\t\t" + k.getFieldName());
-            }
+        // generate result xml
+        XmlReportGenerator generator = new XmlReportGenerator();
+        Document doc = generator.generate(result, new Date());
+
+        XmlSerializer serializer = new XmlSerializer();
+
+        try {
+            FileWriter writer = new FileWriter(new File(reportOut.getAbsolutePath() + "/report.xml"));
+            serializer.serialize(doc, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MojoExecutionException("Unable to create report.xml file.");
         }
     }
 
+    private List<RemoteRepository> fromMavenRepos(List remoteRepositories) {
+        List<RemoteRepository> out = new ArrayList<>();
+        for(Object repo : remoteRepositories) {
+            MavenArtifactRepository r = (MavenArtifactRepository) repo;
+            out.add(new RemoteRepository.Builder(r.getId(),null,r.getUrl()).build());
+        }
+        return out;
+    }
+
+    private org.eclipse.aether.artifact.Artifact fromMavenArtifact(Artifact a) {
+        return new DefaultArtifact(
+                a.getGroupId(),
+                a.getArtifactId(),
+                a.getClassifier(),
+                a.getType(),
+                a.getVersion());
+    }
 
 
     private String getFileString(File f, String def) {
@@ -143,5 +194,15 @@ public class TesthoundMojo
         }
 
         return f.getAbsolutePath();
+    }
+
+    private  RepositorySystemSession newSession(MavenProject project)
+    {
+        DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
+
+        LocalRepository localRepo = new LocalRepository(localRepository.getBasedir());
+        session.setLocalRepositoryManager(repositorySystem.newLocalRepositoryManager(session,localRepo));
+
+        return session;
     }
 }

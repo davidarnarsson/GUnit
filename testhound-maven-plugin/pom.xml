@@ -50,10 +50,6 @@
       <version>2.1.0</version>
     </dependency>
   </dependencies>
-  <properties>
-
-  </properties>
-
   <build>
 
     <plugins>

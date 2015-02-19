@@ -25,6 +25,9 @@ public class DummyReportGenerator extends AllReportGenerator {
 
     @Override
     public void newTestCaseReport(ClassSetupUsage classProfile, String testClassName) {
+        System.out.println("This is happening!");
 
     }
+
+
 }
