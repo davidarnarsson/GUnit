@@ -2,8 +2,10 @@ package edu.chl.gunit.service;
 
 
 import edu.chl.gunit.commons.JaCoCoResult;
+import edu.chl.gunit.commons.TestCase;
 import edu.chl.gunit.commons.TestSuiteResults;
 import edu.chl.gunit.core.Facade;
+import edu.chl.gunit.core.data.tables.records.TestsuiteresultRecord;
 import edu.chl.gunit.service.data.TestRunRequest;
 
 import javax.inject.Inject;
@@ -38,7 +40,11 @@ public class GUnitServiceImpl implements GUnitService {
         List<TestSuiteResults> testSuiteResults = request.getTestResults();
         if (testSuiteResults != null && testSuiteResults.size() > 0) {
             for (TestSuiteResults result : testSuiteResults) {
+                TestsuiteresultRecord rc = facade.getTestSuiteService().createResult(result, request.getUser());
 
+                for (TestCase tc : result.getTestCases()) {
+                    facade.getTestCaseService().createTestCase(tc, rc.getId());
+                }
             }
         }
 
@@ -49,6 +55,6 @@ public class GUnitServiceImpl implements GUnitService {
          * 4. return the message key for the user to query at a later date
          * */
 
-        return null;
+        return "OMG HELLO DER!";
     }
 }

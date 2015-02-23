@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class RuleFactory {
 
+
+
     public List<Rule> getRules() {
         List<Rule> out = new ArrayList<>();
 

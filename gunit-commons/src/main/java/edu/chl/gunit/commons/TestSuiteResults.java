@@ -9,6 +9,15 @@ import java.util.Map;
  * Created by davida on 4.2.2015.
  */
 public class TestSuiteResults {
+    public TestSuiteResults(String name, double time, int tests, int errors, int skipped, int failures) {
+        this.name = name;
+        this.timeElapsed = time;
+        this.tests = tests;
+        this.errors = errors;
+        this.skipped = skipped;
+        this.failures = failures;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,19 +49,9 @@ public class TestSuiteResults {
     private int skipped;
     private int failures;
     private final Map<String, String> properties = new HashMap<>();
-    private final List<TestCase> testCases = new ArrayList<TestCase>();
-
+    private List<TestCase> testCases = new ArrayList<TestCase>();
 
     public TestSuiteResults() {
-    }
-
-    public TestSuiteResults(String name, double timeElapsed, int tests, int errors, int skipped, int failures) {
-        this.name = name;
-        this.timeElapsed = timeElapsed;
-        this.tests = tests;
-        this.errors = errors;
-        this.skipped = skipped;
-        this.failures = failures;
     }
 
     public void addProperty(String key, String value) {
@@ -67,12 +66,8 @@ public class TestSuiteResults {
         return testCases;
     }
 
-    public void addTestCase(TestCase testCase) {
-        testCases.add(testCase);
-    }
-
-    public void addTestCases(List<TestCase> testCase) {
-        testCases.addAll(testCase);
+    public void setTestCases(List<TestCase> testCases) {
+        this.testCases = testCases;
     }
 
     public String getName() {
@@ -97,5 +92,9 @@ public class TestSuiteResults {
 
     public int getFailures() {
         return failures;
+    }
+
+    public void addTestCase(TestCase testCase) {
+        this.testCases.add(testCase);
     }
 }

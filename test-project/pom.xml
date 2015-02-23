@@ -82,10 +82,10 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>default-sayhi</id>
+                        <id>send-reports</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>sayhi</goal>
+                            <goal>send-reports</goal>
                         </goals>
                     </execution>
                 </executions>

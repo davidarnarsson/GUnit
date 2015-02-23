@@ -12,6 +12,14 @@ public class TestCase {
         this.error = error;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getError() {
+        return error;
+    }
+
     private String name;
     private Boolean succeeded;
     private String error;

@@ -1,8 +1,10 @@
+import edu.chl.gunit.commons.TestCase;
 import edu.chl.gunit.commons.TestSuiteResults;
 
 import edu.chl.gunit.commons.input.junit.JUnitResultException;
 import edu.chl.gunit.commons.input.junit.JUnitXMLReader;
 import edu.chl.gunit.service.TestRunRequest;
+import edu.chl.gunit.service.client.Client;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -15,7 +17,7 @@ import java.io.FilenameFilter;
 /**
  * Created by davida on 4.2.2015.
  */
-@Mojo( name = "sayhi" )
+@Mojo( name = "send-reports" )
 public class GUnitMojo extends AbstractMojo {
 
     @Parameter(property = "developerName")
@@ -58,9 +60,7 @@ public class GUnitMojo extends AbstractMojo {
             for (File f : unitTestReportsFolder.listFiles(filter)) {
                 try {
                     TestSuiteResults results = reader.read(f.getAbsolutePath());
-
-
-
+                    req.getTestResults().add(convert(results));
                 } catch (JUnitResultException e) {
                     e.printStackTrace();
                 }
@@ -68,7 +68,9 @@ public class GUnitMojo extends AbstractMojo {
 
         }
 
-
+        Client client = new Client();
+        String uniqueId = client.submitTestRun(req);
+        getLog().info("Sent test run info to GUnit server, got unique tracking ID: " + uniqueId);
 
         // sækja gögn
 
@@ -80,5 +82,30 @@ public class GUnitMojo extends AbstractMojo {
         // 5. annars
         // 6.   sofa í 1000ms og goto 1
 
+    }
+
+    private edu.chl.gunit.service.TestSuiteResults convert(TestSuiteResults r) {
+        edu.chl.gunit.service.TestSuiteResults n = new edu.chl.gunit.service.TestSuiteResults();
+        n.setErrors(r.getErrors());
+        n.setFailures(r.getFailures());
+        n.setName(r.getName());
+        n.setSkipped(r.getSkipped());
+        n.setTests(r.getTests());
+        n.setTimeElapsed(r.getTimeElapsed());
+
+        for (TestCase c : r.getTestCases()) {
+            edu.chl.gunit.service.TestCase nc = new edu.chl.gunit.service.TestCase();
+
+            nc.setClassName(c.getClassName());
+            nc.setErrorMessage(c.getErrorMessage());
+            nc.setErrorType(c.getErrorType());
+            nc.setStackTrace(c.getStackTrace());
+            nc.setSucceeded(c.getSucceeded());
+            nc.setTimeElapsed(c.getTimeElapsed());
+
+            n.getTestCases().add(nc);
+        }
+
+        return n;
     }
 }
