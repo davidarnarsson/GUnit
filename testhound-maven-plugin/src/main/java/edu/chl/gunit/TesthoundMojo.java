@@ -116,13 +116,15 @@ public class TesthoundMojo
         // create a lib file list and add the project code into it
         List<File> libs = new ArrayList<>();
 
-        libs.add(new File("/Users/davida/Code/GUnit/test-project/target/test-project-0.0.2.jar"));
+        String filename = String.format("%s%s%s.%s", project.getBuild().getDirectory(), File.separator, project.getBuild().getFinalName(), project.getArtifact().getType());
+
+        libs.add(new File(filename));
 
         // resolve project deps
         for (Artifact a : project.getDependencyArtifacts()) {
             org.eclipse.aether.artifact.Artifact aetherArtifact = fromMavenArtifact(a);
             try {
-                ArtifactRequest request = new ArtifactRequest(aetherArtifact, null, null);
+                ArtifactRequest request = new ArtifactRequest(aetherArtifact, fromMavenRepos(remoteRepositories), null);
                 ArtifactResult result = artifactResolver.resolveArtifact(session,request);
 
                 libs.add(result.getArtifact().getFile());

@@ -14,9 +14,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.lang.annotation.Annotation;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * Created by davida on 17/02/15.
@@ -25,7 +24,7 @@ public class XmlReportGenerator  {
     public Document generate(List<ClassSetupUsage> result, Date date) throws MojoExecutionException {
         assert result != null;
 
-        DocumentBuilder builder = null;
+        DocumentBuilder builder;
         try {
              builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -61,11 +60,77 @@ public class XmlReportGenerator  {
         createField("NrMemberSetupFields", usage.getNrMemberSetupFields(), clu, doc);
         createField("NrStaticSetupFields", usage.getNrStaticSetupFields(), clu, doc);
 
+        createProfiles(usage.getUsageProfilesOfClass(), clu,doc);
 
 
         createProblems(usage, clu, doc);
 
         parent.appendChild(clu);
+    }
+
+    private void createProfiles(ArrayList<SetupUsageProfile> usageProfilesOfClass, Element clu, Document doc) {
+        Element profilesElement = doc.createElement("SetupUsageProfiles");
+
+        for(SetupUsageProfile profile : usageProfilesOfClass) {
+            createProfile(profile, profilesElement, doc);
+        }
+
+        clu.appendChild(profilesElement);
+    }
+
+    private void createProfile(SetupUsageProfile profile, Element profilesElement, Document doc) {
+        Element method = doc.createElement("Profile");
+
+        method.setAttribute("name", profile.getMethod().getName());
+        method.setAttribute("className", profile.getMethod().getDeclaringClass().getCanonicalName());
+        method.setAttribute("isParameterized", Boolean.toString(profile.isParameterizedTest()));
+        method.setAttribute("canonical", getMethodCanonicalName(profile.getMethod()));
+
+        createVariables("LocalVariables", profile.getLocalVariables(), method, doc);
+        createVariables("TransitivelyUsedMemberFields", profile.getMemberFieldsPurelyTransitivelyUsedInTestMethod(), method, doc);
+        createVariables("TransitivelyUsedStaticFields", profile.getStaticFieldsPurelyTransitivelyUsedInTestMethod(), method, doc);
+        createFieldsList("DelegateFields", profile.getDelegateFields(), method, doc);
+        createFieldsList("UsedFields", profile.getUsedFields(), method, doc);
+        createMethods("InvokedHelperMethods", profile.getInvokedHelperMethods(), method, doc);
+        createField("SetupFieldsUsed", profile.getNrMemberSetupFieldList(),method,doc);
+        createField("FieldsUsedInSetupAndMethod", profile.getNrFieldsUsedInSetUpAndMethod(),method,doc);
+        createField("UsedFields", profile.getNrUsedFields(), method, doc);
+
+        profilesElement.appendChild(method);
+    }
+
+    private static String getMethodCanonicalName(Method m) {
+        return String.format("%s.%s", m.getDeclaringClass().getCanonicalName(), m.getName());
+    }
+    private void createMethods(String fieldName, HashSet<Method> methods, Element parent, Document doc) {
+        Element el = doc.createElement(fieldName);
+
+        for (Method m : methods) {
+            Element mElement = doc.createElement("Method");
+
+            mElement.setAttribute("name",m.getName());
+            mElement.setAttribute("className",m.getDeclaringClass().getCanonicalName());
+            mElement.setAttribute("canonical", getMethodCanonicalName(m));
+            el.appendChild(mElement);
+        }
+
+        parent.appendChild(el);
+    }
+
+    private void createVariables(String fieldName, HashSet<FieldIdentifier> fields, Element method, Document doc) {
+        Element var = doc.createElement(fieldName);
+
+        for (FieldIdentifier ident : fields) {
+            Element i = doc.createElement("Variable");
+
+            i.setAttribute("name", ident.getFieldName());
+            i.setAttribute("type", ident.getFieldType());
+            i.setAttribute("static", Boolean.toString(ident.isStatic()));
+
+            var.appendChild(i);
+        }
+
+        method.appendChild(var);
     }
 
     private void createProblems(ClassSetupUsage usage, Element parent, Document doc) {
@@ -117,7 +182,7 @@ public class XmlReportGenerator  {
                 usages.appendChild(usageElement);
             }
 
-            df.setAttribute("isConstructorUsage", new Boolean(link.isConstructorUsage()).toString());
+            df.setAttribute("isConstructorUsage", Boolean.toString(link.isConstructorUsage()));
             df.appendChild(usages);
 
             dfe.appendChild(df);

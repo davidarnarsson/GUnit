@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GUnit.iml" filepath="$PROJECT_DIR$/.idea/GUnit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gunit-commons/gunit-commons.iml" filepath="$PROJECT_DIR$/gunit-commons/gunit-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gunit-core/gunit-core.iml" filepath="$PROJECT_DIR$/gunit-core/gunit-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/gunit-core/gunit-core.iml" filepath="$PROJECT_DIR$/gunit-core/gunit-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/gunit-maven-plugin/gunit-maven-plugin.iml" filepath="$PROJECT_DIR$/gunit-maven-plugin/gunit-maven-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gunit-service/gunit-service.iml" filepath="$PROJECT_DIR$/gunit-service/gunit-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gunit-service-client/gunit-service-client.iml" filepath="$PROJECT_DIR$/gunit-service-client/gunit-service-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-project/test-project.iml" filepath="$PROJECT_DIR$/test-project/test-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" filepath="$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" filepath="$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" />

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>edu.chl.gunit</groupId>
+    <artifactId>gunit</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <modules>
+        <module>gunit-commons</module>
+        <module>gunit-core</module>
+        <module>gunit-service</module>
+        <module>gunit-service-client</module>
+        <module>gunit-maven-plugin</module>
+        <module>testhound-maven-plugin</module>
+        <module>test-project</module>
+    </modules>
+</project>

@@ -8,7 +8,12 @@
     <artifactId>gunit-maven-plugin</artifactId>
     <version>0.0.1</version>
     <packaging>maven-plugin</packaging>
-
+    <parent>
+        <artifactId>gunit</artifactId>
+        <groupId>edu.chl.gunit</groupId>
+        <version>0.0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -32,6 +37,18 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>edu.chl.gunit</groupId>
+            <artifactId>gunit-maven-plugin</artifactId>
+            <version>0.0.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.chl.gunit</groupId>
+            <artifactId>gunit-service-client</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
     <build>

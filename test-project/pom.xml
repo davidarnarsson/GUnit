@@ -7,6 +7,12 @@
     <artifactId>test-project</artifactId>
     <version>0.0.2</version>
     <packaging>jar</packaging>
+    <parent>
+        <artifactId>gunit</artifactId>
+        <groupId>edu.chl.gunit</groupId>
+        <version>0.0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -71,6 +77,9 @@
                 <groupId>edu.chl.gunit</groupId>
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
+                <configuration>
+                    <developerName>david</developerName>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-sayhi</id>

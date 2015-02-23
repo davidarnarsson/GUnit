@@ -1,0 +1,33 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="gunit-service:war exploded">
+    <output-path>$PROJECT_DIR$/gunit-service/target/gunit-service</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="gunit-service" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="gunit-core-0.0.1.jar">
+            <element id="module-output" name="gunit-core" />
+          </element>
+          <element id="library" level="project" name="Maven: org.jooq:jooq:3.5.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.34" />
+          <element id="library" level="project" name="Maven: org.jooq:jooq-meta:3.5.2" />
+          <element id="library" level="project" name="Maven: org.jooq:jooq-codegen:3.5.2" />
+          <element id="archive" name="gunit-commons-0.0.1.jar">
+            <element id="module-output" name="gunit-commons" />
+          </element>
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-utils:3.0.21" />
+          <element id="library" level="project" name="Maven: com.google.inject:guice:4.0-beta5" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:16.0.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/gunit-service/target/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="gunit-service/web/Web" />
+    </root>
+  </artifact>
+</component>
