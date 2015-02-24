@@ -3,6 +3,11 @@ package edu.chl.gunit.core.services;
 import edu.chl.gunit.commons.TestCase;
 import edu.chl.gunit.core.data.tables.Suitetestcase;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
+import org.jooq.Record4;
+import org.jooq.Table;
+
+import java.util.List;
+import static org.jooq.impl.DSL.*;
 import static edu.chl.gunit.core.data.Tables.*;
 /**
  * Created by davida on 23.2.2015.
@@ -22,5 +27,15 @@ public class TestCaseService extends AbstractService<SuitetestcaseRecord> {
                 .set(SUITETESTCASE.SUITEID, suiteId)
                 .returning()
                 .fetchOne();
+    }
+
+    public List<SuitetestcaseRecord> getNewlyAddedTestCases() {
+        /**
+         *
+
+         *
+         */
+        ctx().execute
+
     }
 }

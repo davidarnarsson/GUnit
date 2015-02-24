@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import edu.chl.bank.Wallet;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,11 @@ public class TestWallet {
         double withdrawn = w.withdraw(100);
 
         assertEquals("Amount == 0", withdrawn, 0, 1);
+    }
+
+    @Test
+    public void failingTest() {
+        Assert.fail();
     }
 
     @Test

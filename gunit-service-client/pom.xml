@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.chl.gunit</groupId>
     <version>0.0.1</version>
+    <name>GUnit Service Client</name>
     <artifactId>gunit-service-client</artifactId>
     <packaging>jar</packaging>
     <properties>

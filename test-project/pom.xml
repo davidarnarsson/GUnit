@@ -6,6 +6,7 @@
     <groupId>edu.chl.gunit</groupId>
     <artifactId>test-project</artifactId>
     <version>0.0.2</version>
+    <name>GUnit Test Project</name>
     <packaging>jar</packaging>
     <parent>
         <artifactId>gunit</artifactId>
@@ -50,6 +51,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <argLine>${argLine}</argLine>
+                    <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
             <plugin>
@@ -78,7 +80,9 @@
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <developerName>david</developerName>
+                    <developerName>Herpderp</developerName>
+                    <jacocoReportCsv>target/site/jacoco/jacoco.csv</jacocoReportCsv>
+                    <unitTestReportsFolder>target/surefire-reports</unitTestReportsFolder>
                 </configuration>
                 <executions>
                     <execution>

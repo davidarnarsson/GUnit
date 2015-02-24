@@ -7,7 +7,7 @@
     <groupId>edu.chl.gunit</groupId>
     <artifactId>gunit-commons</artifactId>
     <version>0.0.1</version>
-
+    <name>GUnit Commons</name>
     <parent>
         <artifactId>gunit</artifactId>
         <groupId>edu.chl.gunit</groupId>

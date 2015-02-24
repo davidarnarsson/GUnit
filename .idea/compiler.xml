@@ -34,7 +34,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gunit-commons" target="1.7" />
-      <module name="gunit-core" target="1.7" />
+      <module name="gunit-core" target="1.8" />
       <module name="gunit-maven-plugin" target="1.7" />
       <module name="test-project" target="1.7" />
       <module name="testhound-maven-plugin" target="1.7" />

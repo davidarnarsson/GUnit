@@ -15,10 +15,10 @@ public interface GUnitService {
 
     /**
      * Submits a test run to the server to analyze
-     * @return a unique test run identifier
+     * @return a unique test run session identifier
      * */
     @WebMethod
-    String submitTestRun(TestRunRequest request);
+    int  submitTestRun(TestRunRequest request);
 
 
 }

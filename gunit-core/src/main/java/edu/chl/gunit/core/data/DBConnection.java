@@ -4,6 +4,7 @@ import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -18,6 +19,7 @@ public class DBConnection {
 
 
     public static Connection get() throws SQLException {
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         return DriverManager.getConnection(connString, username,password);
     }
 

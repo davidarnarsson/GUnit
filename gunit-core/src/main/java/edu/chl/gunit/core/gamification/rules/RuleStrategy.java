@@ -7,5 +7,5 @@ import edu.chl.gunit.core.gamification.GamificationContext;
  */
 public interface RuleStrategy {
 
-    public int calculate(GamificationContext ctx);
+    public RuleResult calculate(GamificationContext ctx);
 }

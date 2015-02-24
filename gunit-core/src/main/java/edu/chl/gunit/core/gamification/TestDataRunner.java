@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by davida on 23.2.2015.
  */
-public class Runner implements Runnable {
+public class TestDataRunner implements Runnable {
 
     public interface OnCompleteListener {
         public void onComplete();
@@ -18,7 +18,7 @@ public class Runner implements Runnable {
         listeners.add(l);
     }
 
-    public Runner() {
+    public TestDataRunner() {
 
     }
 

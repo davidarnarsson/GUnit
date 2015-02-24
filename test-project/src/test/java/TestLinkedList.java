@@ -23,6 +23,10 @@ public class TestLinkedList {
     }
 
 
+    @Test
+    public void testHerpderpNewTest() {
+
+    }
 
     @Test
     public void testLinkedListInsert() {

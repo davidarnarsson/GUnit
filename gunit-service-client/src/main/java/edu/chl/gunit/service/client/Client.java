@@ -19,7 +19,7 @@ public class Client {
         return service.getGUnitServiceImplPort();
     }
 
-    public String submitTestRun(TestRunRequest request) {
+    public int submitTestRun(TestRunRequest request) {
         return getService().submitTestRun(request);
     }
 

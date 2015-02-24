@@ -1,10 +1,7 @@
 package edu.chl.gunit.core;
 
 import com.google.inject.Inject;
-import edu.chl.gunit.core.services.JaCoCoResultService;
-import edu.chl.gunit.core.services.TestCaseService;
-import edu.chl.gunit.core.services.TestSuiteService;
-import edu.chl.gunit.core.services.UserService;
+import edu.chl.gunit.core.services.*;
 
 /**
  * Created by davida on 23.2.2015.
@@ -24,9 +21,10 @@ public class Facade {
     @Inject
     private TestCaseService testCaseService;
 
-    public UserService getUserService() {
-        return userService;
-    }
+    @Inject
+    private SessionService sessionService;
+
+    public UserService getUserService() { return userService; }
 
     public JaCoCoResultService getJaCoCoResultService() {
         return jaCoCoResultService;
@@ -38,5 +36,9 @@ public class Facade {
 
     public TestCaseService getTestCaseService() {
         return testCaseService;
+    }
+
+    public SessionService getSessionService() {
+        return sessionService;
     }
 }
