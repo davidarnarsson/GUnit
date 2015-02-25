@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -37,6 +38,9 @@ public class GUnitMojo extends AbstractMojo {
 
     @Parameter(property = "unitTestReports")
     private File unitTestReportsFolder;
+
+    @Parameter(property = "gunitWsLocation")
+    private URL gunitWsLocation;
 
 
     @Override
@@ -91,7 +95,7 @@ public class GUnitMojo extends AbstractMojo {
             getLog().warn("Could not read coverage reports folder!");
         }
 
-        Client client = new Client();
+        Client client = new Client(gunitWsLocation);
         try {
             int uniqueId = client.submitTestRun(req);
             getLog().info("Sent test run info to GUnit server, got unique tracking ID: " + uniqueId);

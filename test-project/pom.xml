@@ -8,6 +8,7 @@
     <version>0.0.2</version>
     <name>GUnit Test Project</name>
     <packaging>jar</packaging>
+
     <parent>
         <artifactId>gunit</artifactId>
         <groupId>edu.chl.gunit</groupId>
@@ -16,6 +17,8 @@
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gunit.source.version>1.8</gunit.source.version>
+        <gunit.target.version>1.8</gunit.target.version>
     </properties>
     <dependencies>
         <dependency>
@@ -41,8 +44,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${gunit.source.version}</source>
+                    <target>${gunit.target.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -83,6 +86,7 @@
                     <developerName>Herpderp</developerName>
                     <jacocoReportCsv>target/site/jacoco/jacoco.csv</jacocoReportCsv>
                     <unitTestReportsFolder>target/surefire-reports</unitTestReportsFolder>
+                    <gunitWsLocation>${gunit.service.url}</gunitWsLocation>
                 </configuration>
                 <executions>
                     <execution>

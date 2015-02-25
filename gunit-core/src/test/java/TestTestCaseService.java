@@ -1,34 +1,30 @@
-import static org.junit.Assert.assertEquals;
-
 import edu.chl.gunit.commons.TestCase;
 import edu.chl.gunit.commons.TestSuiteResults;
-import edu.chl.gunit.core.Module;
+import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
 import edu.chl.gunit.core.data.tables.records.TestsuiteresultRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.services.TestCaseService;
-import edu.chl.gunit.core.services.impl.TestCaseServiceImpl;
-import org.jooq.*;
-
-
+import org.jooq.Record4;
+import org.jooq.Result;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by davida on 24.2.2015.
  */
 public class TestTestCaseService {
-    static UserRecord user;
-    static SessionRecord session;
-    static Module testModule;
+    static ServiceFacade facade;
 
     @BeforeClass
     public static void setup() {
-        testModule = Utils.getTestModule();
+        facade = Utils.getFacade();
 
-        user = testModule.getUserService().getOrCreate("testuser");
-        session = testModule.getSessionService().create(user.getId());
+        UserRecord user = facade.userService().getOrCreate("testuser");
+        SessionRecord session = facade.sessionService().create(user.getId());
 
         TestSuiteResults result = new TestSuiteResults("Herp", 0.0, 1,0,0,0);
         TestCase testCase = new TestCase("Derp");
@@ -41,16 +37,16 @@ public class TestTestCaseService {
         tc2.setSucceeded(true);
         tc2.setTimeElapsed(0.0);
         result.addTestCase(tc2);
-        TestsuiteresultRecord suite = testModule.getTestSuiteService().createResult(result, session);
+        TestsuiteresultRecord suite = facade.testSuiteService().createResult(result, session);
 
-        testModule.getTestCaseService().createTestCase(testCase,suite.getId());
-        testModule.getTestCaseService().createTestCase(tc2,suite.getId());
+        facade.testCaseService().createTestCase(testCase,suite.getId());
+        facade.testCaseService().createTestCase(tc2,suite.getId());
 
     }
 
     @Test
     public void testGetNewlyAddedTestCases() {
-        Result<Record4<Integer, Integer, String, String>> results = testModule.getTestCaseService().getTestCasesByAuthor();
+        Result<Record4<Integer, Integer, String, String>> results = facade.testCaseService().getTestCasesByAuthor();
 
         Record4<Integer,Integer,String,String> r = results.stream().findFirst().get();
 
@@ -59,7 +55,7 @@ public class TestTestCaseService {
 
     @Test
     public void testUpdate() {
-        TestCaseService tcs = testModule.getTestCaseService();
+        TestCaseService tcs = facade.testCaseService();
 
         SuitetestcaseRecord tc = tcs.get(1);
 

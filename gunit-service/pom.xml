@@ -5,6 +5,16 @@
   <artifactId>gunit-service</artifactId>
   <packaging>war</packaging>
   <version>0.0.1</version>
+    <properties>
+        <!-- web service deployment properties -->
+
+        <gunit.service.tomcat.url>http://localhost:8081/manager/text</gunit.service.tomcat.url>
+        <gunit.service.tomcat.path>/gunit</gunit.service.tomcat.path>
+        <gunit.service.tomcat.user>admin</gunit.service.tomcat.user>
+        <gunit.service.tomcat.pass>admin</gunit.service.tomcat.pass>
+        <gunit.service.impl>edu.chl.gunit.service.GUnitServiceImpl</gunit.service.impl>
+        <gunit.service.wsdl>target/generated-sources/wsdl/GUnitServiceImplService.wsdl</gunit.service.wsdl>
+    </properties>
   <name>GUnit Service</name>
   <url>http://maven.apache.org</url>
     <parent>
@@ -46,12 +56,33 @@
               <artifactId>tomcat7-maven-plugin</artifactId>
               <version>2.2</version>
               <configuration>
-                  <path>/gunit</path>
+                  <path>${gunit.service.tomcat.path}</path>
                   <update>true</update>
-                  <url>http://localhost:8081/manager/text</url>
-                  <username>admin</username>
-                  <password>admin</password>
+                  <url>${gunit.service.tomcat.url}</url>
+                  <username>${gunit.service.tomcat.user}</username>
+                  <password>${gunit.service.tomcat.pass}</password>
               </configuration>
+          </plugin>
+
+          <plugin>
+              <groupId>org.jvnet.jax-ws-commons</groupId>
+              <artifactId>jaxws-maven-plugin</artifactId>
+              <version>2.3.1-b20150201.1248</version>
+              <executions>
+                  <execution>
+                      <id>generate-wsdl</id>
+                      <phase>process-classes</phase>
+                      <goals>
+                          <goal>wsgen</goal>
+                      </goals>
+                      <configuration>
+                          <sei>${gunit.service.impl}</sei>
+                          <genWsdl>true</genWsdl>
+                          <keep>true</keep>
+                          <inlineSchemas>true</inlineSchemas>
+                      </configuration>
+                  </execution>
+              </executions>
           </plugin>
       </plugins>
   </build>

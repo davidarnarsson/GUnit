@@ -8,9 +8,7 @@
     <name>GUnit Service Client</name>
     <artifactId>gunit-service-client</artifactId>
     <packaging>jar</packaging>
-    <properties>
-        <wsdlPath>http://localhost:8081/gunit/service?wsdl</wsdlPath>
-    </properties>
+
     <parent>
         <artifactId>gunit</artifactId>
         <groupId>edu.chl.gunit</groupId>
@@ -50,7 +48,7 @@
                             <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${wsdlPath}</wsdl>
+                                    <wsdl>${gunit.service.wsdl}</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>

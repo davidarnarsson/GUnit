@@ -14,16 +14,16 @@ import java.util.List;
 public class TestDataRunner implements Runnable {
 
     private SessionRecord session;
-    private final TestRunRequest request;
+    private TestRunRequest request;
 
     @Inject
     private Processor processor;
 
-    @Inject
+    public int initialize(TestRunRequest request) {
+        assert this.request == null;
 
-
-    public int initialize() {
-        session = processor.createNewProcessSession(request.getUser());
+        this.request = request;
+        session = processor.createNewProcessSession(this.request.getUser());
         return session.getSessionid();
     }
 
@@ -37,18 +37,21 @@ public class TestDataRunner implements Runnable {
         listeners.add(l);
     }
 
-    public TestDataRunner(TestRunRequest request) {
-        this.request = request;
+    public TestDataRunner() {
+
     }
 
     @Override
     public void run() {
+        assert this.request != null;
 
         GamificationContext results = processor.process(session,request.getCoverageResults(), request.getTestResults());
 
         Engine engine = new Engine();
 
         List<RuleResult> ruleResults = engine.calculatePoints(results);
+
+        this.request = null;
 
     }
 }

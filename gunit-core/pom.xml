@@ -7,6 +7,22 @@
     <groupId>edu.chl.gunit</groupId>
     <artifactId>gunit-core</artifactId>
     <version>0.0.1</version>
+    <properties>
+        <gunit.source.version>1.8</gunit.source.version>
+        <gunit.target.version>1.8</gunit.target.version>
+        <!-- db related properties -->
+        <gunit.core.db.targetDirectory>target/generated-sources/jooq</gunit.core.db.targetDirectory>
+        <gunit.core.db.driver>com.mysql.jdbc.Driver</gunit.core.db.driver>
+        <gunit.core.db.url>jdbc:mysql://localhost/gunit</gunit.core.db.url>
+        <gunit.core.db.user>gunit_user</gunit.core.db.user>
+        <gunit.core.db.password>startrek</gunit.core.db.password>
+        <gunit.core.db.inputSchema>gunit</gunit.core.db.inputSchema>
+        <gunit.core.db.target.packageName>edu.chl.gunit.core.data</gunit.core.db.target.packageName>
+
+        <gunit.core.db.test.url>jdbc:mysql://localhost</gunit.core.db.test.url>
+        <gunit.core.db.test.user>gunit_test</gunit.core.db.test.user>
+        <gunit.core.db.test.password>startrek</gunit.core.db.test.password>
+    </properties>
     <name>GUnit Core</name>
     <parent>
         <artifactId>gunit</artifactId>
@@ -60,8 +76,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${gunit.source.version}</source>
+                    <target>${gunit.target.version}</target>
                 </configuration>
             </plugin>
             
@@ -78,7 +94,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>target/generated-sources/jooq</source>
+                                <source>${gunit.core.db.targetDirectory}</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -119,10 +135,10 @@
 
                     <!-- JDBC connection parameters -->
                     <jdbc>
-                        <driver>com.mysql.jdbc.Driver</driver>
-                        <url>jdbc:mysql://localhost/gunit</url>
-                        <user>gunit_user</user>
-                        <password>startrek</password>
+                        <driver>${gunit.core.db.driver}</driver>
+                        <url>${gunit.core.db.url}</url>
+                        <user>${gunit.core.db.user}</user>
+                        <password>${gunit.core.db.password}</password>
                     </jdbc>
 
                     <!-- Generator parameters -->
@@ -132,11 +148,11 @@
                             <name>org.jooq.util.mysql.MySQLDatabase</name>
                             <includes>.*</includes>
                             <excludes></excludes>
-                            <inputSchema>gunit</inputSchema>
+                            <inputSchema>${gunit.core.db.inputSchema}</inputSchema>
                         </database>
                         <target>
-                            <packageName>edu.chl.gunit.core.data</packageName>
-                            <directory>target/generated-sources/jooq</directory>
+                            <packageName>${gunit.core.db.target.packageName}</packageName>
+                            <directory>${gunit.core.db.targetDirectory}</directory>
                         </target>
                     </generator>
                 </configuration>
@@ -146,10 +162,10 @@
                 <artifactId>sql-maven-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost</url>
-                    <username>gunit_test</username>
-                    <password>startrek</password>
+                    <driver>${gunit.core.db.driver}</driver>
+                    <url>${gunit.core.db.test.url}</url>
+                    <username>${gunit.core.db.test.user}</username>
+                    <password>${gunit.core.db.test.password}</password>
                 </configuration>
                 <dependencies>
                     <dependency>

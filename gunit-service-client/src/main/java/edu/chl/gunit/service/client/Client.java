@@ -4,10 +4,21 @@ import edu.chl.gunit.service.GUnit;
 import edu.chl.gunit.service.GUnitServiceImplService;
 import edu.chl.gunit.service.TestRunRequest;
 
+import javax.xml.ws.BindingProvider;
+import java.net.URL;
+
 /**
  * Created by davida on 23.2.2015.
  */
 public class Client {
+
+
+    private final URL wsLocation;
+
+    public Client(URL wsLocation) {
+
+        this.wsLocation = wsLocation;
+    }
 
     private GUnitServiceImplService service;
 
@@ -16,7 +27,11 @@ public class Client {
             service = new GUnitServiceImplService();
         }
 
-        return service.getGUnitServiceImplPort();
+        GUnit port = service.getGUnitServiceImplPort();
+
+        ((BindingProvider) port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, wsLocation.toString());
+
+        return port;
     }
 
     public int submitTestRun(TestRunRequest request) {

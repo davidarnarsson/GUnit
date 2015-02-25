@@ -1,9 +1,9 @@
 package edu.chl.gunit.service;
 
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import edu.chl.gunit.core.Module;
-import edu.chl.gunit.core.data.Processor;
-import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.TestDataRunner;
 import edu.chl.gunit.core.gamification.TestRunRequest;
 
@@ -21,13 +21,12 @@ public class GUnitServiceImpl implements GUnitService {
         return "pong!";
     }
 
-    @Inject
-    private Module module;
-
     @Override
     public int submitTestRun(TestRunRequest request) {
-        TestDataRunner runner = new TestDataRunner(request);
-        int sessionid = runner.initialize();
+        Injector injector = Guice.createInjector(new Module());
+        TestDataRunner runner = injector.getInstance(TestDataRunner.class);
+
+        int sessionid = runner.initialize(request);
 
         Thread runThread = new Thread(runner);
         runThread.start();
