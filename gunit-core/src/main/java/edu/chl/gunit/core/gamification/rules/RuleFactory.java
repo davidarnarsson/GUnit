@@ -1,11 +1,9 @@
 package edu.chl.gunit.core.gamification.rules;
 
-import edu.chl.gunit.core.data.DBConnection;
+import com.google.inject.Inject;
 
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
-import org.jooq.DSLContext;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,27 +15,22 @@ import java.util.List;
 public class RuleFactory {
 
 
+    @Inject
+    private edu.chl.gunit.core.services.RuleService ruleService;
 
     public List<Rule> getRules() {
         List<Rule> out = new ArrayList<>();
 
-        try {
-            DSLContext create = DBConnection.getContext();
+        List<RuleRecord> records = ruleService.getList();
 
-            List<RuleRecord> records = create.fetch(edu.chl.gunit.core.data.tables.Rule.RULE);
-
-            for (RuleRecord record : records) {
-                try {
-                    RuleStrategy strat = (RuleStrategy) getClass().getClassLoader().loadClass(record.getClassname()).newInstance();
-                    Rule u = new Rule(record, strat);
-                    out.add(u);
-                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                    e.printStackTrace();
-                }
+        for (RuleRecord record : records) {
+            try {
+                RuleStrategy strat = (RuleStrategy) getClass().getClassLoader().loadClass(record.getClassname()).newInstance();
+                Rule u = new Rule(record, strat);
+                out.add(u);
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
             }
-
-        } catch (SQLException ignored) {
-
         }
 
         return out;

@@ -1,4 +1,4 @@
-package edu.chl.gunit.service.data;
+package edu.chl.gunit.core.gamification;
 
 import edu.chl.gunit.commons.JaCoCoResult;
 import edu.chl.gunit.commons.TestSuiteResults;

@@ -1,18 +1,14 @@
 package edu.chl.gunit.service;
 
 
-import com.google.inject.Guice;
-import edu.chl.gunit.commons.JaCoCoResult;
-import edu.chl.gunit.commons.TestCase;
-import edu.chl.gunit.commons.TestSuiteResults;
-import edu.chl.gunit.core.Facade;
+import edu.chl.gunit.core.Module;
 import edu.chl.gunit.core.data.Processor;
-import edu.chl.gunit.core.data.tables.records.TestsuiteresultRecord;
-import edu.chl.gunit.service.data.TestRunRequest;
+import edu.chl.gunit.core.data.tables.records.SessionRecord;
+import edu.chl.gunit.core.gamification.TestDataRunner;
+import edu.chl.gunit.core.gamification.TestRunRequest;
 
 import javax.inject.Inject;
 import javax.jws.WebService;
-import java.util.List;
 
 /**
  * Created by davida on 20.2.2015.
@@ -26,13 +22,15 @@ public class GUnitServiceImpl implements GUnitService {
     }
 
     @Inject
-    private Facade facade;
+    private Module module;
 
     @Override
     public int submitTestRun(TestRunRequest request) {
+        TestDataRunner runner = new TestDataRunner(request);
+        int sessionid = runner.initialize();
 
-        Processor processor = Guice.createInjector().getInstance(Processor.class);
-        int sessionId = processor.process(request.getUser(), request.getCoverageResults(), request.getTestResults());
+        Thread runThread = new Thread(runner);
+        runThread.start();
 
         /**
          * 1. submit everything to the database
@@ -41,6 +39,6 @@ public class GUnitServiceImpl implements GUnitService {
          * 4. return the message key for the user to query at a later date
          * */
 
-        return sessionId;
+        return sessionid;
     }
 }

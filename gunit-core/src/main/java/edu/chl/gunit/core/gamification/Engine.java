@@ -1,5 +1,6 @@
 package edu.chl.gunit.core.gamification;
 
+import com.google.inject.Inject;
 import edu.chl.gunit.core.data.tables.Badge;
 import edu.chl.gunit.core.gamification.rules.Rule;
 import edu.chl.gunit.core.gamification.rules.RuleFactory;
@@ -13,10 +14,13 @@ import java.util.List;
  */
 public class Engine {
 
+    @Inject
+    private RuleFactory factory;
+
     List<Rule> rules;
 
     public Engine() {
-        RuleFactory factory = new RuleFactory();
+
         rules = factory.getRules();
     }
 

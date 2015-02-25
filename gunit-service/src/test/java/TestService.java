@@ -2,10 +2,9 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import edu.chl.gunit.commons.TestSuiteResults;
-import edu.chl.gunit.core.Facade;
 import edu.chl.gunit.service.GUnitService;
 import edu.chl.gunit.service.GUnitServiceImpl;
-import edu.chl.gunit.service.data.TestRunRequest;
+import edu.chl.gunit.core.gamification.TestRunRequest;
 import org.junit.Test;
 
 import java.util.ArrayList;

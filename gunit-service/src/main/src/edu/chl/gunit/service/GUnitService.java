@@ -1,6 +1,6 @@
 package edu.chl.gunit.service;
 
-import edu.chl.gunit.service.data.TestRunRequest;
+import edu.chl.gunit.core.gamification.TestRunRequest;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -19,6 +19,7 @@ public interface GUnitService {
      * */
     @WebMethod
     int  submitTestRun(TestRunRequest request);
+
 
 
 }

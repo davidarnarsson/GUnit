@@ -1,41 +1,15 @@
 package edu.chl.gunit.core.services;
 
 import edu.chl.gunit.commons.TestCase;
-import edu.chl.gunit.core.data.tables.Suitetestcase;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
 import org.jooq.Record4;
-import org.jooq.Table;
+import org.jooq.Result;
 
-import java.util.List;
-import static org.jooq.impl.DSL.*;
-import static edu.chl.gunit.core.data.Tables.*;
 /**
- * Created by davida on 23.2.2015.
+ * Created by davida on 25.2.2015.
  */
-public class TestCaseService extends AbstractService<SuitetestcaseRecord> {
-    public TestCaseService() {
-        super(Suitetestcase.SUITETESTCASE);
-    }
+public interface TestCaseService extends Service<SuitetestcaseRecord> {
+    SuitetestcaseRecord createTestCase(TestCase tc, int suiteId);
 
-    public SuitetestcaseRecord createTestCase(TestCase tc, int suiteId) {
-        return ctx().insertInto(Suitetestcase.SUITETESTCASE)
-                .set(SUITETESTCASE.CLASSNAME, tc.getClassName())
-                .set(SUITETESTCASE.ELAPSED,tc.getTimeElapsed())
-                .set(SUITETESTCASE.ERROR, tc.getError())
-                .set(SUITETESTCASE.NAME, tc.getName())
-                .set(SUITETESTCASE.SUCCEEDED, tc.getSucceeded())
-                .set(SUITETESTCASE.SUITEID, suiteId)
-                .returning()
-                .fetchOne();
-    }
-
-    public List<SuitetestcaseRecord> getNewlyAddedTestCases() {
-        /**
-         *
-
-         *
-         */
-        ctx().execute
-
-    }
+    Result<Record4<Integer, Integer, String, String>> getTestCasesByAuthor();
 }
