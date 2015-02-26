@@ -6,7 +6,10 @@ import edu.chl.gunit.commons.TestSuiteResults;
 import edu.chl.gunit.core.data.tables.Badge;
 import edu.chl.gunit.core.data.tables.records.*;
 import edu.chl.gunit.core.gamification.GamificationContext;
+import edu.chl.gunit.core.gamification.rules.RuleResult;
+import edu.chl.gunit.core.services.UserBadgeService;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +33,13 @@ public class Processor {
     edu.chl.gunit.core.services.JaCoCoResultService jaCoCoResultService;
 
     @Inject
+    UserBadgeService userBadgeService;
+
+    @Inject
     edu.chl.gunit.core.services.TestCaseService testCaseService;
+
+    @Inject
+    StatisticsCalculator calculator;
 
     public SessionRecord createNewProcessSession(String user) {
         UserRecord userRecord = userService.getOrCreate(user);
@@ -43,7 +52,6 @@ public class Processor {
 
 
         // calculate statistics and update session accordingly
-        StatisticsCalculator calculator = new StatisticsCalculator();
         Statistics statistics = calculator.calculateStatistics(coverageResults, testSuiteResults);
 
         // save session
@@ -75,5 +83,45 @@ public class Processor {
         }
 
         return new GamificationContext(statistics, session, jacocoresultRecords, testsuiteresultRecords, suitetestcaseRecords);
+    }
+
+    public void markSessionAsProcessed(SessionRecord session) {
+        sessionService.setProcessed(session);
+    }
+
+    public void markSessionAsFailed(SessionRecord session) {
+        sessionService.setFailed(session);
+    }
+
+    public void awardBadge(Integer userid, BadgeRecord b, Timestamp date, RuleRecord rule, int sessionId) {
+        userBadgeService.awardBadge(userid, b.getId(), date, rule.getId(), sessionId);
+    }
+
+    public void updateUserStatistics(Statistics ctx, List<RuleResult> results, SessionRecord session) {
+        int pointsForSession = 0;
+        int badgesEarned = 0;
+        for (RuleResult result : results) {
+            // award earned badges
+            for (BadgeRecord b : result.getAwardedBadges()) {
+                awardBadge(session.getUserid(), b, session.getDate(), result.getRule(), session.getSessionid());
+            }
+
+            badgesEarned += result.getAwardedBadges().size();
+
+            pointsForSession += result.getPointsAwarded();
+        }
+        // update session with data
+        session.setPointscollected(pointsForSession);
+        session.setBadgesearned(badgesEarned);
+        sessionService.update(session);
+
+        // update user with metadata
+        UserRecord user = userService.get(session.getUserid());
+        user.setLastbranchcoverage(ctx.getBranchCoverage());
+        user.setLastinstructioncoverage(ctx.getInstructionCoverage());
+        user.setTotalwrittentests(user.getTotalwrittentests() + ctx.getNewTestCases().size());
+        user.setPoints(user.getPoints() + pointsForSession);
+
+        userService.update(user);
     }
 }

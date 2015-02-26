@@ -2,6 +2,7 @@ package edu.chl.gunit.core.gamification;
 
 import com.google.inject.Inject;
 import edu.chl.gunit.core.data.tables.Badge;
+import edu.chl.gunit.core.data.tables.records.BadgeRecord;
 import edu.chl.gunit.core.gamification.rules.Rule;
 import edu.chl.gunit.core.gamification.rules.RuleFactory;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
@@ -14,22 +15,21 @@ import java.util.List;
  */
 public class Engine {
 
-    @Inject
-    private RuleFactory factory;
-
     List<Rule> rules;
 
-    public Engine() {
-
+    @Inject
+    public Engine( RuleFactory factory) {
         rules = factory.getRules();
     }
 
     public List<RuleResult> calculatePoints(GamificationContext ctx) {
+
         List<RuleResult> out = new ArrayList<>();
         for (Rule r : rules) {
-            RuleResult result = r.getStrategy().calculate(ctx);
+            RuleResult result = r.getStrategy().calculate(ctx, r.getRecord());
+            result.setRule(r.getRecord());
 
-            List<Badge> badges = result.getAwardedBadges();
+            List<BadgeRecord> badges = result.getAwardedBadges();
 
             out.add(result);
         }

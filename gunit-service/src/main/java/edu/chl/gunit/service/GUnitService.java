@@ -1,6 +1,9 @@
 package edu.chl.gunit.service;
 
+import edu.chl.gunit.core.data.tables.records.SessionRecord;
+import edu.chl.gunit.core.gamification.GamificationResult;
 import edu.chl.gunit.core.gamification.TestRunRequest;
+import edu.chl.gunit.service.data.SessionStatistics;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -20,6 +23,7 @@ public interface GUnitService {
     @WebMethod
     int  submitTestRun(TestRunRequest request);
 
-
+    @WebMethod
+    SessionStatistics getSessionStatistics(int sessionId);
 
 }

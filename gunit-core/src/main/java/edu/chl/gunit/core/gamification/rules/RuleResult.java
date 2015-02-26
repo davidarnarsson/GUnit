@@ -1,7 +1,10 @@
 package edu.chl.gunit.core.gamification.rules;
 
 import edu.chl.gunit.core.data.tables.Badge;
+import edu.chl.gunit.core.data.tables.records.BadgeRecord;
+import edu.chl.gunit.core.data.tables.records.RuleRecord;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,17 +12,29 @@ import java.util.List;
  */
 public class RuleResult {
 
-    private List<Badge> awardedBadges;
+    public RuleResult() {
+        awardedBadges = new ArrayList<>();
+    }
+    private List<BadgeRecord> awardedBadges;
 
-    private int pointsAwarded;
+    public RuleRecord getRule() {
+        return rule;
+    }
+
+    public void setRule(RuleRecord rule) {
+        this.rule = rule;
+    }
+
+    private RuleRecord rule;
+    private int pointsAwarded = 0;
 
     private String message;
 
-    public List<Badge> getAwardedBadges() {
+    public List<BadgeRecord> getAwardedBadges() {
         return awardedBadges;
     }
 
-    public void setAwardedBadges(List<Badge> awardedBadges) {
+    public void setAwardedBadges(List<BadgeRecord> awardedBadges) {
         this.awardedBadges = awardedBadges;
     }
 

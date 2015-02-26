@@ -33,6 +33,8 @@ public class Module extends AbstractModule {
         bind(TestCaseService.class).to(TestCaseServiceImpl.class);
         bind(TestSuiteService.class).to(TestSuiteServiceImpl.class);
         bind(UserService.class).to(UserServiceImpl.class);
+        bind(UserBadgeService.class).to(UserBadgeServiceImpl.class);
+        bind(BadgeService.class).to(BadgeServiceImpl.class);
     }
 
     public Module(DBProvider provider) {

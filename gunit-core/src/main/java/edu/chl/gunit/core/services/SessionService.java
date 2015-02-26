@@ -7,4 +7,6 @@ import edu.chl.gunit.core.data.tables.records.SessionRecord;
  */
 public interface SessionService extends Service<SessionRecord> {
     SessionRecord create(int userId);
+    void setProcessed(SessionRecord record);
+    void setFailed(SessionRecord record);
 }

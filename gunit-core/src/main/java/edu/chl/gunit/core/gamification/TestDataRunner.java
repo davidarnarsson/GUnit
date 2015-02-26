@@ -7,6 +7,8 @@ import edu.chl.gunit.core.gamification.rules.RuleResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by davida on 23.2.2015.
@@ -18,6 +20,9 @@ public class TestDataRunner implements Runnable {
 
     @Inject
     private Processor processor;
+
+    @Inject
+    private Engine engine;
 
     public int initialize(TestRunRequest request) {
         assert this.request == null;
@@ -45,13 +50,27 @@ public class TestDataRunner implements Runnable {
     public void run() {
         assert this.request != null;
 
-        GamificationContext results = processor.process(session,request.getCoverageResults(), request.getTestResults());
+        try {
+            GamificationContext results = processor.process(session, request.getCoverageResults(), request.getTestResults());
 
-        Engine engine = new Engine();
+            List<RuleResult> ruleResults = engine.calculatePoints(results);
 
-        List<RuleResult> ruleResults = engine.calculatePoints(results);
+            processor.updateUserStatistics(results.getStatistics(), ruleResults, session);
 
-        this.request = null;
+            processor.markSessionAsProcessed(session);
+
+        } catch (Exception e) {
+            if (session != null) {
+                processor.markSessionAsFailed(session);
+            }
+
+            e.printStackTrace();
+            Logger.getLogger("TestDataRunner").log(Level.SEVERE, "Error when processing test results", e);
+        }
+        finally {
+            this.request = null;
+            this.session = null;
+        }
 
     }
 }

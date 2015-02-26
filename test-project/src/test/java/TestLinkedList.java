@@ -24,6 +24,17 @@ public class TestLinkedList {
 
 
     @Test
+    public void testRemoveAt() {
+        LinkedList<String> ll = new LinkedList<>();
+        ll.insert("derp");
+        ll.insert("derp2");
+        ll.removeAt(0);
+
+        assertEquals("last should be first now", "derp2", ll.get(0));
+        assertTrue(ll.size() == 1);
+    }
+
+    @Test
     public void testHerpderpNewTest() {
 
     }

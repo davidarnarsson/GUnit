@@ -32,10 +32,17 @@ public class ServiceFacade {
         return injector.getInstance(TestSuiteService.class);
     }
 
+    public UserBadgeService userBadgeService() { return injector.getInstance(UserBadgeService.class); }
+
+    public BadgeService badgeService() { return injector.getInstance(BadgeService.class); }
+
     public UserService userService() {
         return injector.getInstance(UserService.class);
     }
 
+    public Injector getInjector() {
+        return injector;
+    }
 
     private final Injector injector;
 
