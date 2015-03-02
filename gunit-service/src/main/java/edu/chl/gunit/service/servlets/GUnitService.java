@@ -1,4 +1,4 @@
-package edu.chl.gunit.service;
+package edu.chl.gunit.service.servlets;
 
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.GamificationResult;

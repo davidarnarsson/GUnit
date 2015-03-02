@@ -1,14 +1,11 @@
-package edu.chl.gunit.service;
+package edu.chl.gunit.service.servlets;
 
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import edu.chl.gunit.core.Module;
 import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.core.data.DBProvider;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
-import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
 import edu.chl.gunit.core.gamification.TestDataRunner;
 import edu.chl.gunit.core.gamification.TestRunRequest;
 import edu.chl.gunit.service.data.SessionStatistics;
@@ -23,7 +20,7 @@ import javax.xml.ws.handler.MessageContext;
  * Created by davida on 20.2.2015.
  */
 
-@WebService(endpointInterface = "edu.chl.gunit.service.GUnitService")
+@WebService(endpointInterface = "edu.chl.gunit.service.servlets.GUnitService")
 public class GUnitServiceImpl implements GUnitService {
 
     @Override

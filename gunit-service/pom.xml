@@ -12,7 +12,7 @@
         <gunit.service.tomcat.path>/gunit</gunit.service.tomcat.path>
         <gunit.service.tomcat.user>admin</gunit.service.tomcat.user>
         <gunit.service.tomcat.pass>admin</gunit.service.tomcat.pass>
-        <gunit.service.impl>edu.chl.gunit.service.GUnitServiceImpl</gunit.service.impl>
+        <gunit.service.impl>edu.chl.gunit.service.servlets.GUnitServiceImpl</gunit.service.impl>
         <gunit.service.wsdl>target/generated-sources/wsdl/GUnitServiceImplService.wsdl</gunit.service.wsdl>
     </properties>
   <name>GUnit Service</name>
