@@ -1,12 +1,12 @@
 import edu.chl.gunit.commons.JaCoCoResult;
 import edu.chl.gunit.commons.TestCase;
+import edu.chl.gunit.commons.TestRunRequest;
 import edu.chl.gunit.commons.TestSuiteResults;
-
 import edu.chl.gunit.commons.input.jacoco.JaCoCoCSVReader;
 import edu.chl.gunit.commons.input.jacoco.JaCoCoResultException;
 import edu.chl.gunit.commons.input.junit.JUnitResultException;
 import edu.chl.gunit.commons.input.junit.JUnitXMLReader;
-import edu.chl.gunit.service.TestRunRequest;
+
 import edu.chl.gunit.service.client.Client;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -40,7 +39,7 @@ public class GUnitMojo extends AbstractMojo {
     private File unitTestReportsFolder;
 
     @Parameter(property = "gunitWsLocation")
-    private URL gunitWsLocation;
+    private String gunitWsLocation;
 
 
     @Override
@@ -70,7 +69,7 @@ public class GUnitMojo extends AbstractMojo {
             for (File f : unitTestReportsFolder.listFiles(filter)) {
                 try {
                     TestSuiteResults results = reader.read(f.getAbsolutePath());
-                    req.getTestResults().add(convert(results));
+                    req.getTestResults().add(results);
                 } catch (JUnitResultException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +85,7 @@ public class GUnitMojo extends AbstractMojo {
                 List<JaCoCoResult> coverageResultList = reader.read(jacocoReportCsv);
 
                 for (JaCoCoResult result : coverageResultList) {
-                    req.getCoverageResults().add(convert(result));
+                    req.getCoverageResults().add(result);
                 }
             } catch (JaCoCoResultException e) {
                 e.printStackTrace();
@@ -96,6 +95,7 @@ public class GUnitMojo extends AbstractMojo {
         }
 
         Client client = new Client(gunitWsLocation);
+
         try {
             int uniqueId = client.submitTestRun(req);
             getLog().info("Sent test run info to GUnit server, got unique tracking ID: " + uniqueId);
@@ -120,48 +120,5 @@ public class GUnitMojo extends AbstractMojo {
         // 5. annars
         // 6.   sofa í 1000ms og goto 1
 
-    }
-
-    private edu.chl.gunit.service.JaCoCoResult convert(JaCoCoResult r) {
-        edu.chl.gunit.service.JaCoCoResult c = new edu.chl.gunit.service.JaCoCoResult();
-        c.setBranchCovered(r.getBranchCovered());
-        c.setBranchMissed(r.getBranchMissed());
-        c.setClassName(r.getClassName());
-        c.setComplexityCovered(r.getComplexityCovered());
-        c.setComplexityMissed(r.getComplexityMissed());
-        c.setGroupName(r.getGroupName());
-        c.setInstructionCovered(r.getInstructionCovered());
-        c.setInstructionMissed(r.getInstructionMissed());
-        c.setLineCovered(r.getLineCovered());
-        c.setLineMissed(r.getLineMissed());
-        c.setMethodCovered(r.getMethodCovered());
-        c.setMethodMissed(r.getMethodMissed());
-        c.setPackageName(r.getPackageName());
-        return c;
-    }
-
-    private edu.chl.gunit.service.TestSuiteResults convert(TestSuiteResults r) {
-        edu.chl.gunit.service.TestSuiteResults n = new edu.chl.gunit.service.TestSuiteResults();
-        n.setErrors(r.getErrors());
-        n.setFailures(r.getFailures());
-        n.setName(r.getName());
-        n.setSkipped(r.getSkipped());
-        n.setTests(r.getTests());
-        n.setTimeElapsed(r.getTimeElapsed());
-
-        for (TestCase c : r.getTestCases()) {
-            edu.chl.gunit.service.TestCase nc = new edu.chl.gunit.service.TestCase();
-            nc.setName(c.getName());
-            nc.setClassName(c.getClassName());
-            nc.setErrorMessage(c.getErrorMessage());
-            nc.setErrorType(c.getErrorType());
-            nc.setStackTrace(c.getStackTrace());
-            nc.setSucceeded(c.getSucceeded());
-            nc.setTimeElapsed(c.getTimeElapsed());
-
-            n.getTestCases().add(nc);
-        }
-
-        return n;
     }
 }

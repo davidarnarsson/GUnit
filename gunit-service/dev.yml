@@ -1,0 +1,4 @@
+connectionString: jdbc:mysql://localhost/gunit
+userName: gunit_user
+password: startrek
+assetsDir: /static

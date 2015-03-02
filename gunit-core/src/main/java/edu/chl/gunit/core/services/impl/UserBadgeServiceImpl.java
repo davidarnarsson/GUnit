@@ -1,5 +1,6 @@
 package edu.chl.gunit.core.services.impl;
 
+import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.Userbadges;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
 import edu.chl.gunit.core.services.UserBadgeService;
@@ -26,9 +27,11 @@ public class UserBadgeServiceImpl extends AbstractService<UserbadgesRecord> impl
     }
 
     public List<UserbadgesRecord> getUserBadges(int userId) {
-        return ctx().selectFrom(USERBADGES)
-                .where(USERBADGES.USERID.eq(userId)).fetch()
-                .stream().collect(Collectors.toList());
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.selectFrom(USERBADGES)
+                    .where(USERBADGES.USERID.eq(userId)).fetch()
+                    .stream().collect(Collectors.toList());
+        }
     }
 
     @Override
@@ -41,7 +44,8 @@ public class UserBadgeServiceImpl extends AbstractService<UserbadgesRecord> impl
         record.setUserid(userId);
         record.setSessionid(sessionId);
 
-
-        return ctx().insertInto(USERBADGES).set(record).returning().fetchOne();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.insertInto(USERBADGES).set(record).returning().fetchOne();
+        }
     }
 }

@@ -18,10 +18,7 @@ public class TestLinkedList {
     public void setup() {
         b = null;
         a = "2";
-
-        System.out.println("This is before");
     }
-
 
     @Test
     public void testRemoveAt() {
@@ -97,4 +94,15 @@ public class TestLinkedList {
         ll.remove("derp");
         assertThat("size after removal", ll.size(), is(0));
     }
+
+    @Test
+    public void testFirstIndexOf() {
+        LinkedList<String> ll = new LinkedList<>();
+
+        ll.insert("something");
+        ll.insert("else");
+        assertEquals("indexOf else == 1", 1, ll.firstIndexOf("else"));
+    }
+
+
 }

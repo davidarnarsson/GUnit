@@ -18,5 +18,13 @@ public enum SessionStatus {
         this.statusCode = i;
     }
 
+    public static SessionStatus from(int code) {
+        switch(code) {
+            case 0 :return New;
+            case 1: return Processed;
+            case 2: return Failed;
+            default: return New;
+        }
+    }
 
 }

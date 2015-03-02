@@ -40,17 +40,26 @@ public class DBProvider {
     }
 
     public Connection get(String conn, String user, String pw) throws SQLException {
-        return get(new com.mysql.jdbc.Driver(), conn, user, pw);
+        Connection c =  get(new com.mysql.jdbc.Driver(), conn, user, pw);
+        return c;
     }
 
     public Connection get() throws SQLException {
-        return get(connString, username,password);
+        return get(connString, username, password);
     }
 
-    public DSLContext getContext() throws SQLException {
+    public DBContext getContext(){
         Settings settings = new Settings();
         settings.setRenderSchema(false);
-        return DSL.using(get(),settings);
+        DBContext ctx = null;
+        try {
+            ctx = new DBContext(get(), settings);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return ctx;
     }
 
 }

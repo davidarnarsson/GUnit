@@ -1,5 +1,7 @@
 package edu.chl.gunit.commons;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by davida on 4.2.2015.
  */
@@ -12,10 +14,12 @@ public class TestCase {
         this.error = error;
     }
 
+    @JsonProperty
     public String getName() {
         return name;
     }
 
+    @JsonProperty
     public String getError() {
         return error;
     }
@@ -35,6 +39,7 @@ public class TestCase {
         this.name = name;
     }
 
+    @JsonProperty
     public String getErrorMessage() {
         return error;
     }
@@ -43,6 +48,7 @@ public class TestCase {
         this.error = error;
     }
 
+    @JsonProperty
     public String getStackTrace() {
         return stackTrace;
     }
@@ -51,6 +57,7 @@ public class TestCase {
         this.stackTrace = stackTrace;
     }
 
+    @JsonProperty
     public String getErrorType() {
         return errorType;
     }
@@ -59,6 +66,7 @@ public class TestCase {
         this.errorType = errorType;
     }
 
+    @JsonProperty
     public Boolean getSucceeded() {
         return succeeded;
     }
@@ -67,6 +75,7 @@ public class TestCase {
         this.succeeded = succeeded;
     }
 
+    @JsonProperty
     public String getClassName() {
         return className;
     }
@@ -75,6 +84,7 @@ public class TestCase {
         this.className = className;
     }
 
+    @JsonProperty
     public Double getTimeElapsed() {
         return timeElapsed;
     }

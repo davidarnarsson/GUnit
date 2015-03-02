@@ -1,5 +1,7 @@
 package edu.chl.gunit.commons;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +64,7 @@ public class TestSuiteResults {
         return properties.get(key);
     }
 
+    @JsonProperty
     public List<TestCase> getTestCases() {
         return testCases;
     }
@@ -70,26 +73,32 @@ public class TestSuiteResults {
         this.testCases = testCases;
     }
 
+    @JsonProperty
     public String getName() {
         return name;
     }
 
+    @JsonProperty
     public double getTimeElapsed() {
         return timeElapsed;
     }
 
+    @JsonProperty
     public int getTests() {
         return tests;
     }
 
+    @JsonProperty
     public int getErrors() {
         return errors;
     }
 
+    @JsonProperty
     public int getSkipped() {
         return skipped;
     }
 
+    @JsonProperty
     public int getFailures() {
         return failures;
     }

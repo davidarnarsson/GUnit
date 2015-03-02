@@ -1,6 +1,7 @@
 package edu.chl.gunit.core.services.impl;
 
 import edu.chl.gunit.commons.TestSuiteResults;
+import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.Testsuiteresult;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.data.tables.records.TestsuiteresultRecord;
@@ -18,16 +19,17 @@ public class TestSuiteServiceImpl extends AbstractService<TestsuiteresultRecord>
 
     @Override
     public TestsuiteresultRecord createResult(TestSuiteResults result, SessionRecord session) {
-
-        return ctx().insertInto(TESTSUITERESULT)
-                .set(TESTSUITERESULT.ELAPSED, result.getTimeElapsed())
-                .set(TESTSUITERESULT.ERRORS,result.getErrors())
-                .set(TESTSUITERESULT.FAILURES, result.getFailures())
-                .set(TESTSUITERESULT.NAME, result.getName())
-                .set(TESTSUITERESULT.SKIPPED, result.getSkipped())
-                .set(TESTSUITERESULT.TESTS, result.getTests())
-                .set(TESTSUITERESULT.SESSIONID, session.getSessionid())
-                .returning().fetchOne();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.insertInto(TESTSUITERESULT)
+                    .set(TESTSUITERESULT.ELAPSED, result.getTimeElapsed())
+                    .set(TESTSUITERESULT.ERRORS, result.getErrors())
+                    .set(TESTSUITERESULT.FAILURES, result.getFailures())
+                    .set(TESTSUITERESULT.NAME, result.getName())
+                    .set(TESTSUITERESULT.SKIPPED, result.getSkipped())
+                    .set(TESTSUITERESULT.TESTS, result.getTests())
+                    .set(TESTSUITERESULT.SESSIONID, session.getSessionid())
+                    .returning().fetchOne();
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package edu.chl.gunit.commons;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
@@ -19,6 +21,7 @@ public class JaCoCoResult {
     public void setPackageName(String packageName) {
         this.packageName = packageName;
     }
+
 
     private String className;
     private String groupName;
@@ -46,18 +49,22 @@ public class JaCoCoResult {
         this.packageName = packageName;
     }
 
+    @JsonProperty
     public String getPackageName() {
         return packageName;
     }
 
+    @JsonProperty
     public String getGroupName() {
         return groupName;
     }
 
+    @JsonProperty
     public String getClassName() {
         return className;
     }
 
+    @JsonProperty
     public int getInstructionMissed() {
         return instructionMissed;
     }
@@ -66,6 +73,7 @@ public class JaCoCoResult {
         this.instructionMissed = instructionMissed;
     }
 
+    @JsonProperty
     public int getInstructionCovered() {
         return instructionCovered;
     }
@@ -74,6 +82,7 @@ public class JaCoCoResult {
         this.instructionCovered = instructionCovered;
     }
 
+    @JsonProperty
     public int getBranchMissed() {
         return branchMissed;
     }
@@ -82,6 +91,7 @@ public class JaCoCoResult {
         this.branchMissed = branchMissed;
     }
 
+    @JsonProperty
     public int getBranchCovered() {
         return branchCovered;
     }
@@ -90,6 +100,7 @@ public class JaCoCoResult {
         this.branchCovered = branchCovered;
     }
 
+    @JsonProperty
     public int getLineMissed() {
         return lineMissed;
     }
@@ -98,6 +109,7 @@ public class JaCoCoResult {
         this.lineMissed = lineMissed;
     }
 
+    @JsonProperty
     public int getLineCovered() {
         return lineCovered;
     }
@@ -106,6 +118,7 @@ public class JaCoCoResult {
         this.lineCovered = lineCovered;
     }
 
+    @JsonProperty
     public int getComplexityMissed() {
         return complexityMissed;
     }
@@ -114,6 +127,7 @@ public class JaCoCoResult {
         this.complexityMissed = complexityMissed;
     }
 
+    @JsonProperty
     public int getComplexityCovered() {
         return complexityCovered;
     }
@@ -122,6 +136,7 @@ public class JaCoCoResult {
         this.complexityCovered = complexityCovered;
     }
 
+    @JsonProperty
     public int getMethodMissed() {
         return methodMissed;
     }
@@ -130,6 +145,7 @@ public class JaCoCoResult {
         this.methodMissed = methodMissed;
     }
 
+    @JsonProperty
     public int getMethodCovered() {
         return methodCovered;
     }
@@ -138,6 +154,7 @@ public class JaCoCoResult {
         this.methodCovered = methodCovered;
     }
 
+    @JsonProperty
     public Date getDate() {
         return date;
     }

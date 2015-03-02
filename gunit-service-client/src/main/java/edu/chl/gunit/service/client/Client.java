@@ -1,44 +1,39 @@
 package edu.chl.gunit.service.client;
 
-import edu.chl.gunit.service.GUnit;
-import edu.chl.gunit.service.GUnitServiceImplService;
-import edu.chl.gunit.service.TestRunRequest;
 
-import javax.xml.ws.BindingProvider;
-import java.net.URL;
+import edu.chl.gunit.commons.TestRunRequest;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
+
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by davida on 23.2.2015.
  */
 public class Client {
+    private String webServiceLocation;
+    private WebTarget target;
 
+    public Client(String webServiceLocation) {
+        this.webServiceLocation = webServiceLocation;
+        this.target = ClientBuilder.newBuilder()
+                .withConfig(new ClientConfig())
+                .build()
+                .register(JacksonFeature.class)
+                .target(webServiceLocation);
 
-    private final URL wsLocation;
-
-    public Client(URL wsLocation) {
-
-        this.wsLocation = wsLocation;
     }
 
-    private GUnitServiceImplService service;
-
-    private GUnit getService() {
-        if (service == null) {
-            service = new GUnitServiceImplService();
-        }
-
-        GUnit port = service.getGUnitServiceImplPort();
-
-        ((BindingProvider) port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, wsLocation.toString());
-
-        return port;
-    }
-
-    public int submitTestRun(TestRunRequest request) {
-        return getService().submitTestRun(request);
-    }
-
-    public String ping() {
-        return getService().ping();
+    public int submitTestRun(TestRunRequest req) {
+        Integer sessionId = target
+                .path("/statistics")
+                .request(MediaType.APPLICATION_JSON)
+                .<Integer>post(Entity.entity(req, MediaType.APPLICATION_JSON), Integer.class);
+        return sessionId;
     }
 }

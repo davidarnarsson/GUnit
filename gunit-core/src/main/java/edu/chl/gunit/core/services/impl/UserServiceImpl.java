@@ -1,12 +1,16 @@
 package edu.chl.gunit.core.services.impl;
 
+import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.User;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
 import org.jooq.Field;
+import org.jooq.Result;
 import org.jooq.TableField;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by davida on 23.2.2015.
@@ -19,9 +23,11 @@ public class UserServiceImpl extends AbstractService<UserRecord> implements edu.
 
     @Override
     public UserRecord getUser(String username) {
-        return ctx().selectFrom(User.USER)
-                .where(User.USER.NAME.eq(username))
-                .fetchOne();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.selectFrom(User.USER)
+                    .where(User.USER.NAME.eq(username))
+                    .fetchOne();
+        }
     }
 
 
@@ -39,6 +45,13 @@ public class UserServiceImpl extends AbstractService<UserRecord> implements edu.
             r = createUser(userName);
         }
         return r;
+    }
+
+    @Override
+    public Result<UserRecord> getLeaderboard(Optional<TableField<UserRecord,?>> field) {
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.selectFrom(User.USER).orderBy(field.orElse(User.USER.POINTS).desc()).fetch();
+        }
     }
 
     @Override

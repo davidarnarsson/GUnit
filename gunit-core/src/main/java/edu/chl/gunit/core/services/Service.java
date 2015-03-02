@@ -1,5 +1,6 @@
 package edu.chl.gunit.core.services;
 
+import edu.chl.gunit.core.data.DBContext;
 import org.jooq.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface Service<T extends Record> {
     List<T> getList();
 
     List<T> getList(Condition... c);
+    List<T> getList(int offset , int count, Condition... c);
 
     void transaction(TransactionalRunnable tr);
 
@@ -23,5 +25,7 @@ public interface Service<T extends Record> {
 
     int delete(int id);
 
-    DSLContext ctx();
+    DBContext ctx();
+
+    int count(Condition eq);
 }

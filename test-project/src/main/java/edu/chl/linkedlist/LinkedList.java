@@ -103,7 +103,7 @@ public class LinkedList<T> {
         }
     }
 
-    private int firstIndexOf(T value) {
+    public int firstIndexOf(T value) {
         Node curr = head;
         int i = 0;
 

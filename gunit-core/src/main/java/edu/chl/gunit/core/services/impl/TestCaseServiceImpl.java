@@ -1,6 +1,7 @@
 package edu.chl.gunit.core.services.impl;
 
 import edu.chl.gunit.commons.TestCase;
+import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.Suitetestcase;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
 import org.jooq.*;
@@ -17,15 +18,17 @@ public class TestCaseServiceImpl extends AbstractService<SuitetestcaseRecord> im
 
     @Override
     public SuitetestcaseRecord createTestCase(TestCase tc, int suiteId) {
-        return ctx().insertInto(Suitetestcase.SUITETESTCASE)
-                .set(SUITETESTCASE.CLASSNAME, tc.getClassName())
-                .set(SUITETESTCASE.ELAPSED,tc.getTimeElapsed())
-                .set(SUITETESTCASE.ERROR, tc.getError())
-                .set(SUITETESTCASE.NAME, tc.getName())
-                .set(SUITETESTCASE.SUCCEEDED, tc.getSucceeded())
-                .set(SUITETESTCASE.SUITEID, suiteId)
-                .returning()
-                .fetchOne();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.insertInto(Suitetestcase.SUITETESTCASE)
+                    .set(SUITETESTCASE.CLASSNAME, tc.getClassName())
+                    .set(SUITETESTCASE.ELAPSED, tc.getTimeElapsed())
+                    .set(SUITETESTCASE.ERROR, tc.getError())
+                    .set(SUITETESTCASE.NAME, tc.getName())
+                    .set(SUITETESTCASE.SUCCEEDED, tc.getSucceeded())
+                    .set(SUITETESTCASE.SUITEID, suiteId)
+                    .returning()
+                    .fetchOne();
+        }
     }
 
     @Override
@@ -40,20 +43,22 @@ public class TestCaseServiceImpl extends AbstractService<SuitetestcaseRecord> im
 
          *
          */
-         return ctx().select(
-                 field("u.id",Integer.class),
-                 field("i.testId",Integer.class),
-                 field("i.name",String.class),
-                 field("i.className", String.class)
-         )
-                .from(TESTSUITERESULT.as("tsr"))
-                .join(
-                        select(min(field("tc.id")).as("testId"),field("tc.name"), field("tc.className"),field("tc.suiteId"))
-                        .from(SUITETESTCASE.as("tc"))
-                        .groupBy(field("tc.name"), field("tc.classname")).asTable("i")
-                ).on(field("i.suiteId").eq(field("tsr.id")))
-                .join(SESSION.as("s")).on(field("s.sessionId").eq(field("tsr.sessionId")))
-                .join(USER.as("u")).on(field("u.id").eq(field("s.userId"))).fetch();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.select(
+                    field("u.id", Integer.class),
+                    field("i.testId", Integer.class),
+                    field("i.name", String.class),
+                    field("i.className", String.class)
+            )
+                    .from(TESTSUITERESULT.as("tsr"))
+                    .join(
+                            select(min(field("tc.id")).as("testId"), field("tc.name"), field("tc.className"), field("tc.suiteId"))
+                                    .from(SUITETESTCASE.as("tc"))
+                                    .groupBy(field("tc.name"), field("tc.classname")).asTable("i")
+                    ).on(field("i.suiteId").eq(field("tsr.id")))
+                    .join(SESSION.as("s")).on(field("s.sessionId").eq(field("tsr.sessionId")))
+                    .join(USER.as("u")).on(field("u.id").eq(field("s.userId"))).fetch();
+        }
     }
 
     @Override

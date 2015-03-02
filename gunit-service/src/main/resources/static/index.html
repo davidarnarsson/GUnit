@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GUnit</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div id="wrap" ng-app="gunit">
+
+        <header class="flex-container">
+            <h1 class="title">G-Unit</h1>
+
+            <ng-include src="'nav.tpl'"></ng-include>
+        </header>
+
+        <ng-view />
+
+
+        <!-- templates -->
+        <script type="text/ng-template" id="login.tpl">
+            <div class="login container" ng-controller="LoginCtrl as ctrl">
+                <h4>Veldu forritaranafnið þitt</h4>
+                <user-selector ng-model="developerName" user-promise="ctrl.getUsers"></user-selector>
+                <button ng-disabled="!developerName" type="submit" ng-click="ctrl.login(developerName, '/')">Innskrá</button>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="nav.tpl">
+            <ul class="navigation">
+                <li><a href="#/">Forsíða</a></li>
+                <li ng-controller="LoginCtrl as ctrl" ng-show="ctrl.isLoggedIn()">
+                    <a href="" ng-click="ctrl.logout('/login')">
+                        <span ng-controller="UserCtrl as c">{{c.getUser().name}}</span> (Útskrá)
+                    </a>
+                </li>
+            </ul>
+        </script>
+
+        <script type="text/ng-template" id="front-page.tpl">
+            <div class="leaderboard container">
+
+                <h2>Stigatafla</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sæti</th>
+                            <th>Forritari</th>
+                            <th>Heildarstig</th>
+                            <th>Fjöldi skrifaðra prófa</th>
+                            <th class="xs-hidden">Síðasta branch coverage</th>
+                            <th class="xs-hidden">Síðasta instruction coverage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in leaderboard">
+                            <td ng-bind="$index + 1"></td>
+                            <td> {{row.name}} <span ng-show="row.name == user.name"> (Þú)</span></td>
+                            <td ng-bind="row.points"></td>
+                            <td ng-bind="row.totalWrittenTests"></td>
+                            <td class="xs-hidden">{{row.lastBranchCoverage * 100 | number:2}}%</td>
+                            <td class="xs-hidden">{{row.lastInstructionCoverage * 100 | number:2}}%</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex-container your-sessions">
+                <div class="flex-item p50">
+                    <h3>Þínar lotur</h3>
+
+                    <pager page-count="statistics.total / statistics.count" current="getCurrent" set-page="setPage"> </pager>
+                    <table class="table table-xs">
+                        <thead>
+                            <th>Dags.</th>
+                            <th class="xs-hidden">Branch coverage</th>
+                            <th class="xs-hidden">Line coverage</th>
+                            <th class="xs-hidden">Instruction coverage</th>
+                            <th>Ný próf</th>
+                            <th>Stig</th>
+                            <th>Orður</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in statistics.value" ng-class="{'failed': row.sessionStatus == 'Failed', 'processing': row.sessionStatus == 'New'}">
+                                <td ng-bind="row.date | date:'medium'"></td>
+                                <td class="xs-hidden">{{row.branchCoverage * 100 | number:2}}%</td>
+                                <td class="xs-hidden">{{row.lineCoverage * 100 | number:2}}%</td>
+                                <td class="xs-hidden">{{row.instructionCoverage * 100 | number:2}}%</td>
+                                <td ng-bind="row.newTests"></td>
+                                <td ng-bind="row.pointsCollected"></td>
+                                <td ng-bind="row.badgesEarned"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex-item p50">
+                    <h3>Yfirlit yfir coverage</h3>
+                    <div class="chart-container">
+                        <canvas id="session-chart" chart data="statisticsData" options="chartOptions"></canvas>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="pager.tpl">
+            Veldu síðu:
+            <ul class="pager">
+                <li ng-repeat="page in pages">
+                    <a ng-disabled="page == current()" ng-click="setPage(page)">{{page + 1}}</a>
+                </li>
+            </ul>
+        </script>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.14/i18n/angular-locale_is-is.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

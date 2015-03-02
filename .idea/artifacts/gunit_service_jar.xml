@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="gunit-service:jar">
+    <output-path>$PROJECT_DIR$/gunit-service/target</output-path>
+    <root id="archive" name="gunit-service_jar.jar">
+      <element id="artifact" artifact-name="gunit-service:war exploded" />
+    </root>
+  </artifact>
+</component>

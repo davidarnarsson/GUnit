@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gunit.service.wsdl>gunit-service/target/generated-sources/wsdl/GUnitServiceImplService.wsdl</gunit.service.wsdl>
-        <gunit.service.url>http://localhost:8081/gunit-service/service</gunit.service.url>
+        <gunit.service.url>http://localhost:8080/api</gunit.service.url>
 
         <gunit.source.version>1.8</gunit.source.version>
         <gunit.target.version>1.8</gunit.target.version>

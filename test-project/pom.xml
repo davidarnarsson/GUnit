@@ -83,7 +83,7 @@
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <developerName>Herpderp</developerName>
+                    <developerName>davida</developerName>
                     <jacocoReportCsv>target/site/jacoco/jacoco.csv</jacocoReportCsv>
                     <unitTestReportsFolder>target/surefire-reports</unitTestReportsFolder>
                     <gunitWsLocation>${gunit.service.url}</gunitWsLocation>

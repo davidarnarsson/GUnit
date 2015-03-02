@@ -57,6 +57,9 @@ public class StatisticsCalculator {
                                      ToDoubleFunction<? super JaCoCoResult> missFunc) {
         double covered = coverageList.stream().mapToDouble(coverageFunc).sum();
         double missed = coverageList.stream().mapToDouble(missFunc).sum();
-        return covered / (covered + missed);
+        double val = (covered / (covered + missed));
+
+        return Double.isNaN(val) ? 0: val;
+
     }
 }

@@ -1,5 +1,6 @@
 package edu.chl.gunit.core.services.impl;
 
+import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.SessionStatus;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import org.jooq.Field;
@@ -20,19 +21,24 @@ public class SessionServiceImpl extends AbstractService<SessionRecord> implement
 
     @Override
     public SessionRecord create(int userId) {
-        return ctx().insertInto(SESSION)
-                .set(SESSION.SESSIONSTATUS, New.getStatusCode())
-                .set(SESSION.DATE, DSL.currentTimestamp())
-                .set(SESSION.USERID, userId)
-                .returning()
-                .fetchOne();
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.insertInto(SESSION)
+                    .set(SESSION.SESSIONSTATUS, New.getStatusCode())
+                    .set(SESSION.DATE, DSL.currentTimestamp())
+                    .set(SESSION.USERID, userId)
+                    .returning()
+                    .fetchOne();
+        }
     }
 
     private void setStatus(SessionRecord record, SessionStatus status) {
-        ctx().update(SESSION)
-                .set(SESSION.SESSIONSTATUS, status.getStatusCode())
-                .where(SESSION.SESSIONID.eq(record.getSessionid()))
-                .execute();
+        try (DBContext ctx = ctx()) {
+            ctx.dsl.update(SESSION)
+                    .set(SESSION.SESSIONSTATUS, status.getStatusCode())
+                    .where(SESSION.SESSIONID.eq(record.getSessionid()))
+                    .execute();
+        }
+
     }
 
     @Override

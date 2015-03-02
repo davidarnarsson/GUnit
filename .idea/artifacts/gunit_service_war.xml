@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="gunit-service:war">
     <output-path>$PROJECT_DIR$/gunit-service/target</output-path>
-    <root id="archive" name="gunit-service.war">
-      <element id="artifact" artifact-name="gunit-service:war exploded" />
-    </root>
+    <root id="archive" name="gunit-service.war" />
   </artifact>
 </component>
