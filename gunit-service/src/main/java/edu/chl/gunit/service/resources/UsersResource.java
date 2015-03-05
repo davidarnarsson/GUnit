@@ -8,11 +8,9 @@ import edu.chl.gunit.commons.api.ApiUserBadge;
 import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.commons.api.ApiUser;
 import edu.chl.gunit.core.data.Tables;
+import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
-import edu.chl.gunit.core.services.BadgeService;
-import edu.chl.gunit.core.services.RuleService;
-import edu.chl.gunit.core.services.UserBadgeService;
-import edu.chl.gunit.core.services.UserService;
+import edu.chl.gunit.core.services.*;
 import edu.chl.gunit.service.api.Utils;
 
 import javax.ws.rs.*;
@@ -28,7 +26,7 @@ import static edu.chl.gunit.core.data.Tables.BADGE;
  */
 @Path("/api/users")
 @Produces("application/json")
-public class UsersResource {
+public class UsersResource extends AbstractResource<UserRecord, UserService, ApiUser> {
 
     private UserBadgeService userBadgeService;
     private BadgeService badgeService;
@@ -37,6 +35,8 @@ public class UsersResource {
 
     @Inject
     public UsersResource(UserBadgeService userBadgeService, BadgeService badgeService, RuleService ruleService, UserService userService) {
+        super(in -> Utils.from(in));
+
         this.userBadgeService = userBadgeService;
         this.badgeService = badgeService;
         this.ruleService = ruleService;
@@ -101,5 +101,10 @@ public class UsersResource {
         /*Map<Integer, ApiSession> sessions = facade.sessionService().getList(SESSION.SESSIONID.in(sessionIds)).stream()
                 .map(Utils::from)
                 .collect(Collectors.toMap(m -> m.getSessionId(), k -> k));*/
+    }
+
+    @Override
+    protected Service<UserRecord> getService() {
+        return userService;
     }
 }

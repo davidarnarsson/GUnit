@@ -60,6 +60,7 @@ public class Utils {
         ApiRule rule = new ApiRule();
         rule.setPoints(r.getPoints());
         rule.setRuleId(r.getId());
+        rule.setDescription(r.getDescription());
         rule.setSuccessMessage(r.getSuccessmessage());
         return rule;
     }

@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="row in leaderboard">
+                        <tr ng-repeat="row in leaderboard" ng-click="viewDeveloper(row.id)">
                             <td ng-bind="$index + 1"></td>
                             <td> {{row.name}} <span ng-show="row.name == user.name"> (Þú)</span></td>
                             <td ng-bind="row.points"></td>
@@ -83,7 +83,7 @@
                             <th>Orður</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="row in statistics.value" ng-class="{'failed': row.sessionStatus == 'Failed', 'processing': row.sessionStatus == 'New'}">
+                            <tr ng-repeat="row in statistics.value" ng-class="{'failed': row.sessionStatus == 'Failed', 'processing': row.sessionStatus == 'New'}" ng-click="showSession(row.sessionId)">
                                 <td ng-bind="row.date | date:'medium'"></td>
                                 <td class="xs-hidden">{{row.branchCoverage * 100 | number:2}}%</td>
                                 <td class="xs-hidden">{{row.lineCoverage * 100 | number:2}}%</td>
@@ -112,6 +112,52 @@
                     <a ng-disabled="page == current()" ng-click="setPage(page)">{{page + 1}}</a>
                 </li>
             </ul>
+        </script>
+
+        <script type="text/ng-template" id="user.tpl">
+            <div class="flex-container user-details">
+                <div class="flex-item user-numbers">
+                    <h2>{{user.name}} - {{user.points}} stig</h2>
+
+                    <div class="well">
+                        <h4>Síðustu tölur:</h4>
+                        <dl>
+                            <dt>Branch coverage</dt>
+                            <dd>{{user.lastBranchCoverage * 100 | number:2}}%</dd>
+                            <dt>Instruction coverage</dt>
+                            <dd>{{user.lastInstructionCoverage * 100 | number:2}}%</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="flex-item" ng-controller="UserCtrl as ctrl">
+                    <p ng-show="ctrl.getUser().name == user.name" class="your-tests">Þú hefur skrifað <strong ng-bind="user.totalWrittenTests"></strong> einingapróf!</p>
+                    <p ng-show="ctrl.getUser().name != user.name" class="your-tests">{{user.name}} hefur skrifað <strong ng-bind="user.totalWrittenTests"></strong> einingapróf!</p>
+
+
+                    <p ng-show="user.lastWrittenTest && ctrl.getUser().name == user.name">Þú skrifaðir einingapróf síðast þann {{user.lastWrittenTest | date}}</p>
+                    <p ng-show="user.lastWrittenTest && ctrl.getUser().name != user.name">{{user.name}} skrifaðir einingapróf síðast þann {{user.lastWrittenTest | date}}</p>
+
+                    <div class="badges">
+                        <h4 ng-show="ctrl.getUser().name == user.name">Orðurnar þínar</h4>
+                        <h4 ng-show="ctrl.getUser().name != user.name">Orður {{user.name}}</h4>
+
+                        <ul>
+                            <li ng-repeat="badge in badges">
+                                <figure>
+                                    <img ng-src="{{badge.badge.image}}" alt=""/>
+                                    <figlabel>
+                                        <p class="name">{{badge.badge.name}}</p>
+                                        <p class="description">{{badge.fromRule.description}}</p>
+                                    </figlabel>
+                                </figure>
+                                <p><em>{{badge.fromRule.successMessage}}</em> <br/>
+                                    <strong ng-bind="badge.fromRule.points"></strong> stig þann <a href="#/session/{{badge.sessionId}}">{{badge.earnedDate | date}}</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </script>
     </div>
 

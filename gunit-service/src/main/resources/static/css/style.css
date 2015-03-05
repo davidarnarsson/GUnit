@@ -217,3 +217,57 @@ ul.pager {
 
 }
 
+.user-details .user-numbers {
+    flex: 0 1 20%;
+}
+
+.user-details .well {
+    padding: 10px;
+    border: 1px solid #d0d0d0;
+    background: #f5f5f5;
+}
+
+.user-details .well h4 {
+    margin: 0px;
+}
+
+.user-details .well dd {
+    font-weight: bold;
+}
+
+.badges ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+}
+
+.badges ul li {
+    flex: 1 1 33%;
+
+    margin-bottom: 10px;
+}
+
+.badges ul li figure {
+    flex: 0 1 160px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.badges ul li figure figlabel {
+    text-align: center;
+}
+
+.badges ul li figure figlabel p {
+    margin: 0px;
+}
+.badges ul li figure figlabel .description  {
+    font-size: 80%;
+}
+
+.badges ul li figure img {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto;
+}

@@ -15,7 +15,7 @@ public interface Service<T extends Record> {
     List<T> getList();
 
     List<T> getList(Condition... c);
-    List<T> getList(int offset , int count, Condition... c);
+    List<T> getList(int offset , int count, SortField orderByField, Condition... c);
 
     void transaction(TransactionalRunnable tr);
 

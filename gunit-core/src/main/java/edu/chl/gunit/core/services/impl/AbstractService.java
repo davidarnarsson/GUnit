@@ -1,6 +1,7 @@
 package edu.chl.gunit.core.services.impl;
 
 import com.google.inject.Inject;
+
 import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.DBProvider;
 import org.jooq.*;
@@ -52,11 +53,18 @@ public abstract class AbstractService<T extends Record> implements edu.chl.gunit
     }
 
     @Override
-    public List<T> getList(int offset, int count, Condition... c) {
-        try (DBContext ctx = ctx()) {
-            return ctx.dsl.selectFrom(tableInstance)
-                    .where(c)
-                    .limit(offset, count).fetch();
+    public List<T> getList(int offset, int count, SortField orderByField, Condition... c) {
+        try (edu.chl.gunit.core.data.DBContext ctx = ctx()) {
+
+            SelectQuery<T> query = ctx.dsl.selectQuery(tableInstance);
+
+            query.addConditions(c);
+
+            if (orderByField != null) {
+                query.addOrderBy(orderByField);
+            }
+            query.addLimit(offset, count);
+            return query.fetch();
         }
     }
 

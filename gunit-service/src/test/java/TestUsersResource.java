@@ -50,7 +50,7 @@ public class TestUsersResource {
     private RuleService mockRuleService() {
         RuleService mockRuleService = mock(RuleService.class);
         List<RuleRecord> rules = new ArrayList<>();
-        rules.add(new RuleRecord(ruleId, "mock.class.name.Rule",20, "This is a mock rule!", badgeId));
+        rules.add(new RuleRecord(ruleId, "mock.class.name.Rule",20, "This is a mock rule!", badgeId, "derp"));
         when(mockRuleService.getList(Tables.RULE.ID.in(new Integer[] { ruleId}))).thenReturn(rules);
 
         return mockRuleService;

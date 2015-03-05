@@ -36,7 +36,7 @@ public abstract class AbstractResource<I extends Record, R extends Service<I>, O
         if (count == 0) count = 20;
         if (count > 100) count = 100;
 
-        return getService().getList(offset, count)
+        return getService().getList(offset, count, null)
                 .stream()
                 .map(mapper::map)
                 .collect(Collectors.toList());

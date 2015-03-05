@@ -89,9 +89,10 @@ public class StatisticsResource {
     @Timed
     public PagedResult<List<ApiSession>> getSessionsByUser(@PathParam("userId")int userId, @QueryParam("page") int page) {
         int count = 20;
-        List<ApiSession> sessions = facade.sessionService().getList(page * count, count,
+        List<ApiSession> sessions = facade.sessionService().getList(page * count, count, SESSION.SESSIONID.desc(),
                 SESSION.USERID.eq(userId)
         ).stream().map(Utils::<ApiSession>from).collect(Collectors.<ApiSession>toList());
+
 
         int totalCount = facade.sessionService().count(SESSION.USERID.eq(userId));
         return new PagedResult<>(page * count, count, totalCount, sessions);

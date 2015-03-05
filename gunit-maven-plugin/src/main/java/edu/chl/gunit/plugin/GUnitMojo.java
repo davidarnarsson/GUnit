@@ -111,6 +111,7 @@ public class GUnitMojo extends AbstractMojo {
             getLog().warn("Could not read coverage reports folder!");
         }
 
+
         Client client = new Client(gunitWsLocation);
 
         try {

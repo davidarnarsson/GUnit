@@ -13,6 +13,17 @@ public class ApiRule {
     private int points;
 
     @JsonProperty
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+    @JsonProperty
     public int getRuleId() {
         return ruleId;
     }

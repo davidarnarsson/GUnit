@@ -6,7 +6,7 @@ if (outerWrap.style.height < window.innerHeight - 20) {
 
 var module = angular.module("gunit", ['ngRoute']);
 
-var serviceUrl = '/api';
+var serviceUrl = 'http://localhost:8080/api';
 
 module.config(function ($routeProvider) {
     $routeProvider
@@ -26,6 +26,18 @@ module.config(function ($routeProvider) {
                         return $api.getStatistics($auth.user().id, page || 0);
                     }
                     return null;
+                }
+            }
+        }).
+        when('/user/:id', {
+            templateUrl: 'user.tpl',
+            controller: 'UserDetailCtrl',
+            resolve: {
+                userData: function ($api,$route) {
+                    return $api.getUserById($route.current.params.id)
+                },
+                badges: function ($api, $route) {
+                    return $api.getUserBadges($route.current.params.id);
                 }
             }
         })
@@ -73,6 +85,9 @@ module.factory('$api', function ($http) {
                 params: { name: name }
             });
         },
+        getUserById: function (id) {
+          return $http.get(serviceUrl + '/users/' + id);
+        },
         getUsers: function() {
             return $http.get(serviceUrl + '/users');
         },
@@ -86,6 +101,9 @@ module.factory('$api', function ($http) {
         },
         getProcessing: function (userId) {
             return $http.get(serviceUrl + '/statistics/processing/' + userId);
+        },
+        getUserBadges: function(userId) {
+            return $http.get(serviceUrl + '/users/badges/' + userId);
         }
     };
 });
@@ -185,6 +203,14 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
     $scope.user = $auth.user();
     $scope.statistics = statistics;
 
+    $scope.viewDeveloper = function(userId) {
+        $location.url('/user/' + userId);
+    };
+
+    $scope.showSession = function (sessionId) {
+        $location.url("/session/" + sessionId);
+    }
+
     $scope.current = function () {
         return $routeParams.page;
     };
@@ -204,7 +230,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: statistics.value.map(function(s) { return s.lineCoverage * 100 })
+                data: statistics.value.map(function(s) { return s.lineCoverage * 100 }).reverse()
             },
             {
                 label: "Branch Coverage",
@@ -214,7 +240,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
-                data: statistics.value.map(function(s) { return s.branchCoverage * 100 })
+                data: statistics.value.map(function(s) { return s.branchCoverage * 100 }).reverse()
             },
             {
                 label: "Instruction Coverage",
@@ -224,7 +250,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(131,147,185,1)",
-                data: statistics.value.map(function(s) { return s.instructionCoverage * 100 })
+                data: statistics.value.map(function(s) { return s.instructionCoverage * 100 }).reverse()
             }
         ]
     };
@@ -259,6 +285,11 @@ module.directive('pager', function () {
             }
         }
     };
+});
+
+module.controller('UserDetailCtrl', function(userData, badges, $scope) {
+    $scope.user = userData.data;
+    $scope.badges = badges.data;
 });
 
 function debounce(func, wait, immediate) {
