@@ -1,6 +1,6 @@
 package edu.chl.gunit.core.services.impl;
 
-import edu.chl.gunit.commons.TestSuiteResults;
+import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.Testsuiteresult;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
@@ -18,7 +18,7 @@ public class TestSuiteServiceImpl extends AbstractService<TestsuiteresultRecord>
     }
 
     @Override
-    public TestsuiteresultRecord createResult(TestSuiteResults result, SessionRecord session) {
+    public TestsuiteresultRecord createResult(ApiTestSuiteResults result, SessionRecord session) {
         try (DBContext ctx = ctx()) {
             return ctx.dsl.insertInto(TESTSUITERESULT)
                     .set(TESTSUITERESULT.ELAPSED, result.getTimeElapsed())

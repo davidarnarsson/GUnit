@@ -1,9 +1,8 @@
 package edu.chl.gunit.core.data;
 
 import com.google.inject.Inject;
-import edu.chl.gunit.commons.JaCoCoResult;
-import edu.chl.gunit.commons.TestSuiteResults;
-import edu.chl.gunit.core.data.tables.Badge;
+import edu.chl.gunit.commons.api.ApiJaCoCoResult;
+import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.core.data.tables.records.*;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
@@ -48,7 +47,7 @@ public class Processor {
         return sessionRecord;
     }
 
-    public GamificationContext process(SessionRecord session, List<JaCoCoResult> coverageResults, List<TestSuiteResults> testSuiteResults) {
+    public GamificationContext process(SessionRecord session, List<ApiJaCoCoResult> coverageResults, List<ApiTestSuiteResults> testSuiteResults) {
 
 
         // calculate statistics and update session accordingly

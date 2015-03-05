@@ -5,10 +5,7 @@ import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.core.data.DBProvider;
 import edu.chl.gunit.core.data.Statistics;
 import edu.chl.gunit.service.health.DbHealthCheck;
-import edu.chl.gunit.service.resources.AccessOriginFilter;
-import edu.chl.gunit.service.resources.GamificationResource;
-import edu.chl.gunit.service.resources.StatisticsResource;
-import edu.chl.gunit.service.resources.UsersResource;
+import edu.chl.gunit.service.resources.*;
 import io.dropwizard.Application;
 
 import io.dropwizard.assets.AssetsBundle;
@@ -37,13 +34,17 @@ public class GUnitServiceApp extends Application<AppConfig> {
         environment.healthChecks().register("DatabaseCheck", new DbHealthCheck(appConfig));
 
         environment.jersey().register(AccessOriginFilter.class);
-        environment.jersey().register(new GamificationResource(facade));
-        environment.jersey().register(new UsersResource(facade));
+        environment.jersey().register(facade.getInjector().getInstance(GamificationResource.class));
+        environment.jersey().register(facade.getInjector().getInstance(UsersResource.class));
         environment.jersey().register(new StatisticsResource(facade));
+        environment.jersey().register(new SessionResource(facade));
     }
 
     @Override
     public void initialize(Bootstrap<AppConfig> bootstrap) {
+        bootstrap.addBundle(new AssetsBundle("/static/css","/css", null, "css"));
+        bootstrap.addBundle(new AssetsBundle("/static/js","/js", null, "js"));
+        bootstrap.addBundle(new AssetsBundle("/static/images","/images", null, "images"));
         bootstrap.addBundle(new AssetsBundle("/static","/site", "index.html", "static"));
         super.initialize(bootstrap);
     }

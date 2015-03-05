@@ -1,4 +1,4 @@
-import edu.chl.gunit.commons.TestSuiteResults;
+import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.commons.input.junit.JUnitResultException;
 import edu.chl.gunit.commons.input.junit.JUnitXMLReader;
 import org.junit.Assert;
@@ -15,7 +15,7 @@ public class TestJUnitXmlReader {
         JUnitXMLReader reader = new JUnitXMLReader();
 
         try {
-            TestSuiteResults results = reader.read(path);
+            ApiTestSuiteResults results = reader.read(path);
             Assert.assertEquals(results.getName(), "TestWallet");
         } catch (JUnitResultException e) {
             Assert.fail("Threw exception");
@@ -28,7 +28,7 @@ public class TestJUnitXmlReader {
         final String path = "C:\\Non\\existent\\file.xml";
 
         JUnitXMLReader reader = new JUnitXMLReader();
-        TestSuiteResults results = reader.read(path);
+        ApiTestSuiteResults results = reader.read(path);
     }
 
 

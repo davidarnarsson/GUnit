@@ -24,7 +24,5 @@ public class TestService {
         request.setTestResults(new ArrayList<TestSuiteResults>());
         request.getTestResults().add(new TestSuiteResults("Herp derp", 5, 2,3,0,1));
         //String out = service.submitTestRun(request);*/
-
-
     }
 }

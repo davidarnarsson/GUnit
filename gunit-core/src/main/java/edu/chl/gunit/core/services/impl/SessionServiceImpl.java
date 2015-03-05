@@ -1,14 +1,14 @@
 package edu.chl.gunit.core.services.impl;
 
 import edu.chl.gunit.core.data.DBContext;
-import edu.chl.gunit.core.data.SessionStatus;
+import edu.chl.gunit.commons.api.SessionStatus;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import org.jooq.Field;
 import org.jooq.impl.DSL;
 
-import static edu.chl.gunit.core.data.SessionStatus.Failed;
-import static edu.chl.gunit.core.data.SessionStatus.New;
-import static edu.chl.gunit.core.data.SessionStatus.Processed;
+import static edu.chl.gunit.commons.api.SessionStatus.Failed;
+import static edu.chl.gunit.commons.api.SessionStatus.New;
+import static edu.chl.gunit.commons.api.SessionStatus.Processed;
 import static edu.chl.gunit.core.data.Tables.*;
 
 /**

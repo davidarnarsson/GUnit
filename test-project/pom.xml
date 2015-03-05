@@ -10,10 +10,10 @@
     <packaging>jar</packaging>
 
     <parent>
-        <artifactId>gunit</artifactId>
+        <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
         <version>0.0.1</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,61 +47,6 @@
                     <source>${gunit.source.version}</source>
                     <target>${gunit.target.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <argLine>${argLine}</argLine>
-                    <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.2.201409121644</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>edu.chl.gunit</groupId>
-                <artifactId>gunit-maven-plugin</artifactId>
-                <version>0.0.1</version>
-                <configuration>
-                    <developerName>davida</developerName>
-                    <jacocoReportCsv>target/site/jacoco/jacoco.csv</jacocoReportCsv>
-                    <unitTestReportsFolder>target/surefire-reports</unitTestReportsFolder>
-                    <gunitWsLocation>${gunit.service.url}</gunitWsLocation>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>send-reports</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>send-reports</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>edu.chl.gunit</groupId>
-                <artifactId>testhound-maven-plugin</artifactId>
-                <version>0.0.1</version>
             </plugin>
         </plugins>
     </build>

@@ -28,7 +28,7 @@ public class TestCSVReader {
 
     @Test
     public void testParseCsv() {
-        final String data = "Header1,Header2,Header3,Header4" +System.lineSeparator()+  "Data 1,Data2,3,4";
+        final String data = "Header1,Header2,Header3,Header4" +System.getProperty("line.separator")+  "Data 1,Data2,3,4";
         CSVReader reader = new CSVReader();
 
         CSV csv = reader.read(data, true);

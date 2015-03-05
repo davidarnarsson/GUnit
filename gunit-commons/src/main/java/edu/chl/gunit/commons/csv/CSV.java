@@ -7,8 +7,8 @@ import java.util.List;
  * Created by davida on 5.2.2015.
  */
 public class CSV {
-    private final List<String> headers = new ArrayList<>();
-    private final List<List<String>> rows = new ArrayList<>();
+    private final List<String> headers = new ArrayList<String>();
+    private final List<List<String>> rows = new ArrayList<List<String>>();
     public void addHeader(String header) {
         headers.add(header);
     }

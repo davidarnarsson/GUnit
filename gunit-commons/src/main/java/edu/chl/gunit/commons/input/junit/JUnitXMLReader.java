@@ -1,7 +1,7 @@
 package edu.chl.gunit.commons.input.junit;
 
-import edu.chl.gunit.commons.TestCase;
-import edu.chl.gunit.commons.TestSuiteResults;
+import edu.chl.gunit.commons.api.ApiTestCase;
+import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.commons.xml.XMLReader;
 
 import org.w3c.dom.Document;
@@ -22,18 +22,22 @@ import java.util.logging.Logger;
  */
 public class JUnitXMLReader extends XMLReader {
 
-    public TestSuiteResults read(String path) throws JUnitResultException {
+    public ApiTestSuiteResults read(String path) throws JUnitResultException {
         File f = new File(path);
 
         Document d = null;
         try {
             d = super.read(f);
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (IOException e) {
             Logger.getLogger("JUnitXmlReader").log(Level.ALL, e.getMessage());
 
             JUnitResultException ex = new JUnitResultException("Unable to parse the JUnit XML files, are they in the right place?");
-            ex.addSuppressed(e);
+
             throw ex;
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
         }
 
         Element testSuiteElement = (Element) d.getElementsByTagName("testsuite").item(0);
@@ -45,7 +49,7 @@ public class JUnitXMLReader extends XMLReader {
         int errors = Integer.parseInt(testSuiteElement.getAttribute("errors"));
         int skipped = Integer.parseInt(testSuiteElement.getAttribute("skipped"));
         int failures = Integer.parseInt(testSuiteElement.getAttribute("failures"));
-        TestSuiteResults suiteResults = new TestSuiteResults(name, time, tests, errors, skipped, failures);
+        ApiTestSuiteResults suiteResults = new ApiTestSuiteResults(name, time, tests, errors, skipped, failures);
 
         // gather properties
         NodeList propertyList = d.getElementsByTagName("property");
@@ -66,7 +70,7 @@ public class JUnitXMLReader extends XMLReader {
             String className = node.getAttributes().getNamedItem("classname").getTextContent();
             double caseTime = Double.parseDouble(node.getAttributes().getNamedItem("time").getTextContent());
 
-            TestCase testCase = new TestCase(caseName);
+            ApiTestCase testCase = new ApiTestCase(caseName);
             testCase.setClassName(className);
             testCase.setTimeElapsed(caseTime);
 

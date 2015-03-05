@@ -1,6 +1,6 @@
 package edu.chl.gunit.core.services.impl;
 
-import edu.chl.gunit.commons.TestCase;
+import edu.chl.gunit.commons.api.ApiTestCase;
 import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.core.data.tables.Suitetestcase;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
@@ -17,7 +17,7 @@ public class TestCaseServiceImpl extends AbstractService<SuitetestcaseRecord> im
     }
 
     @Override
-    public SuitetestcaseRecord createTestCase(TestCase tc, int suiteId) {
+    public SuitetestcaseRecord createTestCase(ApiTestCase tc, int suiteId) {
         try (DBContext ctx = ctx()) {
             return ctx.dsl.insertInto(Suitetestcase.SUITETESTCASE)
                     .set(SUITETESTCASE.CLASSNAME, tc.getClassName())

@@ -1,13 +1,14 @@
 package edu.chl.gunit.service.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import edu.chl.gunit.commons.TestRunRequest;
+import edu.chl.gunit.commons.api.*;
 import edu.chl.gunit.core.ServiceFacade;
-import edu.chl.gunit.core.data.SessionStatus;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.gamification.TestDataRunner;
-import edu.chl.gunit.service.api.*;
+import edu.chl.gunit.service.api.PagedResult;
+import edu.chl.gunit.service.api.Utils;
+
 
 import javax.ws.rs.*;
 import java.util.List;
@@ -36,15 +37,15 @@ public class StatisticsResource {
 
         SessionRecord session = facade.sessionService().get(sessionId);
         if (session != null) {
-            statistics.setSession(Session.from(session));
+            statistics.setSession(Utils.from(session));
 
             UserRecord userRecord = facade.userService().get(session.getUserid());
 
-            statistics.setUser(User.from(userRecord));
+            statistics.setUser(Utils.from(userRecord));
 
             statistics.setBadgesEarned(facade.badgeService()
                     .getBadgesForUserSession(sessionId).stream()
-                    .map(Badge::from)
+                    .map(Utils::<ApiBadge>from)
                     .collect(Collectors.toList()));
             return statistics;
         }
@@ -76,24 +77,24 @@ public class StatisticsResource {
     @GET
     @Path("/processing/{userId}")
     @Timed
-    public List<Session> getProcessingSession(@PathParam("userId")int userId) {
+    public List<ApiSession> getProcessingSession(@PathParam("userId")int userId) {
         return facade.sessionService().getList(
                 SESSION.SESSIONSTATUS.eq(SessionStatus.New.getStatusCode()).and(SESSION.USERID.eq(userId))).stream()
-                .map(Session::from)
+                .map(x -> Utils.from(x))
                 .collect(Collectors.toList());
     }
 
     @GET
     @Path("/by-user/{userId}")
     @Timed
-    public PagedResult<List<Session>> getSessionsByUser(@PathParam("userId")int userId, @QueryParam("page") int page) {
+    public PagedResult<List<ApiSession>> getSessionsByUser(@PathParam("userId")int userId, @QueryParam("page") int page) {
         int count = 20;
-        List<Session> sessions = facade.sessionService().getList(page * count, count,
+        List<ApiSession> sessions = facade.sessionService().getList(page * count, count,
                 SESSION.USERID.eq(userId)
-        ).stream().map(Session::from).collect(Collectors.toList());
+        ).stream().map(Utils::<ApiSession>from).collect(Collectors.<ApiSession>toList());
 
         int totalCount = facade.sessionService().count(SESSION.USERID.eq(userId));
-        return new PagedResult<List<Session>>(page * count, count, totalCount, sessions);
+        return new PagedResult<>(page * count, count, totalCount, sessions);
     }
 
 }

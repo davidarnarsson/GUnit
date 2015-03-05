@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class CSVReader {
     private final String delimiter;
-    private final String newLineDelimiter  = System.lineSeparator();
+    private final String newLineDelimiter  = System.getProperty("line.separator");
 
     public CSVReader() {
         delimiter = ",";
@@ -28,7 +28,7 @@ public class CSVReader {
             String[] rows = data.split(newLineDelimiter);
 
             for (String rowdata : rows) {
-                csv.addRow(new ArrayList<>(Arrays.asList(rowdata.split(delimiter))));
+                csv.addRow(new ArrayList<String>(Arrays.asList(rowdata.split(delimiter))));
             }
         }
 

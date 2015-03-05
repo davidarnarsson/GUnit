@@ -1,7 +1,8 @@
-import edu.chl.gunit.commons.JaCoCoResult;
-import edu.chl.gunit.commons.TestCase;
-import edu.chl.gunit.commons.TestRunRequest;
-import edu.chl.gunit.commons.TestSuiteResults;
+package edu.chl.gunit.plugin;
+
+import edu.chl.gunit.commons.api.ApiJaCoCoResult;
+import edu.chl.gunit.commons.api.TestRunRequest;
+import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.commons.input.jacoco.JaCoCoCSVReader;
 import edu.chl.gunit.commons.input.jacoco.JaCoCoResultException;
 import edu.chl.gunit.commons.input.junit.JUnitResultException;
@@ -14,10 +15,9 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public class GUnitMojo extends AbstractMojo {
     protected String developerName;
 
     @Parameter(property = "jacocoReports")
-    private File jacocoReportCsv;
+    private File jacocoReportCsvFolder;
 
     @Parameter(property = "testhoundReports")
     private File testHoundReportDirectory;
@@ -65,10 +65,13 @@ public class GUnitMojo extends AbstractMojo {
                 }
             };
 
+            List<File> junitTestFiles = new ArrayList<File>();
+
+            crawlDirectory(unitTestReportsFolder, filter, junitTestFiles);
             JUnitXMLReader reader = new JUnitXMLReader();
-            for (File f : unitTestReportsFolder.listFiles(filter)) {
+            for (File f : junitTestFiles) {
                 try {
-                    TestSuiteResults results = reader.read(f.getAbsolutePath());
+                    ApiTestSuiteResults results = reader.read(f.getAbsolutePath());
                     req.getTestResults().add(results);
                 } catch (JUnitResultException e) {
                     e.printStackTrace();
@@ -79,16 +82,30 @@ public class GUnitMojo extends AbstractMojo {
             getLog().warn("Could not read unit test reports folder!");
         }
 
-        if (jacocoReportCsv != null && jacocoReportCsv.isFile()) {
+        if (jacocoReportCsvFolder != null && jacocoReportCsvFolder.isDirectory()) {
             JaCoCoCSVReader reader = new JaCoCoCSVReader();
-            try {
-                List<JaCoCoResult> coverageResultList = reader.read(jacocoReportCsv);
 
-                for (JaCoCoResult result : coverageResultList) {
-                    req.getCoverageResults().add(result);
+            FilenameFilter filter = new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.equalsIgnoreCase("jacoco.csv");
                 }
-            } catch (JaCoCoResultException e) {
-                e.printStackTrace();
+            };
+
+            List<File> jacocoFiles = new ArrayList<>();
+
+            crawlDirectory(jacocoReportCsvFolder, filter, jacocoFiles);
+
+            for (File jacocoFile : jacocoFiles) {
+                try {
+                    List<ApiJaCoCoResult> coverageResultList = reader.read(jacocoFile);
+
+                    for (ApiJaCoCoResult result : coverageResultList) {
+                        req.getCoverageResults().add(result);
+                    }
+                } catch (JaCoCoResultException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             getLog().warn("Could not read coverage reports folder!");
@@ -119,6 +136,23 @@ public class GUnitMojo extends AbstractMojo {
         // 3.      birta gögn fyrir user
         // 5. annars
         // 6.   sofa í 1000ms og goto 1
+    }
 
+    private void crawlDirectory(File directory, FilenameFilter filter, List<File> filesFound) {
+        crawlDirectory(directory,filter, filesFound,0, 5);
+    }
+
+    private void crawlDirectory(File directory, FilenameFilter filter, List<File> filesFound, int level, int max) {
+        if (level >= max) return;
+
+        filesFound.addAll(Arrays.asList(directory.listFiles(filter)));
+
+        File[] subDirectories = directory.listFiles(pathname -> {
+            return pathname.isDirectory();
+        });
+
+        for (File subDirectory : subDirectories) {
+            crawlDirectory(subDirectory, filter, filesFound,level + 1, max);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package edu.chl.gunit.core.data;
 
-import edu.chl.gunit.commons.TestCase;
+import edu.chl.gunit.commons.api.ApiTestCase;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class Statistics {
 
     /* Any new tests detected in a given session */
-    private List<TestCase> newTestCases;
+    private List<ApiTestCase> newTestCases;
 
     /* The total line coverage for a given session */
     private double lineCoverage;
@@ -47,11 +47,11 @@ public class Statistics {
         this.lineCoverage = lineCoverage;
     }
 
-    public List<TestCase> getNewTestCases() {
+    public List<ApiTestCase> getNewTestCases() {
         return newTestCases;
     }
 
-    public void setNewTestCases(List<TestCase> newTestCases) {
+    public void setNewTestCases(List<ApiTestCase> newTestCases) {
         this.newTestCases = newTestCases;
     }
 

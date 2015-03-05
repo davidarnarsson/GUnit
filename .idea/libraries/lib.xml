@@ -1,0 +1,31 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/ccpp-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/commons-io-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-model-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/classworlds-1.1-alpha-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/jsp-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/portlet-api_2.0_spec-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/jetspeed-maven-utils-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-repository-metadata-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-artifact-manager-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/portals-bridges-common-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/plexus-utils-1.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/pluto-container-api-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/jetspeed-fileutils-maven-plugin-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/wagon-provider-api-1.0-beta-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-artifact-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-project-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-settings-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/jetspeed-api-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-profile-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-plugin-api-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/maven-plugin-registry-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/servlet-api-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IntelliGunit/lib/plexus-container-default-1.0-alpha-9-stable-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

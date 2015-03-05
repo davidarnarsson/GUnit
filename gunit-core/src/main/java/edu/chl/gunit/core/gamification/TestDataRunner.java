@@ -1,7 +1,7 @@
 package edu.chl.gunit.core.gamification;
 
 import com.google.inject.Inject;
-import edu.chl.gunit.commons.TestRunRequest;
+import edu.chl.gunit.commons.api.TestRunRequest;
 import edu.chl.gunit.core.data.Processor;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.rules.RuleResult;

@@ -1,6 +1,6 @@
 package edu.chl.gunit.commons.input.jacoco;
 
-import edu.chl.gunit.commons.JaCoCoResult;
+import edu.chl.gunit.commons.api.ApiJaCoCoResult;
 import edu.chl.gunit.commons.csv.CSV;
 import edu.chl.gunit.commons.csv.CSVReader;
 import org.codehaus.plexus.util.FileUtils;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class JaCoCoCSVReader {
 
-    public List<JaCoCoResult> read(File file) throws JaCoCoResultException {
+    public List<ApiJaCoCoResult> read(File file) throws JaCoCoResultException {
         try {
             return read(FileUtils.fileRead(file));
         } catch (IOException e) {
@@ -27,17 +27,17 @@ public class JaCoCoCSVReader {
         }
     }
 
-    public List<JaCoCoResult> read(String data) {
+    public List<ApiJaCoCoResult> read(String data) {
         CSVReader reader = new CSVReader();
         CSV csv = reader.read(data, true);
-        List<JaCoCoResult> out = new ArrayList<>();
+        List<ApiJaCoCoResult> out = new ArrayList<ApiJaCoCoResult>();
 
         for (List<String> row : csv.getRows()) {
             String groupName = row.get(0);
             String packageName = row.get(1);
             String className = row.get(2);
 
-            JaCoCoResult result = new JaCoCoResult(className, groupName, packageName);
+            ApiJaCoCoResult result = new ApiJaCoCoResult(className, groupName, packageName);
             result.setDate(new Date());
             result.setInstructionMissed(Integer.parseInt(row.get(3)));
             result.setInstructionCovered(Integer.parseInt(row.get(4)));

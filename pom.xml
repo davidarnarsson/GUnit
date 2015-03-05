@@ -7,26 +7,100 @@
     <artifactId>gunit</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
-    <name>GUnit Parent Project</name>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gunit.service.wsdl>gunit-service/target/generated-sources/wsdl/GUnitServiceImplService.wsdl</gunit.service.wsdl>
-        <gunit.service.url>http://localhost:8080/api</gunit.service.url>
-
-        <gunit.source.version>1.8</gunit.source.version>
-        <gunit.target.version>1.8</gunit.target.version>
-
-
-    </properties>
+    <name>GUnit Aggregator Project</name>
+    <!--
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>edu.chl.gunit</groupId>
+                <artifactId>gunit-maven-plugin</artifactId>
+                <version>0.0.1</version>
+                <configuration>
+                    <developerName>davida</developerName>
+                    <jacocoReportCsv>reports/jacoco</jacocoReportCsv>
+                    <unitTestReportsFolder>reports/junit</unitTestReportsFolder>
+                    <gunitWsLocation>http://gunit.axlabond.in/api</gunitWsLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>send-reports</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>send-reports</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    -->
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.3.201502191951</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>merge</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <fileSets>
+                                <fileSet>
+                                    <directory>gunit-commons/target</directory>
+                                    <includes>
+                                        <include>*.exec</include>
+                                    </includes>
+                                </fileSet>
+                                <fileSet>
+                                    <directory>gunit-core/target</directory>
+                                    <includes>
+                                        <include>*.exec</include>
+                                    </includes>
+                                </fileSet>
+                                <fileSet>
+                                    <directory>gunit-service/target</directory>
+                                    <includes>
+                                        <include>*.exec</include>
+                                    </includes>
+                                </fileSet>
+                                <fileSet>
+                                    <directory>test-project/target</directory>
+                                    <includes>
+                                        <include>*.exec</include>
+                                    </includes>
+                                </fileSet>
+                            </fileSets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>edu.chl.gunit</groupId>
+                <artifactId>gunit-maven-plugin</artifactId>
+                <version>0.0.1</version>
+                <configuration>
+                    <developerName>davida</developerName>
+                    <gunitWsLocation>http://gunit.axlabond.in/api</gunitWsLocation>
+                    <jacocoReportCsvFolder>target/jacoco</jacocoReportCsvFolder>
+                    <unitTestReportsFolder>target/test-reports</unitTestReportsFolder>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>send-reports</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>send-reports</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <modules>
-        <module>gunit-commons</module>
-        <module>gunit-core</module>
-        <module>gunit-service</module>
-        <module>gunit-service-client</module>
-        <module>gunit-maven-plugin</module>
-        <module>testhound-maven-plugin</module>
-        <module>test-project</module>
+        <module>gunit-parent</module>
     </modules>
-
-
 </project>

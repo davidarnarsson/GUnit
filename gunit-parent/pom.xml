@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.chl.gunit</groupId>
+    <artifactId>gunit-parent</artifactId>
+    <version>0.0.1</version>
+    <name>GUnit parent project</name>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gunit.service.wsdl>gunit-service/target/generated-sources/wsdl/GUnitServiceImplService.wsdl</gunit.service.wsdl>
+        <gunit.service.url>http://localhost:8080/api</gunit.service.url>
+        <gunit.source.version>1.8</gunit.source.version>
+        <gunit.target.version>1.8</gunit.target.version>
+    </properties>
+
+    <modules>
+        <module>../gunit-commons</module>
+        <module>../gunit-core</module>
+        <module>../gunit-service</module>
+        <module>../gunit-service-client</module>
+        <!--module>../gunit-maven-plugin</module-->
+        <module>../testhound-maven-plugin</module>
+        <module>../test-project</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <argLine>${argLine}</argLine>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <reportsDirectory>../target/test-reports</reportsDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.3.201502191951</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>../target/jacoco/${project.build.finalName}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

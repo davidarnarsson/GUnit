@@ -25,10 +25,10 @@
     </properties>
     <name>GUnit Core</name>
     <parent>
-        <artifactId>gunit</artifactId>
+        <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
         <version>0.0.1</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
     <dependencies>
         <!--dependency>

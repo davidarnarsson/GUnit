@@ -1,5 +1,5 @@
-/*import edu.chl.gunit.commons.TestCase;
-import edu.chl.gunit.commons.TestSuiteResults;
+/*import edu.chl.gunit.commons.api.TestCase;
+import edu.chl.gunit.commons.api.TestSuiteResults;
 import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.data.tables.records.SuitetestcaseRecord;
