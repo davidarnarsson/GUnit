@@ -2,7 +2,6 @@ package edu.chl.linkedlist; /**
  * Created by davida on 21.1.2015.
  */
 
-import edu.chl.coverage.CoverageRunner;
 import etse.core.classloader.BCELAnalysableClass;
 import etse.core.classloader.ClazzLoader;
 import etse.core.testorganizer.fixture.FixtureAnalyser;
@@ -36,16 +35,5 @@ public class TestStuff extends ExperiementMain {
         AllReportGenerator allReportGenerator = new AllReportGenerator("/Users/davida/Code/linkedlist/out", "/Users/davida/Code/TestHound/report/HTML version/template");
         TestSuiteResult result = analyseTestSuite(testClasses, analyser, allReportGenerator);
 
-
-
-
-        CoverageRunner runner = new CoverageRunner(System.out);
-
-        try {
-            IClassCoverage coverages = runner.execute(LinkedList.class.getName());
-
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
     }
 }

@@ -64,4 +64,25 @@ public class Utils {
         rule.setSuccessMessage(r.getSuccessmessage());
         return rule;
     }
+
+    public static ApiJaCoCoResult from(JacocoresultRecord in) {
+        if (in == null) return null;
+
+        ApiJaCoCoResult r = new ApiJaCoCoResult();
+        r.setBranchCovered(in.getBranchcovered());
+        r.setBranchMissed(in.getBranchmissed());
+        r.setClassName(in.getClassname());
+        r.setComplexityCovered(in.getComplexitycovered());
+        r.setComplexityMissed(in.getComplexitymissed());
+        r.setGroupName(in.getGroupname());
+        r.setInstructionCovered(in.getInstructioncovered());
+        r.setInstructionMissed(in.getInstructionmissed());
+        r.setLineCovered(in.getLinecovered());
+        r.setLineMissed(in.getLinemissed());
+        r.setMethodCovered(in.getMethodcovered());
+        r.setMethodMissed(in.getMethodmissed());
+        r.setPackageName(in.getPackagename());
+
+        return r;
+    }
 }

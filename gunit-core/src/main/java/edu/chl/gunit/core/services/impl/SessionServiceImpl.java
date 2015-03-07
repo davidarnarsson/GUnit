@@ -10,6 +10,8 @@ import static edu.chl.gunit.commons.api.SessionStatus.Failed;
 import static edu.chl.gunit.commons.api.SessionStatus.New;
 import static edu.chl.gunit.commons.api.SessionStatus.Processed;
 import static edu.chl.gunit.core.data.Tables.*;
+import static org.jooq.impl.DSL.select;
+import static org.jooq.impl.DSL.selectFrom;
 
 /**
  * Created by davida on 24.2.2015.
@@ -49,6 +51,18 @@ public class SessionServiceImpl extends AbstractService<SessionRecord> implement
     @Override
     public void setFailed(SessionRecord record) {
         setStatus(record, Failed);
+    }
+
+    @Override
+    public SessionRecord getLatestSession(Integer userid,SessionStatus status) {
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.selectFrom(SESSION)
+                            .where(SESSION.USERID.eq(userid)
+                                    .and(SESSION.SESSIONSTATUS.eq(status.getStatusCode()))
+                            ).orderBy(SESSION.DATE.desc())
+                    .limit(1)
+                    .fetchOne();
+        }
     }
 
 

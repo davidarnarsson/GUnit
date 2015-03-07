@@ -6,6 +6,7 @@ import edu.chl.gunit.commons.api.ApiTestSuiteResults;
 import edu.chl.gunit.core.data.tables.records.*;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
+import edu.chl.gunit.core.services.RuleResultService;
 import edu.chl.gunit.core.services.UserBadgeService;
 
 import java.sql.Timestamp;
@@ -39,6 +40,9 @@ public class Processor {
 
     @Inject
     StatisticsCalculator calculator;
+
+    @Inject
+    RuleResultService ruleResultService;
 
     public SessionRecord createNewProcessSession(String user) {
         UserRecord userRecord = userService.getOrCreate(user);
@@ -122,5 +126,9 @@ public class Processor {
         user.setPoints(user.getPoints() + pointsForSession);
 
         userService.update(user);
+    }
+
+    public void saveRuleResults(Integer sessionid, List<RuleResult> ruleResults) {
+        ruleResultService.persistResults(sessionid, ruleResults);
     }
 }

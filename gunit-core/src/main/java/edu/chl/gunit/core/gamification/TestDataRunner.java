@@ -60,6 +60,8 @@ public class TestDataRunner implements Runnable {
 
             List<RuleResult> ruleResults = engine.calculatePoints(results);
 
+            processor.saveRuleResults(session.getSessionid(), ruleResults);
+
             processor.updateUserStatistics(results.getStatistics(), ruleResults, session);
 
             processor.markSessionAsProcessed(session);

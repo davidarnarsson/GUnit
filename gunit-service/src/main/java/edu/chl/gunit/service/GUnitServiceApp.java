@@ -38,10 +38,12 @@ public class GUnitServiceApp extends Application<AppConfig> {
         environment.jersey().register(facade.getInjector().getInstance(UsersResource.class));
         environment.jersey().register(new StatisticsResource(facade));
         environment.jersey().register(new SessionResource(facade));
+        environment.jersey().register(facade.getInjector().getInstance(CoverageResource.class));
     }
 
     @Override
     public void initialize(Bootstrap<AppConfig> bootstrap) {
+        bootstrap.addBundle(new AssetsBundle("/static/fonts","/fonts", null, "fonts"));
         bootstrap.addBundle(new AssetsBundle("/static/css","/css", null, "css"));
         bootstrap.addBundle(new AssetsBundle("/static/js","/js", null, "js"));
         bootstrap.addBundle(new AssetsBundle("/static/images","/images", null, "images"));

@@ -112,6 +112,14 @@ table.table tr.processing {
     font-style: italic;
 }
 
+table.table td.label {
+    color: #a0a0a0;
+}
+
+table.clickable td {
+    cursor:pointer;
+}
+
 /** TABLE DEFINITIONS END */
 
 /** NAVIGATION BEGINS  */

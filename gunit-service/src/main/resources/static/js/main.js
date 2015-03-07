@@ -40,6 +40,15 @@ module.config(function ($routeProvider) {
                     return $api.getUserBadges($route.current.params.id);
                 }
             }
+        }).
+        when('/session/:id', {
+            templateUrl: 'session.tpl',
+            controller: 'SessionCtrl',
+            resolve: {
+                sessionData: function ($api, $route) {
+                    return $api.getSession($route.current.params.id);
+                }
+            }
         })
         .otherwise({
             redirectTo:'/login'
@@ -99,12 +108,19 @@ module.factory('$api', function ($http) {
                 params: { page: page }
             });
         },
+        getSession: function (sessionId) {
+            return $http.get(serviceUrl + '/statistics/' + sessionId);
+        },
         getProcessing: function (userId) {
             return $http.get(serviceUrl + '/statistics/processing/' + userId);
         },
         getUserBadges: function(userId) {
             return $http.get(serviceUrl + '/users/badges/' + userId);
+        },
+        getCoverageData: function (sessionId) {
+            return $http.get(serviceUrl + '/coverage/session/' + sessionId);
         }
+
     };
 });
 
@@ -220,7 +236,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
     };
 
     $scope.statisticsData = {
-        labels: statistics.value.map(function (s) { return new Date(s.date).toLocaleDateString()}),
+        labels: statistics.value.map(function (s) { return new Date(s.date).toLocaleDateString()}).reverse(),
         datasets: [
             {
                 label: 'Line Coverage',
@@ -290,6 +306,25 @@ module.directive('pager', function () {
 module.controller('UserDetailCtrl', function(userData, badges, $scope) {
     $scope.user = userData.data;
     $scope.badges = badges.data;
+});
+
+module.controller('SessionCtrl', function (sessionData, $scope, $api) {
+    $scope.sessionData = sessionData.data;
+
+    $scope.coverageData = null;
+
+    $api.getCoverageData($scope.sessionData.session.sessionId).success(function (d) {
+        $scope.coverageData = d;
+    });
+});
+
+module.filter('coalesce', function () {
+   return function (v) {
+       if (isNaN(v)) {
+           return 0;
+       }
+       return v;
+   }
 });
 
 function debounce(func, wait, immediate) {
