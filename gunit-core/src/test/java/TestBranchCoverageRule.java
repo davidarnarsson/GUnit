@@ -22,9 +22,9 @@ public class TestBranchCoverageRule {
 
         SessionService mockService = mock(SessionService.class);
         Statistics statistics = new Statistics();
-        statistics.setBranchCoverage(50.0);
+        statistics.setBranchCoverage(0.50);
 
-        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,40.0,0.0,0.0,0,0,0,0));
+        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.40,0.0,0.0,0,0,0,0));
 
         BranchCoverageRule rule = new BranchCoverageRule(mockService);
 
@@ -40,9 +40,9 @@ public class TestBranchCoverageRule {
 
         SessionService mockService = mock(SessionService.class);
         Statistics statistics = new Statistics();
-        statistics.setBranchCoverage(10.1);
+        statistics.setBranchCoverage(0.101);
 
-        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,30.0,0.0,0.0,0,0,0,0));
+        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.30,0.0,0.0,0,0,0,0));
 
         BranchCoverageRule rule = new BranchCoverageRule(mockService);
 
@@ -61,11 +61,11 @@ public class TestBranchCoverageRule {
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(null);
 
         Statistics statistics = new Statistics();
-        statistics.setBranchCoverage(20.1);
+        statistics.setBranchCoverage(0.201);
 
         BranchCoverageRule rule = new BranchCoverageRule(mockService);
 
-        GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,20.0,0.0,20.1,0,0,0,0),null,null,null);
+        GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.20,0.0,0.201,0,0,0,0),null,null,null);
 
         RuleResult result = rule.calculate(ctx, new RuleRecord());
 

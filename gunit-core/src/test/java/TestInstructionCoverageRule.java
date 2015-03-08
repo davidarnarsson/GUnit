@@ -24,9 +24,9 @@ public class TestInstructionCoverageRule {
 
         SessionService mockService = mock(SessionService.class);
         Statistics statistics = new Statistics();
-        statistics.setInstructionCoverage(20.0);
+        statistics.setInstructionCoverage(0.20);
 
-        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,30.0,0,0,0,0));
+        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,0.30,0,0,0,0));
 
         InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
@@ -42,9 +42,9 @@ public class TestInstructionCoverageRule {
 
         SessionService mockService = mock(SessionService.class);
         Statistics statistics = new Statistics();
-        statistics.setInstructionCoverage(30.1);
+        statistics.setInstructionCoverage(0.301);
 
-        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,29.0,0,0,0,0));
+        when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,0.29,0,0,0,0));
 
         InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
@@ -63,11 +63,11 @@ public class TestInstructionCoverageRule {
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(null);
 
         Statistics statistics = new Statistics();
-        statistics.setInstructionCoverage(20.1);
+        statistics.setInstructionCoverage(0.201);
 
         InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
-        GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,20.1,0,0,0,0),null,null,null);
+        GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.201,0,0,0,0),null,null,null);
 
         RuleResult result = rule.calculate(ctx, new RuleRecord());
 

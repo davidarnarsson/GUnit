@@ -36,8 +36,8 @@ public class InstructionCoverageRule implements RuleStrategy {
             lastCoverage = last.getInstructioncoverage();
         }
 
-        int percent = (int)Math.floor(currentCoverage / 10.0);
-        int lastPercent =  (int)Math.floor(lastCoverage / 10.0);
+        int percent = (int)Math.floor((currentCoverage * 100) / 10.0);
+        int lastPercent =  (int)Math.floor((lastCoverage * 100) / 10.0);
 
         if (percent - lastPercent < 0) {
             result.setMessage(String.format("Instruction coverage lækkaði úr %.2f%% niður í %.2f%%!", lastCoverage, currentCoverage));

@@ -44,8 +44,8 @@ public class BranchCoverageRule implements RuleStrategy {
             lastCoverage = last.getBranchcoverage();
         }
 
-        int percent = (int)Math.floor(currentCoverage / 10.0);
-        int lastPercent =  (int)Math.floor(lastCoverage / 10.0);
+        int percent = (int)Math.floor((currentCoverage * 100) / 10.0);
+        int lastPercent =  (int)Math.floor((lastCoverage * 100) / 10.0);
 
         result.setPointsAwarded(calculatePoints(percent,lastPercent));
 
