@@ -18,10 +18,6 @@
         <gunit.core.db.password>startrek</gunit.core.db.password>
         <gunit.core.db.inputSchema>gunit</gunit.core.db.inputSchema>
         <gunit.core.db.target.packageName>edu.chl.gunit.core.data</gunit.core.db.target.packageName>
-
-        <gunit.core.db.test.url>jdbc:mysql://localhost</gunit.core.db.test.url>
-        <gunit.core.db.test.user>gunit_test</gunit.core.db.test.user>
-        <gunit.core.db.test.password>startrek</gunit.core.db.test.password>
     </properties>
     <name>GUnit Core</name>
     <parent>
@@ -169,65 +165,6 @@
                     </generator>
                 </configuration>
             </plugin>
-            <!--plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>1.5</version>
-                <configuration>
-                    <driver>${gunit.core.db.driver}</driver>
-                    <url>${gunit.core.db.test.url}</url>
-                    <username>${gunit.core.db.test.user}</username>
-                    <password>${gunit.core.db.test.password}</password>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.34</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>drop-test-db-before</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <autocommit>true</autocommit>
-                            <sqlCommand>drop database gunit_test</sqlCommand>
-                            <onError>continue</onError>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-test-db</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-
-                        <configuration>
-                            <autocommit>true</autocommit>
-                            <srcFiles>
-                                <srcFile>src/test/resources/pre.sql</srcFile>
-                            </srcFiles>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>drop-test-db</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <autocommit>true</autocommit>
-                            <sqlCommand>drop database gunit_test</sqlCommand>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin-->
         </plugins>
     </build>
 
