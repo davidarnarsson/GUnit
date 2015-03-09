@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/gunit-parent/gunit-parent.iml" filepath="$PROJECT_DIR$/gunit-parent/gunit-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/gunit-service/gunit-service.iml" filepath="$PROJECT_DIR$/gunit-service/gunit-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/gunit-service-client/gunit-service-client.iml" filepath="$PROJECT_DIR$/gunit-service-client/gunit-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/intelli-gunit/intelli-gunit.iml" filepath="$PROJECT_DIR$/intelli-gunit/intelli-gunit.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-project/test-project.iml" filepath="$PROJECT_DIR$/test-project/test-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" filepath="$PROJECT_DIR$/testhound-maven-plugin/testhound-maven-plugin.iml" />
     </modules>

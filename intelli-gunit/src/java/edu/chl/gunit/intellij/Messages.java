@@ -5,4 +5,5 @@ package edu.chl.gunit.intellij;
  */
 public class Messages {
     public final static String LEADERBOARD = "LEADERBOARD";
+    public static final String NEWSESSION = "NEWSESSION";
 }

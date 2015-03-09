@@ -2,156 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac31236a-3acf-4c33-a3aa-358b71e0ec51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/AbstractResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiRule.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiUserBadge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/DeveloperInfoDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/pollers/LeaderboardMessagePoller.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__edu_chl_gunit_gunit_service_client_0_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_jackson_jackson_jaxrs_1_9_13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_jackson_jackson_xc_1_9_13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jersey_connectors_jersey_jetty_connector_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_json_jackson_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_mockito_mockito_core_2_0_4_beta.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/pollers/MessagePoller.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/recipients/MessageRecipient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/Messages.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/ResourceMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/SessionResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-service/src/test/java/TestUsersResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/api/Utils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/libraries/lib.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gunit-parent/pom.xml" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__com_google_code_findbugs_annotations_3_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__com_google_inject_extensions_guice_servlet_4_0_beta5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__com_hubspot_dropwizard_dropwizard_guice_0_7_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__commons_codec_commons_codec_1_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__io_dropwizard_dropwizard_client_0_8_0_rc3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__io_dropwizard_metrics_metrics_httpclient_3_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_apache_httpcomponents_httpclient_4_3_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_apache_httpcomponents_httpcore_4_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_glassfish_jersey_connectors_jersey_apache_connector_2_16.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_javassist_javassist_3_18_2_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_reflections_reflections_0_9_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\.idea\libraries\Maven__org_slf4j_slf4j_api_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\libraries\jxbrowser_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\libraries\org_apache_portals_jetspeed_2_jetspeed_fileutils_maven_plugin_2_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\ccpp-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\classworlds-1.1-alpha-2.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\commons-io-1.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\jetspeed-api-2.2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\jetspeed-fileutils-maven-plugin-2.2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\jetspeed-maven-utils-2.2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\jsp-api-2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-artifact-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-artifact-manager-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-model-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-plugin-api-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-plugin-registry-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-profile-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-project-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-repository-metadata-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\maven-settings-2.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\plexus-container-default-1.0-alpha-9-stable-1.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\plexus-utils-1.4.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\pluto-container-api-2.0.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\portals-bridges-common-1.0.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\portlet-api_2.0_spec-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\servlet-api-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\lib\wagon-provider-api-1.0-beta-2.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\testIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\src\resources\jacoco.csv" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\src\resources\testIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\IntelliGunit\testIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Code\GUnit\test-project\test-project.iml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\META-INF\plugin.xml" afterPath="$PROJECT_DIR$/../intelli-gunit/META-INF/plugin.xml" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\images\gold.png" afterPath="$PROJECT_DIR$/../gunit-service/src/main/resources/static/images/gold.png" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\images\testIcon.png" afterPath="$PROJECT_DIR$/../intelli-gunit/src/resources/images/testIcon.png" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\CompoundIcon.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/CompoundIcon.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\Derp.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/IntelliGUnitComponent.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\LeaderBoard.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/LeaderBoard.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\MockServiceListener.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/ServiceListener.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\MyShowDialog.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/MyShowDialog.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\IntelliGunit\src\Mypackage\busyb.jpg" afterPath="$PROJECT_DIR$/../intelli-gunit/src/resources/images/busyb.jpg" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-commons\src\main\java\edu\chl\gunit\commons\JaCoCoResult.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiJaCoCoResult.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-commons\src\main\java\edu\chl\gunit\commons\TestCase.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiTestCase.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-commons\src\main\java\edu\chl\gunit\commons\TestRunRequest.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/TestRunRequest.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-commons\src\main\java\edu\chl\gunit\commons\TestSuiteResults.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiTestSuiteResults.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-core\src\main\java\edu\chl\gunit\core\data\SessionStatus.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/SessionStatus.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-service\src\main\java\edu\chl\gunit\service\api\Badge.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiBadge.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-service\src\main\java\edu\chl\gunit\service\api\Session.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiSession.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-service\src\main\java\edu\chl\gunit\service\api\SessionStatistics.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/SessionStatistics.java" />
-      <change type="MOVED" beforePath="C:\Code\GUnit\gunit-service\src\main\java\edu\chl\gunit\service\api\User.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/api/ApiUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/csv/CSV.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/csv/CSV.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/csv/CSVReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/csv/CSVReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/pollers/NewSessionPoller.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../intelli-gunit/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service-client/src/main/java/edu/chl/gunit/service/client/Client.java" afterPath="$PROJECT_DIR$/../gunit-service-client/src/main/java/edu/chl/gunit/service/client/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-maven-plugin/src/main/java/edu/chl/gunit/plugin/GUnitMojo.java" afterPath="$PROJECT_DIR$/../gunit-maven-plugin/src/main/java/edu/chl/gunit/plugin/GUnitMojo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/DeveloperInfoDialog.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/DeveloperInfoDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/GUnitServiceApp.java" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/GUnitServiceApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/GamificationResource.java" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/GamificationResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/input/junit/JUnitXMLReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/input/junit/JUnitXMLReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/input/jacoco/JaCoCoCSVReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/main/java/edu/chl/gunit/commons/input/jacoco/JaCoCoCSVReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/JaCoCoResultService.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/JaCoCoResultService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/JaCoCoResultServiceImpl.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/JaCoCoResultServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/Processor.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/Processor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/IntelliGUnitComponent.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/IntelliGUnitComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/Messages.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/MyShowDialog.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/MyShowDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/ServiceListener.java" afterPath="$PROJECT_DIR$/../intelli-gunit/src/java/edu/chl/gunit/intellij/ServiceListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/SessionResource.java" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/SessionResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/SessionService.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/SessionService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/SessionServiceImpl.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/SessionServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/Statistics.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/Statistics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/StatisticsCalculator.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/data/StatisticsCalculator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/StatisticsResource.java" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/StatisticsResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestCSVReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestCSVReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/TestCaseService.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/TestCaseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/TestCaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service-client/src/test/java/TestClient.java" afterPath="$PROJECT_DIR$/../gunit-service-client/src/test/java/TestClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/gamification/TestDataRunner.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/gamification/TestDataRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestJUnitXmlReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestJUnitXmlReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestJaCoCoCSVReader.java" afterPath="$PROJECT_DIR$/../gunit-commons/src/test/java/TestJaCoCoCSVReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/test/java/TestService.java" afterPath="$PROJECT_DIR$/../gunit-service/src/test/java/TestService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/TestSuiteService.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/TestSuiteService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/TestSuiteServiceImpl.java" afterPath="$PROJECT_DIR$/../gunit-core/src/main/java/edu/chl/gunit/core/services/impl/TestSuiteServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/src/test/java/TestTestCaseService.java" afterPath="$PROJECT_DIR$/../gunit-core/src/test/java/TestTestCaseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestWallet.java" afterPath="$PROJECT_DIR$/src/test/java/TestWallet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/UsersResource.java" afterPath="$PROJECT_DIR$/../gunit-service/src/main/java/edu/chl/gunit/service/resources/UsersResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/compiler.xml" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/encodings.xml" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-maven-plugin/gunit-maven-plugin.iml" afterPath="$PROJECT_DIR$/../gunit-maven-plugin/gunit-maven-plugin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/../gunit-service/src/main/resources/static/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SQL/dump.sql" afterPath="$PROJECT_DIR$/../SQL/dump.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/src/main/resources/static/js/main.js" afterPath="$PROJECT_DIR$/../gunit-service/src/main/resources/static/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="$PROJECT_DIR$/../.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/modules.xml" afterPath="$PROJECT_DIR$/../.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pom.xml" afterPath="$PROJECT_DIR$/../pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-commons/pom.xml" afterPath="$PROJECT_DIR$/../gunit-commons/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-core/pom.xml" afterPath="$PROJECT_DIR$/../gunit-core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-maven-plugin/pom.xml" afterPath="$PROJECT_DIR$/../gunit-maven-plugin/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service/pom.xml" afterPath="$PROJECT_DIR$/../gunit-service/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gunit-service-client/pom.xml" afterPath="$PROJECT_DIR$/../gunit-service-client/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../testhound-maven-plugin/pom.xml" afterPath="$PROJECT_DIR$/../testhound-maven-plugin/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LinkedList.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -193,9 +66,12 @@
       <file leaf-file-name="TestLinkedList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/TestLinkedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1819">
+            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1605">
               <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -203,7 +79,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5265866" vertical-offset="67" max-vertical-offset="986">
+            <state vertical-scroll-proportion="0.47011954" vertical-offset="94" max-vertical-offset="870">
               <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
               <folding />
             </state>
@@ -252,10 +128,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -283,7 +158,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,26 +172,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GUnit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linkedlist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GUnit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="test-project" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -576,7 +437,6 @@
       <node-options />
       <gulpfile />
       <tasks />
-      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
@@ -769,48 +629,50 @@
       <workItem from="1425494297242" duration="1549000" />
       <workItem from="1425578492142" duration="254000" />
       <workItem from="1425578796221" duration="23000" />
+      <workItem from="1425903747384" duration="449000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46797000" />
+    <option name="totallyTimeSpent" value="47246000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3410771" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34079602" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Leaderboard" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Leaderboard" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39716312" sideWeight="0.8130208" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Skorborð" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="rightwindow" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39716312" sideWeight="0.8130208" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -906,7 +768,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -922,7 +787,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -938,7 +806,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -954,7 +825,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -970,7 +844,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -986,7 +863,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1445">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1269,13 +1149,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1819">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5265866" vertical-offset="67" max-vertical-offset="986">
+        <state vertical-scroll-proportion="0.47011954" vertical-offset="94" max-vertical-offset="870">
           <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding />
         </state>

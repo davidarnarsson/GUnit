@@ -4,6 +4,7 @@ import edu.chl.gunit.core.Module;
 import edu.chl.gunit.core.ServiceFacade;
 import edu.chl.gunit.core.data.DBProvider;
 import edu.chl.gunit.core.data.Statistics;
+import edu.chl.gunit.core.services.SessionService;
 import edu.chl.gunit.service.health.DbHealthCheck;
 import edu.chl.gunit.service.resources.*;
 import io.dropwizard.Application;
@@ -37,7 +38,7 @@ public class GUnitServiceApp extends Application<AppConfig> {
         environment.jersey().register(facade.getInjector().getInstance(GamificationResource.class));
         environment.jersey().register(facade.getInjector().getInstance(UsersResource.class));
         environment.jersey().register(new StatisticsResource(facade));
-        environment.jersey().register(new SessionResource(facade));
+        environment.jersey().register(facade.getInjector().getInstance(SessionResource.class));
         environment.jersey().register(facade.getInjector().getInstance(CoverageResource.class));
     }
 

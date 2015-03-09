@@ -51,7 +51,9 @@ public class MyShowDialog extends AnAction {
     public void actionPerformed(AnActionEvent event) {
         Project project = event.getData(PlatformDataKeys.PROJECT);
 
-        displayFeedback();
+        // displayFeedback();
+
+
 
     }
 
@@ -106,6 +108,7 @@ public class MyShowDialog extends AnAction {
                 }
             }
         });
+
         ep.setEditable(false);
         ep.setBackground(label.getBackground());
 

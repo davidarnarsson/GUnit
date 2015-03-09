@@ -2,6 +2,7 @@ package edu.chl.gunit.core.services.impl;
 
 import edu.chl.gunit.core.data.DBContext;
 import edu.chl.gunit.commons.api.SessionStatus;
+import edu.chl.gunit.core.data.Tables;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import org.jooq.Field;
 import org.jooq.impl.DSL;
@@ -10,6 +11,7 @@ import static edu.chl.gunit.commons.api.SessionStatus.Failed;
 import static edu.chl.gunit.commons.api.SessionStatus.New;
 import static edu.chl.gunit.commons.api.SessionStatus.Processed;
 import static edu.chl.gunit.core.data.Tables.*;
+import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
 import static org.jooq.impl.DSL.selectFrom;
 
@@ -62,6 +64,17 @@ public class SessionServiceImpl extends AbstractService<SessionRecord> implement
                             ).orderBy(SESSION.DATE.desc())
                     .limit(1)
                     .fetchOne();
+        }
+    }
+
+    @Override
+    public SessionRecord getLatestSession(String userName) {
+        try (DBContext ctx = ctx()) {
+            return ctx.dsl.selectFrom(SESSION)
+                    .where(SESSION.SESSIONID.eq(select(SESSION.SESSIONID).from(SESSION)
+                            .join(USER).on(USER.ID.eq(SESSION.USERID).and(USER.NAME.eq(userName)))
+                            .orderBy(SESSION.SESSIONID.desc()).limit(1)))
+                    .fetchAny();
         }
     }
 

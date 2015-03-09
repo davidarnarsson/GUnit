@@ -1,6 +1,7 @@
 package edu.chl.gunit.service.client;
 
 
+import edu.chl.gunit.commons.api.ApiSession;
 import edu.chl.gunit.commons.api.ApiUser;
 import edu.chl.gunit.commons.api.ApiUserBadge;
 import edu.chl.gunit.commons.api.TestRunRequest;
@@ -58,5 +59,12 @@ public class Client {
         return target.path("/users/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(ApiUser.class);
+    }
+
+    public ApiSession getLatestSession(String userName) {
+        return target.path("/session/latest")
+                .queryParam("username", new String[]{userName})
+                .request(MediaType.APPLICATION_JSON)
+                .get(ApiSession.class);
     }
 }

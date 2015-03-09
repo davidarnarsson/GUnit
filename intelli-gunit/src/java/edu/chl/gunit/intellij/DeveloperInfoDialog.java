@@ -42,14 +42,14 @@ public class DeveloperInfoDialog extends DialogWrapper {
 
 
     public void initialize(ApiUser user, List<ApiUserBadge> userBadges) {
-
+/*
         setTitle("Forritari: " + user.getName());
         this.user = user;
         this.userBadges = userBadges;
 
         JBLabel userNameLabel = new JBLabel(user.getName());
         userNameLabel.setBounds(10, 10, 30, 100);
-        contentPanel.add(userNameLabel);
+        contentPanel.add(userNameLabel);*/
     }
 
     @Nullable
