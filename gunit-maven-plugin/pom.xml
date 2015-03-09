@@ -41,13 +41,6 @@
         </dependency>
         <dependency>
             <groupId>edu.chl.gunit</groupId>
-            <artifactId>gunit-maven-plugin</artifactId>
-            <version>0.0.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>edu.chl.gunit</groupId>
             <artifactId>gunit-service-client</artifactId>
             <version>0.0.1</version>
         </dependency>
