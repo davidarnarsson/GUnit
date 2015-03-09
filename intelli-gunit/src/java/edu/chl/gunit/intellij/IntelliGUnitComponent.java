@@ -41,9 +41,9 @@ public class IntelliGUnitComponent implements ProjectComponent {
             public void receive(ApiSession msg) {
                 String base = "Ný prófunargögn hafa verið greind á þjóninum okkar! %s";
                 if (msg.getPointsCollected() > 0) {
-                    base = String.format(base, "Vel gert, þú fékkst %d stig fyrir þessi prófunargögn!");
+                    base = String.format(base, "Vel gert, þú fékkst <strong>%d</strong> stig fyrir þessi prófunargögn!");
                 } else if (msg.getPointsCollected() < 0) {
-                    base = String.format(base, "Ansans, þú fékkst %d stig fyrir þessi prófunargögn!");
+                    base = String.format(base, "Ansans, þú fékkst <strong>%d</strong> stig fyrir þessi prófunargögn!");
                 }
 
                 String path = "<br/><a href=\"http://gunit.axlabond.in/site/#/session/%d\">Sjá gögn</a>";

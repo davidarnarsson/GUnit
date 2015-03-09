@@ -2,6 +2,7 @@ package edu.chl.gunit.core.data;
 
 import edu.chl.gunit.commons.api.ApiTestCase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,10 @@ public class Statistics {
     /* The total instruction coverage for a given session */
     private double instructionCoverage;
 
+
+    public Statistics() {
+        newTestCases = new ArrayList<>();
+    }
 
     public double getInstructionCoverage() {
         return instructionCoverage;
