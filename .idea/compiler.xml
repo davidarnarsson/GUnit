@@ -23,13 +23,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="gunit-client" />
-        <module name="gunit-commons" />
-        <module name="gunit-core" />
-        <module name="gunit-maven-plugin" />
-        <module name="gunit-service" />
-        <module name="gunit-service-client" />
-        <module name="test-project" />
-        <module name="testhound-maven-plugin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

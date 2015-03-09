@@ -102,7 +102,7 @@ public class ServiceListener implements Runnable {
         try {
             T result = poller.poll(this.client);
 
-            if (recipients.containsKey(poller.getMessageName())) {
+            if (result != null && recipients.containsKey(poller.getMessageName())) {
                 List<MessageRecipient> r = recipients.get(poller.getMessageName());
                 List<MessageRecipient> toRemove = new ArrayList<MessageRecipient>();
 

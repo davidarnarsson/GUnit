@@ -10,13 +10,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/gunit-maven-plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/test-project/pom.xml" />
-        <option value="$PROJECT_DIR$/testhound-maven-plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/gunit-core/pom.xml" />
-        <option value="$PROJECT_DIR$/gunit-service/pom.xml" />
-        <option value="$PROJECT_DIR$/gunit-service-client/pom.xml" />
-        <option value="$PROJECT_DIR$/gunit-commons/pom.xml" />
         <option value="$PROJECT_DIR$/gunit-parent/pom.xml" />
       </list>
     </option>

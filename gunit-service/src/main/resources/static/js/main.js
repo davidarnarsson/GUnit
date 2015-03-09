@@ -6,7 +6,7 @@ if (outerWrap.style.height < window.innerHeight - 20) {
 
 var module = angular.module("gunit", ['ngRoute']);
 
-var serviceUrl = 'http://localhost:8080/api';
+var serviceUrl = '/api';
 
 module.config(function ($routeProvider) {
     $routeProvider

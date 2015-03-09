@@ -45,8 +45,8 @@ public class ApiSession {
     }
 
     @JsonProperty
-    public SessionStatus getSessionStatus() {
-        return sessionStatus;
+    public Integer getSessionStatus() {
+        return sessionStatus.getStatusCode();
     }
 
     public void setSessionId(Integer sessionId) {

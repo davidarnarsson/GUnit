@@ -13,4 +13,6 @@ public interface SessionService extends Service<SessionRecord> {
     void setFailed(SessionRecord record);
 
     SessionRecord getLatestSession(Integer userid, SessionStatus status);
+
+    SessionRecord getLatestSession(String userName);
 }
