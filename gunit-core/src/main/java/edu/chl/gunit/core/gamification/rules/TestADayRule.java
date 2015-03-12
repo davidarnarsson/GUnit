@@ -3,10 +3,12 @@ package edu.chl.gunit.core.gamification.rules;
 import com.google.inject.Inject;
 import edu.chl.gunit.core.data.tables.Userbadges;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
+import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.services.BadgeService;
 import edu.chl.gunit.core.services.UserBadgeService;
+import edu.chl.gunit.core.services.UserService;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -28,6 +30,9 @@ public class TestADayRule implements RuleStrategy {
     @Inject
     BadgeService badgeService;
 
+    @Inject
+    UserService userService;
+
     @Override
     public RuleResult calculate(GamificationContext ctx, RuleRecord selfRecord) {
         List<UserbadgesRecord> badges = userBadgeService.getUserBadges(ctx.getSession().getUserid());
@@ -38,6 +43,13 @@ public class TestADayRule implements RuleStrategy {
 
         // only awarded once a day
         if (badges.stream().anyMatch(p ->p.getBadgeid() == selfRecord.getBadgeid() && p.getEarneddate().after(Date.from(midnight)))) {
+            return r;
+        }
+        // only give points if the test ups the coverage
+        UserRecord user = userService.get(ctx.getSession().getUserid());
+        if (user != null && user.getLastbranchcoverage() == ctx.getStatistics().getBranchCoverage() && user.getLastinstructioncoverage() == ctx.getStatistics().getInstructionCoverage()) {
+            r.setMessage("Jæja já, er ekki bara verið að reyna að svindla?");
+            r.setPointsAwarded(-selfRecord.getPoints());
             return r;
         }
 

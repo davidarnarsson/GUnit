@@ -22,11 +22,21 @@
         <module>../gunit-core</module>
         <module>../gunit-service</module>
         <module>../gunit-service-client</module>
-        <!--module>../gunit-maven-plugin</module-->
         <module>../testhound-maven-plugin</module>
         <module>../test-project</module>
     </modules>
-
+    <distributionManagement>
+        <repository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-releases</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-snapshots</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

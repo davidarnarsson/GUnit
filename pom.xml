@@ -34,7 +34,19 @@
         </plugins>
     </build>
     -->
-    
+    <distributionManagement>
+        <repository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-releases</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-snapshots</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -84,7 +96,7 @@
                 <version>0.0.1</version>
                 <configuration>
                     <developerName>davida</developerName>
-                    <gunitWsLocation>http://localhost:8080/api</gunitWsLocation>
+                    <gunitWsLocation>http://gunit-staging.axlabond.in/api</gunitWsLocation>
                     <jacocoReportCsvFolder>target/jacoco</jacocoReportCsvFolder>
                     <unitTestReportsFolder>target/test-reports</unitTestReportsFolder>
                 </configuration>

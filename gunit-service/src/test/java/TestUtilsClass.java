@@ -50,7 +50,12 @@ public class TestUtilsClass {
         assertEquals(a.getNewTests(),r.getNewtests());
         assertEquals(a.getPointsCollected(),r.getPointscollected());
         assertEquals(a.getSessionId(),r.getSessionid());
-        assertEquals(a.getSessionStatus().getStatusCode(), r.getSessionstatus().intValue());
+        assertEquals(a.getSessionStatus(), r.getSessionstatus());
         assertEquals(a.getUserId(),r.getUserid());
+    }
+
+    @Test
+    public void testNothingAtAll() {
+
     }
 }

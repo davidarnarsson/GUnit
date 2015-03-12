@@ -9,12 +9,7 @@
     <version>0.0.1</version>
     <packaging>maven-plugin</packaging>
     <name>GUnit Maven Plugin</name>
-    <parent>
-        <artifactId>gunit-parent</artifactId>
-        <groupId>edu.chl.gunit</groupId>
-        <version>0.0.1</version>
-        <relativePath>../gunit-parent/pom.xml</relativePath>
-    </parent>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -45,6 +40,19 @@
             <version>0.0.1</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-releases</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>axlabond.in</id>
+            <name>axlabond.in-snapshots</name>
+            <url>http://maven.axlabond.in/artifactory/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

@@ -21,22 +21,24 @@ industrial context.
 
 #### To-do
 
-** Project **
+**Project**
 
  * Implement per-class branch coverage scoring rules
  * Implement socket communication between gunit-maven-plugin and intelli-gunit for relaying new test sessions
  * Make project more easily buildable/runnable/deployable.
  * News feed.
- * Player-targeted messages/events.
+    * Player-targeted messages/events.
  * Quests
 
-** Site **
+**Site**
 
  * Refactor the badge display into something more usable
  * Make more responsive
  * Migrate to a gulp-based project/own module?
  * Create a rule-result view per session.
-
+ * Sortable coverage data
+ * Coverage diffs between sessions
+ 
 #### License
 
 MIT. Do what you want with it.
