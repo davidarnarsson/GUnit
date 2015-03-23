@@ -14,9 +14,8 @@ import java.util.HashSet;
  */
 public class TestHoundRunner extends ExperiementMain {
 
-    public ArrayList<ClassSetupUsage> run(HashSet<String> classes, ClazzLoader loader, File outDir) {
-        File reportDir = new File(getClass().getClassLoader().getResource("report").getFile());
+    public ArrayList<ClassSetupUsage> run(HashSet<String> classes, ClazzLoader loader, File outDir, File templateLocation) {
 
-        return analyseTests(classes, new FixtureAnalyser(loader), new DummyReportGenerator(reportDir.getAbsolutePath(), outDir.getAbsolutePath()));
+        return analyseTests(classes, new FixtureAnalyser(loader), new DummyReportGenerator(outDir.getAbsolutePath(), templateLocation.getAbsolutePath()));
     }
 }
