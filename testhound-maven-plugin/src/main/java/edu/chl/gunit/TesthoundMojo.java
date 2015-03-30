@@ -151,7 +151,14 @@ public class TesthoundMojo
         }
 
         // create a project class loader
-        ClazzLoader loader = new ClazzLoader(testOutputDirectory, libs.toArray(new File[libs.size()]));
+        ClazzLoader loader;
+        try {
+            loader = new ClazzLoader(testOutputDirectory, libs.toArray(new File[libs.size()]));
+        } catch (Exception e) {
+            getLog().error("Unable to initiate class loader for project, are there any tests or sources?");
+            return;
+        }
+
         ClassFinder finder = new ClassFinder(loader);
 
         // get the test class names to scan
@@ -164,7 +171,7 @@ public class TesthoundMojo
         }
 
         // run testhound
-        List<ClassSetupUsage> result = runner.run(classes, loader, reportOut, new File(TEMP_PATH));
+        List<ClassSetupUsage> result = runner.run(classes, loader, reportOut, new File(TEMP_PATH, "HTML version/template"));
 
 
         // generate result xml

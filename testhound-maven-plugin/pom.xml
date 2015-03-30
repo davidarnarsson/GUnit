@@ -7,12 +7,12 @@
   <version>0.0.1</version>
   <name>TestHound Maven Plugin</name>
   <url>http://maven.apache.org</url>
-    <parent>
+    <!--parent>
         <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
         <version>0.0.1</version>
         <relativePath>../gunit-parent/pom.xml</relativePath>
-    </parent>
+    </parent-->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
