@@ -129,7 +129,10 @@ public class TesthoundMojo
         List<File> libs = new ArrayList<>();
 
         String filename = String.format("%s%s%s.%s", project.getBuild().getDirectory(), File.separator, project.getBuild().getFinalName(), project.getArtifact().getType());
-
+        if (!("jar".equalsIgnoreCase(project.getArtifact().getType()) || "war".equalsIgnoreCase(project.getArtifact().getType()))) {
+            getLog().info("Testhound is not able to analyze projects of type " + project.getArtifact().getType());
+            return;
+        }
         libs.add(new File(filename));
 
         // resolve project deps
@@ -172,7 +175,6 @@ public class TesthoundMojo
 
         // run testhound
         List<ClassSetupUsage> result = runner.run(classes, loader, reportOut, new File(TEMP_PATH, "HTML version/template"));
-
 
         // generate result xml
         XmlReportGenerator generator = new XmlReportGenerator();

@@ -48,8 +48,8 @@ body {
 
 @media all and (min-width: 1280px) {
     #wrap {
-        width: 1170px;
-        margin: 10px auto;
+       // width: 1170px;
+        margin: 10px 10px;
     }
 }
 
@@ -198,6 +198,8 @@ ul.pager>li {
     display: inline-block;
 }
 ul.pager {
+    padding: 0;
+    margin: 0;
     list-style: none;
 }
 
@@ -278,4 +280,57 @@ ul.pager {
     height: 60px;
     display: block;
     margin: 0 auto;
+}
+
+
+.tabs > ul {
+    list-style: none;
+    height: 27px;
+    border-bottom: 1px solid #bababa;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs > ul > li {
+    display: inline;
+
+}
+
+.tabs > ul > li > a {
+    background: #f0f0f0;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: black;
+    border-top: 1px solid #bababa;
+    border-left:1px solid #bababa;
+}
+
+.tabs > ul > li:last-child > a {
+    border-right: 1px solid #bababa;
+}
+
+.tabs > ul >li.active a,.tabs > ul >li:hover a {
+    background: white;
+}
+.tabs .tab { display: none; padding: 5px; }
+.tabs .tab.active { display: block; }
+
+
+.message { padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; position: relative; }
+.message p { font-size: 14px; text-align:center; }
+
+.message .date {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 10px;
+}
+
+.message .points-earned {
+    position: absolute;
+    color:darkgreen;
+    top:5px;
+    right: 5px;
+    font-size: 12px;
+    font-weight: bold;
 }

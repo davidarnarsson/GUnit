@@ -1,7 +1,6 @@
 package edu.chl.gunit.core.gamification.rules;
 
 import com.google.inject.Inject;
-import edu.chl.gunit.core.data.tables.Userbadges;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
@@ -10,17 +9,14 @@ import edu.chl.gunit.core.services.UserBadgeService;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalQueries;
-import java.time.temporal.TemporalUnit;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by davida on 26.2.2015.
  */
-public class TestADayRule implements RuleStrategy {
+public class TestADayPreRule implements PreRuleStrategy {
 
     @Inject
     UserBadgeService userBadgeService;
@@ -37,7 +33,7 @@ public class TestADayRule implements RuleStrategy {
         RuleResult r = new RuleResult();
 
         // only awarded once a day
-        if (badges.stream().anyMatch(p ->p.getBadgeid() == selfRecord.getBadgeid() && p.getEarneddate().after(Date.from(midnight)))) {
+        if (badges.stream().anyMatch(p -> Objects.equals(p.getBadgeid(), selfRecord.getBadgeid()) && p.getEarneddate().after(Date.from(midnight)))) {
             return r;
         }
 

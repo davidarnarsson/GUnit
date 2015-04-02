@@ -67,34 +67,47 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="flex-container your-sessions">
-                <div class="flex-item p50">
-                    <h3>Þínar lotur</h3>
+                <div class="flex-item p5">
+                    <tabs id="front-page-tabs">
+                        <tab title="Nýjasta nýtt">
+                            <div class="message" ng-repeat="message in messages">
+                                <span class="date"> <a ng-href="#/session/{{message.sessionId}}">Úr lotunni þann {{ message.session.date | date:'dd. MMM @ hh:mm' }}</a></span>
 
-                    <pager page-count="statistics.total / statistics.count" current="getCurrent" set-page="setPage"> </pager>
-                    <table class="table table-xs clickable">
-                        <thead>
-                            <th>Dags.</th>
-                            <th class="xs-hidden">Branch coverage</th>
-                            <th class="xs-hidden">Line coverage</th>
-                            <th class="xs-hidden">Instruction coverage</th>
-                            <th>Ný próf</th>
-                            <th>Stig</th>
-                            <th>Orður</th>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="row in statistics.value" ng-class="{'failed': row.sessionStatus == 'Failed', 'processing': row.sessionStatus == 'New'}" ng-click="showSession(row.sessionId)">
-                                <td ng-bind="row.date | date:'medium'"></td>
-                                <td class="xs-hidden">{{row.branchCoverage * 100 | number:2}}%</td>
-                                <td class="xs-hidden">{{row.lineCoverage * 100 | number:2}}%</td>
-                                <td class="xs-hidden">{{row.instructionCoverage * 100 | number:2}}%</td>
-                                <td ng-bind="row.newTests"></td>
-                                <td ng-bind="row.pointsCollected"></td>
-                                <td ng-bind="row.badgesEarned"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <span class="points-earned">  {{ message.points }} stig!</span>
+                                <p> {{ message.message }} </p>
+                                {{ message }}
+                            </div>
+                        </tab>
+                        <tab title="Þínar lotur">
+
+                            <pager page-count="statistics.total / statistics.count" current="getCurrent" set-page="setPage"> </pager>
+                            <table class="table table-xs clickable">
+                                <thead>
+                                <th>Dags.</th>
+                                <th class="xs-hidden">Branch coverage</th>
+                                <th class="xs-hidden">Line coverage</th>
+                                <th class="xs-hidden">Instruction coverage</th>
+                                <th>Ný próf</th>
+                                <th>Stig</th>
+                                <th>Orður</th>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="row in statistics.value" ng-class="{'failed': row.sessionStatus == 'Failed', 'processing': row.sessionStatus == 'New'}" ng-click="showSession(row.sessionId)">
+                                    <td ng-bind="row.date | date:'medium'"></td>
+                                    <td class="xs-hidden">{{row.branchCoverage * 100 | number:2}}%</td>
+                                    <td class="xs-hidden">{{row.lineCoverage * 100 | number:2}}%</td>
+                                    <td class="xs-hidden">{{row.instructionCoverage * 100 | number:2}}%</td>
+                                    <td ng-bind="row.newTests"></td>
+                                    <td ng-bind="row.pointsCollected"></td>
+                                    <td ng-bind="row.badgesEarned"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </tab>
+                    </tabs>
+
+
                 </div>
 
                 <div class="flex-item p50">
@@ -114,6 +127,25 @@
                 </li>
             </ul>
         </script>
+
+        <script type="text/ng-template" id="tabs.tpl">
+            <div class="tabs">
+                <ul>
+                    <li ng-repeat="(tabId,tab) in ctrl.tabs" ng-class="{'active': ctrl.activeTab == tabId }">
+                        <a ng-click="ctrl.setActive(tabId)"> {{ tab.title }} </a>
+                    </li>
+                </ul>
+                <div class="content" ng-transclude>
+
+                </div>
+            </div>
+        </script>
+        <script type="text/ng-template" id="tab.tpl">
+            <div class="tab" ng-class="{'active': active}" ng-transclude>
+
+            </div>
+        </script>
+
 
         <script type="text/ng-template" id="user.tpl">
             <div class="flex-container user-details">

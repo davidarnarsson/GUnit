@@ -1,12 +1,7 @@
 package edu.chl.gunit.core.gamification.rules;
 
-import edu.chl.gunit.core.data.tables.records.RuleRecord;
-import edu.chl.gunit.core.gamification.GamificationContext;
-
 /**
- * Created by davida on 23.2.2015.
+ * Created by davida on 31.3.2015.
  */
 public interface RuleStrategy {
-
-    public RuleResult calculate(GamificationContext ctx, RuleRecord self);
 }

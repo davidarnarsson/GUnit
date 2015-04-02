@@ -83,7 +83,7 @@
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <developerName>davida2</developerName>
+                    <developerName>bjorn</developerName>
                     <gunitWsLocation>http://localhost:8080/api</gunitWsLocation>
                     <jacocoReportCsvFolder>target/jacoco</jacocoReportCsvFolder>
                     <unitTestReportsFolder>target/test-reports</unitTestReportsFolder>

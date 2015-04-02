@@ -9,10 +9,7 @@ import edu.chl.gunit.core.data.tables.records.BadgeRecord;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
-import edu.chl.gunit.core.services.BadgeService;
-import edu.chl.gunit.core.services.RuleService;
-import edu.chl.gunit.core.services.UserBadgeService;
-import edu.chl.gunit.core.services.UserService;
+import edu.chl.gunit.core.services.*;
 import edu.chl.gunit.service.resources.GamificationResource;
 import edu.chl.gunit.service.resources.UsersResource;
 import org.junit.Test;
@@ -72,7 +69,9 @@ public class TestUsersResource {
                 mockUserBadgeService(),
                 mockBadgeService(),
                 mockRuleService(),
-                mockUserService()
+                mockUserService(),
+                mockRuleResultService(),
+                mockSessionService()
                 );
 
         List<ApiUserBadge> actual = resource.getUserBadges(userId);
@@ -84,5 +83,14 @@ public class TestUsersResource {
         assertThat("actual badge id is 2", badge.getBadge().getId(), is(equalTo(badgeId)));
         assertThat("actual rule id is 3", badge.getFromRule().getRuleId(), is(equalTo(ruleId)));
         assertThat("actual session id is 4", badge.getSessionId(), is(equalTo(sessionId)));
+    }
+
+    private SessionService mockSessionService() {
+        return null;
+    }
+
+    private RuleResultService mockRuleResultService() {
+
+        return null;
     }
 }

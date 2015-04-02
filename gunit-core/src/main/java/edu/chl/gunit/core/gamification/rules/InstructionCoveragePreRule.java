@@ -4,7 +4,6 @@ import edu.chl.gunit.commons.api.SessionStatus;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
-import edu.chl.gunit.core.services.JaCoCoResultService;
 import edu.chl.gunit.core.services.SessionService;
 
 import javax.inject.Inject;
@@ -12,14 +11,14 @@ import javax.inject.Inject;
 /**
  * Created by davida on 7.3.2015.
  */
-public class InstructionCoverageRule implements RuleStrategy {
+public class InstructionCoveragePreRule implements PreRuleStrategy {
 
 
     SessionService sessionService;
 
 
     @Inject
-    public InstructionCoverageRule(SessionService sessionService) {
+    public InstructionCoveragePreRule(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 

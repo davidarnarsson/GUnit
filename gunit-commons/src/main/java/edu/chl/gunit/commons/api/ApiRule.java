@@ -24,7 +24,7 @@ public class ApiRule {
     private String description;
 
     @JsonProperty
-    public int getRuleId() {
+    public Integer getRuleId() {
         return ruleId;
     }
 

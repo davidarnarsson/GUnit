@@ -85,4 +85,17 @@ public class Utils {
 
         return r;
     }
+
+    public static ApiRuleResult from(RuleresultRecord i) {
+        ApiRuleResult r = new ApiRuleResult();
+
+        r.setMessage(i.getMessage());
+        r.setPoints(i.getPoints());
+        r.setRuleId(i.getRuleid());
+        r.setSessionId(i.getSessionid());
+        r.setRegardingBadgeId(i.getRegardingbadgeid());
+        r.setRegardingUserId(i.getRegardinguserid());
+
+        return r;
+    }
 }

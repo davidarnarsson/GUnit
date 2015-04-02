@@ -3,8 +3,7 @@ import edu.chl.gunit.core.data.Statistics;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
-import edu.chl.gunit.core.gamification.rules.BranchCoverageRule;
-import edu.chl.gunit.core.gamification.rules.InstructionCoverageRule;
+import edu.chl.gunit.core.gamification.rules.BranchCoveragePreRule;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
 import edu.chl.gunit.core.services.SessionService;
 import org.junit.Test;
@@ -26,7 +25,7 @@ public class TestBranchCoverageRule {
 
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,40.0,0.0,0.0,0,0,0,0));
 
-        BranchCoverageRule rule = new BranchCoverageRule(mockService);
+        BranchCoveragePreRule rule = new BranchCoveragePreRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.0,0,0,0,0),null,null,null);
 
@@ -44,7 +43,7 @@ public class TestBranchCoverageRule {
 
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,30.0,0.0,0.0,0,0,0,0));
 
-        BranchCoverageRule rule = new BranchCoverageRule(mockService);
+        BranchCoveragePreRule rule = new BranchCoveragePreRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.0,0,0,0,0),null,null,null);
 
@@ -63,7 +62,7 @@ public class TestBranchCoverageRule {
         Statistics statistics = new Statistics();
         statistics.setBranchCoverage(20.1);
 
-        BranchCoverageRule rule = new BranchCoverageRule(mockService);
+        BranchCoveragePreRule rule = new BranchCoveragePreRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,20.0,0.0,20.1,0,0,0,0),null,null,null);
 
