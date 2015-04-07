@@ -48,6 +48,23 @@
                     <target>${gunit.target.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>edu.chl.gunit</groupId>
+                <artifactId>testhound-maven-plugin</artifactId>
+                <version>0.0.1</version>
+                <configuration>
+                    <outputDirectory>../target</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>testhound</id>
+                        <goals>
+                            <goal>analyze</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

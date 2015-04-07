@@ -95,8 +95,8 @@
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <developerName>davida</developerName>
-                    <gunitWsLocation>http://gunit-staging.axlabond.in/api</gunitWsLocation>
+                    <developerName>davida2</developerName>
+                    <gunitWsLocation>http://localhost:8080/api</gunitWsLocation>
                     <jacocoReportCsvFolder>target/jacoco</jacocoReportCsvFolder>
                     <unitTestReportsFolder>target/test-reports</unitTestReportsFolder>
                 </configuration>

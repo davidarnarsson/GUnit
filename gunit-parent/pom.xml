@@ -20,9 +20,11 @@
     <modules>
         <module>../gunit-commons</module>
         <module>../gunit-core</module>
+        <module>../gunit-site</module>
         <module>../gunit-service</module>
         <module>../gunit-service-client</module>
-        <module>../testhound-maven-plugin</module>
+        <!--module>../gunit-maven-plugin</module>
+        <module>../testhound-maven-plugin</module-->
         <module>../test-project</module>
     </modules>
     <distributionManagement>
@@ -69,6 +71,23 @@
                         </goals>
                         <configuration>
                             <outputDirectory>../target/jacoco/${project.build.finalName}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>edu.chl.gunit</groupId>
+                <artifactId>testhound-maven-plugin</artifactId>
+                <version>0.0.1</version>
+                <executions>
+                    <execution>
+                        <id>run testhound</id>
+                        <goals>
+                            <goal>analyze</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <outputDirectory>../target</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

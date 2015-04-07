@@ -20,6 +20,9 @@ module.config(function ($routeProvider) {
                 leaderboard: function ($api) {
                     return $api.getLeaderboard();
                 },
+                messages: function ($api, $auth) {
+                  return $api.getMessages($auth.user().id);
+                },
                 statistics: function ($api, $auth, $route) {
                     var page = parseInt($route.current.params.page, 10);
                     if ($auth.isLoggedIn()) {
@@ -115,7 +118,10 @@ module.factory('$api', function ($http) {
             return $http.get(serviceUrl + '/statistics/processing/' + userId);
         },
         getUserBadges: function(userId) {
-            return $http.get(serviceUrl + '/users/badges/' + userId);
+            return $http.get(serviceUrl + '/users/' + userId + '/badges');
+        },
+        getMessages: function (userId) {
+          return $http.get(serviceUrl + '/users/' + userId + '/messages')
         },
         getCoverageData: function (sessionId) {
             return $http.get(serviceUrl + '/coverage/session/' + sessionId);
@@ -213,8 +219,9 @@ module.directive("chart", function () {
   };
 });
 
-module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statistics, $routeParams, $location) {
+module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statistics, $routeParams, $location, messages) {
     statistics = statistics.data;
+    $scope.messages = messages.data;
     $scope.leaderboard = leaderboard.data;
     $scope.user = $auth.user();
     $scope.statistics = statistics;
@@ -225,7 +232,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
 
     $scope.showSession = function (sessionId) {
         $location.url("/session/" + sessionId);
-    }
+    };
 
     $scope.current = function () {
         return $routeParams.page;
@@ -278,7 +285,6 @@ module.directive('processingSignal', function () {
         link: function (scope, element, attrs) {
 
             scope.$on('PROCESSING', function(val) {
-                console.log(val);
                 scope.processing = val;
             });
         }
@@ -318,6 +324,80 @@ module.controller('SessionCtrl', function (sessionData, $scope, $api) {
     });
 });
 
+module.factory('$tabService', function () {
+  function serialize(content) {
+    localStorage.setItem("$tabs", JSON.stringify(content));
+  }
+
+  function deserialize() {
+    return JSON.parse(localStorage.getItem("$tabs"));
+  }
+
+  return {
+    getActiveTab: function (tabsId) {
+      var ctx = deserialize();
+      if (ctx && ctx[tabsId]){
+        return ctx[tabsId];
+      }
+      return null;
+    },
+    setActiveTab: function (tabsId, tab) {
+      var ctx = deserialize() || {};
+      ctx[tabsId] = tab;
+      serialize(ctx);
+    }
+  };
+});
+
+module.directive('tabs', function ($location, $tabService) {
+  return {
+    restrict: 'E',
+    templateUrl: 'tabs.tpl',
+    scope: {
+      id: '@'
+    },
+    transclude: true,
+    controllerAs:'ctrl',
+    controller: function ($scope) {
+      this.tabs = {};
+
+      this.activeTab = $tabService.getActiveTab($scope.id);
+
+      this.addTab = function (tab, scope) {
+        this.tabs[tab] = scope;
+
+        if(this.activeTab == null) {
+          this.activeTab = tab;
+        }
+      }.bind(this);
+
+      this.setActive = function(t) {
+        $tabService.setActiveTab($scope.id, t);
+        this.activeTab = t;
+      }.bind(this);
+    }
+  };
+});
+
+module.directive('tab', function () {
+  return {
+    restrict: 'E',
+    require: '^tabs',
+    templateUrl: 'tab.tpl',
+    transclude: true,
+    scope: {
+      title: '@'
+    },
+    link: function (scope, element, attrs, TabsCtrl) {
+      TabsCtrl.addTab(scope.title, scope);
+
+      scope.$watch(function() { return TabsCtrl.activeTab == scope.title}, function(b) {
+        scope.active = b;
+      });
+    }
+  };
+});
+
 module.filter('coalesce', function () {
    return function (v) {
        if (isNaN(v)) {
@@ -340,4 +420,4 @@ function debounce(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
-};
+}

@@ -1,4 +1,4 @@
-connectionString: jdbc:mysql://axlabond.in/gunit
+connectionString: jdbc:mysql://axlabond.in/gunit_staging
 userName: gunit_user
 password: startrek
 assetsDir: /static

@@ -35,6 +35,8 @@ public class GUnitServiceApp extends Application<AppConfig> {
         environment.healthChecks().register("DatabaseCheck", new DbHealthCheck(appConfig));
 
         environment.jersey().register(AccessOriginFilter.class);
+        environment.jersey().register(facade.getInjector().getInstance(BadgesResource.class));
+        environment.jersey().register(facade.getInjector().getInstance(RulesResource.class));
         environment.jersey().register(facade.getInjector().getInstance(GamificationResource.class));
         environment.jersey().register(facade.getInjector().getInstance(UsersResource.class));
         environment.jersey().register(new StatisticsResource(facade));

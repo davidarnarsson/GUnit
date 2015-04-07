@@ -1,0 +1,74 @@
+@import "../../node_modules/bootstrap/less/bootstrap.less";
+
+header {
+  margin-top: 20px;
+}
+
+
+.message {
+
+  &:first-child {
+    margin-top: 10px;
+  }
+  position: relative;
+
+  p { text-align: center; margin-top: 5px; }
+  span.date {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    font-size: 80%;
+  }
+
+  span.points-earned {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+
+    font-size: 80%;
+    font-weight: bold;
+    color: darkgreen;
+  }
+}
+
+
+.chart-container {
+  position: relative;
+  height: 320px;
+  > canvas {
+    height: 320px;
+  }
+}
+.chart-container .line-legend {
+  position: relative;
+  list-style :none;
+}
+.chart-container .line-legend>li {
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+}
+
+.chart-container .line-legend>li span {
+  position: absolute;
+  top: 7px;
+  display: block;
+  left: -15px;
+  width: 9px;
+  height: 9px;
+}
+
+.available-badge {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  figlabel {
+    .name {
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+

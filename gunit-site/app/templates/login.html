@@ -1,0 +1,13 @@
+<div class="container-fluid" ng-controller="LoginCtrl as ctrl">
+
+    <form class="form col-md-4 col-md-offset-4" action="">
+        <h4>Veldu forritaranafnið þitt</h4>
+
+
+        <user-selector ng-model="developerName" user-promise="ctrl.getUsers"></user-selector>
+
+        <br />
+        <button class="btn btn-success" ng-disabled="!developerName" type="submit" ng-click="ctrl.login(developerName, '/')">Innskrá</button>
+    </form>
+
+</div>

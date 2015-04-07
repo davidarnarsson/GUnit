@@ -27,6 +27,25 @@ public class RuleResult {
 
     private RuleRecord rule;
     private int pointsAwarded = 0;
+    private Integer regardingUserId;
+
+    public Integer getRegardingBadgeId() {
+        return regardingBadgeId;
+    }
+
+    public void setRegardingBadgeId(Integer regardingBadgeId) {
+        this.regardingBadgeId = regardingBadgeId;
+    }
+
+    public Integer getRegardingUserId() {
+        return regardingUserId;
+    }
+
+    public void setRegardingUserId(Integer regardingUserId) {
+        this.regardingUserId = regardingUserId;
+    }
+
+    private Integer regardingBadgeId;
 
     private String message;
 
@@ -53,4 +72,6 @@ public class RuleResult {
     public void setMessage(String message) {
         this.message = message;
     }
+
+
 }

@@ -1,0 +1,42 @@
+<div class="container-fluid user-details">
+    <div class="col-md-2 user-numbers">
+        <h2>{{user.name}} - {{user.points}} stig</h2>
+
+        <div class="well">
+            <h4>Síðustu tölur:</h4>
+            <dl>
+                <dt>Branch coverage</dt>
+                <dd>{{user.lastBranchCoverage * 100 | number:2}}%</dd>
+                <dt>Instruction coverage</dt>
+                <dd>{{user.lastInstructionCoverage * 100 | number:2}}%</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-10" ng-controller="UserCtrl as ctrl">
+        <p ng-show="ctrl.getUser().name == user.name" class="your-tests">Þú hefur skrifað <strong ng-bind="user.totalWrittenTests"></strong> einingapróf!</p>
+        <p ng-show="ctrl.getUser().name != user.name" class="your-tests">{{user.name}} hefur skrifað <strong ng-bind="user.totalWrittenTests"></strong> einingapróf!</p>
+
+
+        <p ng-show="user.lastWrittenTest && ctrl.getUser().name == user.name">Þú skrifaðir einingapróf síðast þann {{user.lastWrittenTest | date}}</p>
+        <p ng-show="user.lastWrittenTest && ctrl.getUser().name != user.name">{{user.name}} skrifaðir einingapróf síðast þann {{user.lastWrittenTest | date}}</p>
+
+        <div class="badges row">
+            <h4 ng-show="ctrl.getUser().name == user.name">Orðurnar þínar</h4>
+            <h4 ng-show="ctrl.getUser().name != user.name">Orður {{user.name}}</h4>
+
+
+            <div class="col-sm-3 col-xs-12 available-badge" ng-repeat="badge in badges">
+                <figure>
+                    <img ng-src="{{badge.badge.image}}" alt=""/>
+                    <figlabel>
+                        <p class="name">{{badge.badge.name}}</p>
+                        <p class="description">{{badge.fromRule.description}}</p>
+                    </figlabel>
+                </figure>
+                <p><em>{{badge.fromRule.successMessage}}</em> <br/>
+                    <strong ng-bind="badge.fromRule.points"></strong> stig þann <a href="#/session/{{badge.sessionId}}">{{badge.earnedDate | date}}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

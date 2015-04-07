@@ -2,15 +2,19 @@ package edu.chl.gunit.core.services.impl;
 
 
 import edu.chl.gunit.commons.api.ApiJaCoCoResult;
+import edu.chl.gunit.commons.api.SessionStatus;
 import edu.chl.gunit.core.data.DBContext;
+import edu.chl.gunit.core.data.Tables;
 import edu.chl.gunit.core.data.tables.records.JacocoresultRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import org.jooq.Field;
+import org.jooq.Result;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import static edu.chl.gunit.core.data.tables.Jacocoresult.JACOCORESULT;
+import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.timestamp;
 
 /**
@@ -48,6 +52,24 @@ public class JaCoCoResultServiceImpl extends AbstractService<JacocoresultRecord>
                     .returning().fetchOne();
         }
 
+    }
+
+    @Override
+    public JacocoresultRecord getLatestJaCoCoResult(String packageName, String className, Integer userId) {
+        try (DBContext ctx = ctx()) {
+
+            Result<JacocoresultRecord> result = ctx.dsl.select(JACOCORESULT.as("j").fields()).from(JACOCORESULT.as("j"))
+                    .join(Tables.SESSION.as("s")).on(
+                            field("s.sessionId").eq(field("j.sessionId"))
+                                    .and(field("s.sessionId").eq(userId))
+                                    .and(field("s.sessionStatus").eq(SessionStatus.Processed.getStatusCode())))
+                    .where(field("j.className").eq(className).and(field("j.packageName").eq(packageName)))
+                    .orderBy(field("s.date").desc())
+                    .limit(1)
+                    .fetchInto(JACOCORESULT);
+
+            return result.stream().findFirst().orElse(null);
+        }
     }
 
     @Override

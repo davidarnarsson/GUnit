@@ -43,11 +43,18 @@ import org.eclipse.aether.resolution.ArtifactResult;
 import org.w3c.dom.Document;
 
 import javax.inject.Inject;
-import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.*;
+import java.security.CodeSource;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.function.Consumer;
 
 
 /**
@@ -59,6 +66,7 @@ import java.util.*;
 public class TesthoundMojo
     extends AbstractMojo
 {
+    final String TEMP_PATH = "C:\\Temp\\testhound\\report";
     /**
      * Location of the file.
      */
@@ -110,6 +118,10 @@ public class TesthoundMojo
 
     public void execute() throws MojoExecutionException {
 
+        System.out.println("Preparing templates...");
+        prepareTemplates();
+        System.out.println("...done.");
+
         MavenProject project = (MavenProject)getPluginContext().get("project");
         RepositorySystemSession session = newSession(project);
 
@@ -117,7 +129,10 @@ public class TesthoundMojo
         List<File> libs = new ArrayList<>();
 
         String filename = String.format("%s%s%s.%s", project.getBuild().getDirectory(), File.separator, project.getBuild().getFinalName(), project.getArtifact().getType());
-
+        if (!"jar".equalsIgnoreCase(project.getArtifact().getType()) || !"war".equalsIgnoreCase(project.getArtifact().getType())) {
+            getLog().info("Testhound is not able to analyze projects of type " + project.getArtifact().getType());
+            return;
+        }
         libs.add(new File(filename));
 
         // resolve project deps
@@ -139,22 +154,27 @@ public class TesthoundMojo
         }
 
         // create a project class loader
-        ClazzLoader loader = new ClazzLoader(testOutputDirectory, libs.toArray(new File[libs.size()]));
+        ClazzLoader loader;
+        try {
+            loader = new ClazzLoader(testOutputDirectory, libs.toArray(new File[libs.size()]));
+        } catch (Exception e) {
+            getLog().error("Unable to initiate class loader for project, are there any tests or sources?");
+            return;
+        }
+
         ClassFinder finder = new ClassFinder(loader);
 
         // get the test class names to scan
         HashSet<String> classes = finder.getClassNames(testOutputDirectory);
 
-
         TestHoundRunner runner = new TestHoundRunner();
-        File reportOut = new File(outputDirectory.getAbsolutePath() + "/testhound-reports");
+        File reportOut = new File(String.format("%s/testhound-reports", outputDirectory.getAbsolutePath()));
         if (!reportOut.exists() && !reportOut.mkdir()) {
             throw new MojoExecutionException("Unable to make out directory " + reportOut.getAbsolutePath());
         }
 
         // run testhound
-        List<ClassSetupUsage> result = runner.run(classes, loader, reportOut);
-
+        List<ClassSetupUsage> result = runner.run(classes, loader, reportOut, new File(TEMP_PATH, "HTML version/template"));
 
         // generate result xml
         XmlReportGenerator generator = new XmlReportGenerator();
@@ -189,6 +209,33 @@ public class TesthoundMojo
                 a.getVersion());
     }
 
+    private void prepareTemplates() {
+
+
+        CodeSource src = getClass().getProtectionDomain().getCodeSource();
+
+        if (src != null) {
+            URL jar = src.getLocation();
+
+            try (java.nio.file.FileSystem fs = FileSystems.newFileSystem(Paths.get(jar.toURI()), null)) {
+                File f = new File(TEMP_PATH);
+
+                if (!f.exists()) {
+                    f.mkdirs();
+                }
+
+                Path start = fs.getPath("/report");
+
+                Files.walkFileTree(start, new CopyDirVisitor(start, Paths.get(TEMP_PATH)));
+
+                fs.close();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private String getFileString(File f, String def) {
         if (f == null) {

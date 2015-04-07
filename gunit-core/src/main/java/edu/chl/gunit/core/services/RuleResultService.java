@@ -11,4 +11,5 @@ import java.util.List;
 public interface RuleResultService extends Service<RuleresultRecord> {
 
     List<RuleresultRecord> persistResults(int sessionId, List<RuleResult> results);
+    public List<RuleresultRecord> getRuleResults(int userId, boolean all);
 }

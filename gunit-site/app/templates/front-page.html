@@ -1,0 +1,56 @@
+<div class="container-fluid">
+
+    <h2>Stigatafla</h2>
+
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Sæti</th>
+            <th>Forritari</th>
+            <th>Heildarstig</th>
+            <th>Fjöldi skrifaðra prófa</th>
+            <th class="xs-hidden">Síðasta branch coverage</th>
+            <th class="xs-hidden">Síðasta instruction coverage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable" ng-repeat="row in leaderboard" ng-click="viewDeveloper(row.id)">
+            <td ng-bind="$index + 1"></td>
+            <td> {{row.name}} <span ng-show="row.name == user.name"> (Þú)</span></td>
+            <td ng-bind="row.points"></td>
+            <td ng-bind="row.totalWrittenTests"></td>
+            <td class="xs-hidden">{{row.lastBranchCoverage * 100 | number:2}}%</td>
+            <td class="xs-hidden">{{row.lastInstructionCoverage * 100 | number:2}}%</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="container-fluid your-sessions">
+    <div class="col-md-6">
+        <tabset id="front-page-tabs">
+            <tab heading="Nýjasta nýtt">
+                <div class="message well" ng-repeat="message in messages">
+                    <span class="date"> <a ng-href="#/session/{{message.sessionId}}">Úr lotunni þann {{ message.session.date | date:'dd. MMM @ hh:mm' }}</a></span>
+
+                    <span class="points-earned">  {{ message.points }} stig!</span>
+                    <p> {{ message.message }} </p>
+                </div>
+            </tab>
+            <tab heading="Þínar lotur">
+                <pagination  items-per-page="20" total-items="statistics.total" ng-model="currentPage" ng-change="setPage()"> </pagination>
+
+                <player-sessions sessions="statistics"></player-sessions>
+            </tab>
+        </tabset>
+
+
+    </div>
+
+    <div class="col-md-6">
+        <h3>Yfirlit yfir coverage</h3>
+        <div class="chart-container">
+            <canvas height="320" width="640" id="session-chart" chart data="statisticsData" options="chartOptions"></canvas>
+        </div>
+    </div>
+</div>

@@ -58,6 +58,7 @@ public class Utils {
         if (r == null) return null;
 
         ApiRule rule = new ApiRule();
+        rule.setBadgeId(r.getBadgeid());
         rule.setPoints(r.getPoints());
         rule.setRuleId(r.getId());
         rule.setDescription(r.getDescription());
@@ -82,6 +83,19 @@ public class Utils {
         r.setMethodCovered(in.getMethodcovered());
         r.setMethodMissed(in.getMethodmissed());
         r.setPackageName(in.getPackagename());
+
+        return r;
+    }
+
+    public static ApiRuleResult from(RuleresultRecord i) {
+        ApiRuleResult r = new ApiRuleResult();
+
+        r.setMessage(i.getMessage());
+        r.setPoints(i.getPoints());
+        r.setRuleId(i.getRuleid());
+        r.setSessionId(i.getSessionid());
+        r.setRegardingBadgeId(i.getRegardingbadgeid());
+        r.setRegardingUserId(i.getRegardinguserid());
 
         return r;
     }

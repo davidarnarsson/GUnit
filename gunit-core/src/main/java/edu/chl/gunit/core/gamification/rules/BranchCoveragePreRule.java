@@ -22,12 +22,12 @@ import javax.inject.Inject;
      >  50-60% < 	:	11 stig
      > 60%		:	15 stig
  */
-public class BranchCoverageRule implements RuleStrategy {
+public class BranchCoveragePreRule implements PreRuleStrategy {
 
     SessionService sessionService;
 
     @Inject
-    public BranchCoverageRule(SessionService sessionService) {
+    public BranchCoveragePreRule(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 

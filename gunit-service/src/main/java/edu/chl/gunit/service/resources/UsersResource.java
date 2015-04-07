@@ -2,12 +2,10 @@ package edu.chl.gunit.service.resources;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.inject.Inject;
-import edu.chl.gunit.commons.api.ApiBadge;
-import edu.chl.gunit.commons.api.ApiRule;
-import edu.chl.gunit.commons.api.ApiUserBadge;
+import edu.chl.gunit.commons.api.*;
 import edu.chl.gunit.core.ServiceFacade;
-import edu.chl.gunit.commons.api.ApiUser;
 import edu.chl.gunit.core.data.Tables;
+import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.data.tables.records.UserbadgesRecord;
 import edu.chl.gunit.core.services.*;
@@ -32,15 +30,20 @@ public class UsersResource extends AbstractResource<UserRecord, UserService, Api
     private BadgeService badgeService;
     private RuleService ruleService;
     private UserService userService;
+    private final RuleResultService ruleResultService;
+    private final SessionService sessionService;
+
 
     @Inject
-    public UsersResource(UserBadgeService userBadgeService, BadgeService badgeService, RuleService ruleService, UserService userService) {
+    public UsersResource(UserBadgeService userBadgeService, BadgeService badgeService, RuleService ruleService, UserService userService, RuleResultService ruleResultService, SessionService sessionService) {
         super(in -> Utils.from(in));
 
         this.userBadgeService = userBadgeService;
         this.badgeService = badgeService;
         this.ruleService = ruleService;
         this.userService = userService;
+        this.ruleResultService = ruleResultService;
+        this.sessionService = sessionService;
     }
 
 
@@ -64,8 +67,43 @@ public class UsersResource extends AbstractResource<UserRecord, UserService, Api
 
         return null;
     }
+
+
     @GET
-    @Path("/badges/{id}")
+    @Path("{id}/messages")
+    public List<ApiRuleResult> getRuleResults(@PathParam("id") int id) {
+        List<ApiRuleResult> r = ruleResultService.getRuleResults(id, false).stream().map(i -> Utils.from(i)).collect(Collectors.toList());
+
+        Map<Integer, ApiRule> rules = r.stream()
+                .mapToInt(ApiRuleResult::getRuleId)
+                .distinct()
+                .mapToObj(ruleService::get)
+                .map(Utils::from)
+                .collect(Collectors.toMap(ApiRule::getRuleId, v -> v));
+
+        Map<Integer, ApiSession> sessions = r.stream()
+                .mapToInt(ApiRuleResult::getSessionId)
+                .distinct()
+                .mapToObj(sessionService::get)
+                .map(Utils::from)
+                .collect(Collectors.toMap(ApiSession::getSessionId, v -> v));
+
+        Map<Integer, ApiUser> users = getUsers().stream().collect(Collectors.toMap(ApiUser::getId, y -> y));
+
+        Map<Integer, ApiBadge> badges = badgeService.getList().stream().map(Utils::from).collect(Collectors.toMap(ApiBadge::getId, v -> v));
+
+        r.stream().forEach(ar -> {
+            ar.setRule(rules.getOrDefault(ar.getRuleId(), null));
+            ar.setSession(sessions.getOrDefault(ar.getSessionId(), null));
+            ar.setBadge(badges.getOrDefault(ar.getRegardingBadgeId(),null));
+            ar.setRegardingUser(users.getOrDefault(ar.getRegardingUserId(), null));
+        });
+
+        return r;
+    }
+
+    @GET
+    @Path("{id}/badges")
     public List<ApiUserBadge> getUserBadges(@PathParam("id") int userId) {
         List<UserbadgesRecord> badges = userBadgeService.getUserBadges(userId);
 

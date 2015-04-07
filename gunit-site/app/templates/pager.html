@@ -1,0 +1,6 @@
+Veldu síðu:
+<ul class="pager">
+    <li ng-repeat="page in pages">
+        <a ng-disabled="page == current()" ng-click="setPage(page)">{{page + 1}}</a>
+    </li>
+</ul>

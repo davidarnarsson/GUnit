@@ -28,15 +28,16 @@
         <module name="gunit-service" />
         <module name="gunit-service-client" />
         <module name="test-project" />
-        <module name="testhound-maven-plugin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gunit-commons" target="1.6" />
       <module name="gunit-core" target="1.8" />
       <module name="gunit-maven-plugin" target="1.8" />
+      <module name="gunit-parent" target="1.5" />
       <module name="gunit-service" target="1.8" />
       <module name="gunit-service-client" target="1.6" />
+      <module name="gunit-site" target="1.5" />
       <module name="test-project" target="1.8" />
       <module name="testhound-maven-plugin" target="1.7" />
     </bytecodeTargetLevel>

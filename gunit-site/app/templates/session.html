@@ -1,0 +1,72 @@
+<div class="container">
+    <h2>Próflota þann {{sessionData.session.date | date:'medium'}}</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Þessi lota</th>
+            <th>Núverandi staða</th>
+            <th>
+
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="label">Stig</td>
+            <td ng-bind="sessionData.session.pointsCollected"></td>
+            <td ng-bind="sessionData.user.points"></td>
+            <td class="label">Heildarstigafjöldi</td>
+
+        </tr>
+
+        <tr>
+            <td class="label">Branch coverage</td>
+            <td>{{sessionData.session.branchCoverage * 100 | number:2}}%</td>
+            <td>{{sessionData.user.lastBranchCoverage * 100 | number:2}}%</td>
+            <td class="label">Síðasta branch coverage</td>
+        </tr>
+
+        <tr>
+            <td class="label">Instruction coverage</td>
+            <td>{{sessionData.session.instructionCoverage * 100 | number:2}}%</td>
+            <td>{{sessionData.user.lastInstructionCoverage * 100 | number:2}}%</td>
+            <td class="label">Síðasta Instruction coverage</td>
+        </tr>
+        <tr>
+            <td class="label">Ný einingapróf</td>
+            <td ng-bind="sessionData.session.newTests"></td>
+            <td ng-bind="sessionData.user.totalWrittenTests"></td>
+            <td class="label">Heildarfjöldi einingaprófana</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h3>Coverage gögn</h3>
+    <p><a href="http://www.eclemma.org/jacoco/trunk/doc/counters.html">(Hvað þýða allar þessar tölur?)</a></p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Klasi</th>
+            <th>Branch Coverage</th>
+            <th>Complexity Coverage</th>
+            <th>Instruction Coverage</th>
+            <th>Line Coverage</th>
+            <th>Method Coverage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in coverageData">
+            <td>{{row.packageName}}.{{row.className}}</td>
+            <td>{{(row.branchCovered / (row.branchMissed + row.branchCovered)) * 100 | coalesce | number:2}}%</td>
+            <td>{{(row.complexityCovered / (row.complexityMissed + row.complexityCovered)) * 100 | coalesce | number:2}}%</td>
+            <td>{{(row.instructionCovered / (row.instructionMissed + row.instructionCovered)) * 100 | coalesce | number:2}}%</td>
+            <td>{{(row.lineCovered / (row.lineMissed + row.lineCovered)) * 100 | coalesce | number:2}}%</td>
+            <td>{{(row.methodCovered / (row.methodMissed + row.methodCovered)) * 100 | coalesce | number:2}}%</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
