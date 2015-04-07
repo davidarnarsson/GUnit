@@ -11,6 +11,7 @@ public class ApiRule {
     private String successMessage;
 
     private int points;
+    private Integer badgeId;
 
     @JsonProperty
     public String getDescription() {
@@ -48,5 +49,14 @@ public class ApiRule {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public void setBadgeId(Integer badgeId) {
+        this.badgeId = badgeId;
+    }
+
+    @JsonProperty
+    public Integer getBadgeId() {
+        return badgeId;
     }
 }

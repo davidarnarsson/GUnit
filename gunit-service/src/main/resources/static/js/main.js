@@ -232,7 +232,7 @@ module.controller('FrontPageCtrl', function(leaderboard, $scope, $auth, statisti
 
     $scope.showSession = function (sessionId) {
         $location.url("/session/" + sessionId);
-    }
+    };
 
     $scope.current = function () {
         return $routeParams.page;

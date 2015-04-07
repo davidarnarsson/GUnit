@@ -58,6 +58,7 @@ public class Utils {
         if (r == null) return null;
 
         ApiRule rule = new ApiRule();
+        rule.setBadgeId(r.getBadgeid());
         rule.setPoints(r.getPoints());
         rule.setRuleId(r.getId());
         rule.setDescription(r.getDescription());

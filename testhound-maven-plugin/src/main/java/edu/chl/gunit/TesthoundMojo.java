@@ -129,7 +129,7 @@ public class TesthoundMojo
         List<File> libs = new ArrayList<>();
 
         String filename = String.format("%s%s%s.%s", project.getBuild().getDirectory(), File.separator, project.getBuild().getFinalName(), project.getArtifact().getType());
-        if (!("jar".equalsIgnoreCase(project.getArtifact().getType()) || "war".equalsIgnoreCase(project.getArtifact().getType()))) {
+        if (!"jar".equalsIgnoreCase(project.getArtifact().getType()) || !"war".equalsIgnoreCase(project.getArtifact().getType())) {
             getLog().info("Testhound is not able to analyze projects of type " + project.getArtifact().getType());
             return;
         }

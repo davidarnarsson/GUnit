@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/gunit-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gunit-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gunit-service-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gunit-site" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/test-project" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/testhound-maven-plugin" charset="UTF-8" />
   </component>
