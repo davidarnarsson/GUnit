@@ -46,4 +46,15 @@ public class TestRunRequest implements Serializable{
     public void setUser(String user) {
         this.user = user;
     }
+
+    private List<TesthoundResult> testhoundResults = new ArrayList<TesthoundResult>();
+
+    @JsonProperty
+    public List<TesthoundResult> getTesthoundResults() {
+        return testhoundResults;
+    }
+
+    public void setTesthoundResults(List<TesthoundResult> testhoundResults) {
+        this.testhoundResults = testhoundResults;
+    }
 }

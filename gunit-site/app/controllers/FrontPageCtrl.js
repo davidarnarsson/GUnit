@@ -1,6 +1,13 @@
 module.exports = function(leaderboard, $scope, $auth, statistics, $routeParams, $location, messages, $api) {
   statistics = statistics.data;
-  $scope.messages = messages.data;
+
+  var msgs = {};
+  messages.data.map(function (m) {
+    msgs[m.sessionId] = msgs[m.sessionId] || [];
+    msgs[m.sessionId].push(m);
+  });
+
+  $scope.messages = msgs;
   $scope.leaderboard = leaderboard.data;
   $scope.user = $auth.user();
   $scope.statistics = statistics;

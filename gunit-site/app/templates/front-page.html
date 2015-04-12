@@ -30,17 +30,25 @@
     <div class="col-md-6">
         <tabset id="front-page-tabs">
             <tab heading="Nýjasta nýtt">
-                <div class="message well" ng-repeat="message in messages">
-                    <span class="date"> <a ng-href="#/session/{{message.sessionId}}">Úr lotunni þann {{ message.session.date | date:'dd. MMM @ hh:mm' }}</a></span>
+                <div class="message" ng-repeat="(key,message) in messages">
+                    <span class="date"> <a ng-href="#/session/{{key}}">Úr lotunni þann {{ message[0].session.date | date:'dd. MMM @ hh:mm' }}</a></span>
 
-                    <span class="points-earned">  {{ message.points }} stig!</span>
-                    <p> {{ message.message }} </p>
+                    <span class="points-earned">  {{ message[0].session.pointsCollected }} stig!</span>
+                    <ul>
+                        <li ng-repeat="m in message">
+                            <pre ng-bind="m.message"></pre>
+                        </li>
+                    </ul>
                 </div>
             </tab>
             <tab heading="Þínar lotur">
                 <pagination  items-per-page="20" total-items="statistics.total" ng-model="currentPage" ng-change="setPage()"> </pagination>
 
                 <player-sessions sessions="statistics"></player-sessions>
+            </tab>
+
+            <tab heading="Prófkóðaþefir">
+
             </tab>
         </tabset>
 

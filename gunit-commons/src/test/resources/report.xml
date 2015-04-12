@@ -1,0 +1,253 @@
+<TestHound executionDate="Wed Apr 08 18:28:12 CEST 2015">
+    <ClassSetupUsage testcase="TestLinkedList">
+        <ClassAnnotations/>
+        <DeadFields>
+            <DeadField fieldName="j" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="i" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="h" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="c" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="g" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="f" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="e" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+            <DeadField fieldName="d" fieldType="java/lang/String;" isConstructorUsage="true">
+                <ClassUsages>
+                    <Usage>TestLinkedList</Usage>
+                </ClassUsages>
+            </DeadField>
+        </DeadFields>
+        <DeadInheritedFields/>
+        <InheritedFields/>
+        <SharedFixtureFields/>
+        <LiveFields>1</LiveFields>
+        <LiveSetupFields>0</LiveSetupFields>
+        <NrMemberSetupFields>8</NrMemberSetupFields>
+        <NrStaticSetupFields>0</NrStaticSetupFields>
+        <SetupUsageProfiles>
+            <Profile canonical="TestLinkedList.testRemoveAt" className="TestLinkedList" isParameterized="false" name="testRemoveAt">
+                <LocalVariables>
+                    <Variable name="derp2" static="false" type="java/lang/String;"/>
+                    <Variable name="derp4" static="false" type="java/lang/String;"/>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                    <Variable name="derp" static="false" type="java/lang/String;"/>
+                    <Variable name="derp3" static="false" type="java/lang/String;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields>
+                    <DeadField fieldName="b" fieldType="java/lang/String;" isConstructorUsage="false">
+                        <ClassUsages>
+                            <Usage>TestLinkedList</Usage>
+                        </ClassUsages>
+                    </DeadField>
+                </DelegateFields>
+                <UsedFields>
+                    <DeadField fieldName="b" fieldType="java/lang/String;" isConstructorUsage="false">
+                        <ClassUsages>
+                            <Usage>TestLinkedList</Usage>
+                        </ClassUsages>
+                    </DeadField>
+                </UsedFields>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>1</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testFirstIndexOf" className="TestLinkedList" isParameterized="false" name="testFirstIndexOf">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testLinkedListInsert" className="TestLinkedList" isParameterized="false" name="testLinkedListInsert">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                    <Variable name="actual" static="false" type="java/lang/String;"/>
+                    <Variable name="d" static="false" type="java/lang/String;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testLinkedListSizeNonEmpty" className="TestLinkedList" isParameterized="false" name="testLinkedListSizeNonEmpty">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                    <Variable name="i" static="false" type="int"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testGetLinkedListNonExistent" className="TestLinkedList" isParameterized="false" name="testGetLinkedListNonExistent">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testLinkedListSizeEmpty" className="TestLinkedList" isParameterized="false" name="testLinkedListSizeEmpty">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testLinkedListInsertMultiple" className="TestLinkedList" isParameterized="false" name="testLinkedListInsertMultiple">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                    <Variable name="i" static="false" type="int"/>
+                    <Variable name="actual" static="false" type="java/lang/String;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testHerpderpNewTest" className="TestLinkedList" isParameterized="false" name="testHerpderpNewTest">
+                <LocalVariables/>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestLinkedList.testLinkedListRemove" className="TestLinkedList" isParameterized="false" name="testLinkedListRemove">
+                <LocalVariables>
+                    <Variable name="ll" static="false" type="edu/chl/linkedlist/LinkedList;"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>8</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+        </SetupUsageProfiles>
+        <Problems>
+            <DetachedMethods>
+                <Method>testRemoveAt</Method>
+                <Method>testFirstIndexOf</Method>
+                <Method>testLinkedListInsert</Method>
+                <Method>testLinkedListSizeNonEmpty</Method>
+                <Method>testGetLinkedListNonExistent</Method>
+                <Method>testLinkedListSizeEmpty</Method>
+                <Method>testLinkedListInsertMultiple</Method>
+                <Method>testHerpderpNewTest</Method>
+                <Method>testLinkedListRemove</Method>
+            </DetachedMethods>
+            <InlineSetupMethods/>
+            <GeneralFixtureMethods/>
+        </Problems>
+    </ClassSetupUsage>
+    <ClassSetupUsage testcase="TestWallet">
+        <ClassAnnotations/>
+        <DeadFields/>
+        <DeadInheritedFields/>
+        <InheritedFields/>
+        <SharedFixtureFields/>
+        <LiveFields>0</LiveFields>
+        <LiveSetupFields>0</LiveSetupFields>
+        <NrMemberSetupFields>0</NrMemberSetupFields>
+        <NrStaticSetupFields>0</NrStaticSetupFields>
+        <SetupUsageProfiles>
+            <Profile canonical="TestWallet.testWithdrawShouldNotResultInNegative" className="TestWallet" isParameterized="false" name="testWithdrawShouldNotResultInNegative">
+                <LocalVariables>
+                    <Variable name="w" static="false" type="edu/chl/bank/Wallet;"/>
+                    <Variable name="withdrawn" static="false" type="double"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>0</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+            <Profile canonical="TestWallet.testWithdrawAcceptableAmount" className="TestWallet" isParameterized="false" name="testWithdrawAcceptableAmount">
+                <LocalVariables>
+                    <Variable name="w" static="false" type="edu/chl/bank/Wallet;"/>
+                    <Variable name="withdrawn" static="false" type="double"/>
+                </LocalVariables>
+                <TransitivelyUsedMemberFields/>
+                <TransitivelyUsedStaticFields/>
+                <DelegateFields/>
+                <UsedFields/>
+                <InvokedHelperMethods/>
+                <SetupFieldsUsed>0</SetupFieldsUsed>
+                <FieldsUsedInSetupAndMethod>0</FieldsUsedInSetupAndMethod>
+                <UsedFields>0</UsedFields>
+            </Profile>
+        </SetupUsageProfiles>
+        <Problems>
+            <DetachedMethods/>
+            <InlineSetupMethods/>
+            <GeneralFixtureMethods/>
+        </Problems>
+    </ClassSetupUsage>
+</TestHound>

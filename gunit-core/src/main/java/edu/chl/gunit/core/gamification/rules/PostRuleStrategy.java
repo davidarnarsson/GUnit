@@ -1,7 +1,6 @@
 package edu.chl.gunit.core.gamification.rules;
 
 import edu.chl.gunit.core.gamification.GamificationContext;
-import edu.chl.gunit.core.gamification.GamificationResult;
 
 import java.util.List;
 

@@ -129,7 +129,7 @@ public class TesthoundMojo
         List<File> libs = new ArrayList<>();
 
         String filename = String.format("%s%s%s.%s", project.getBuild().getDirectory(), File.separator, project.getBuild().getFinalName(), project.getArtifact().getType());
-        if (!"jar".equalsIgnoreCase(project.getArtifact().getType()) || !"war".equalsIgnoreCase(project.getArtifact().getType())) {
+        if (!"jar".equalsIgnoreCase(project.getArtifact().getType()) && !"war".equalsIgnoreCase(project.getArtifact().getType())) {
             getLog().info("Testhound is not able to analyze projects of type " + project.getArtifact().getType());
             return;
         }
@@ -183,7 +183,7 @@ public class TesthoundMojo
         XmlSerializer serializer = new XmlSerializer();
 
         try {
-            FileWriter writer = new FileWriter(new File(reportOut.getAbsolutePath() + "/report.xml"));
+            FileWriter writer = new FileWriter(new File(String.format("%s/report-%s.xml", reportOut.getAbsolutePath(), project.getBuild().getFinalName())));
             serializer.serialize(doc, writer);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,6 @@
 package edu.chl.gunit.core.gamification.rules;
 
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
-import edu.chl.gunit.core.gamification.rules.annotations.PostRule;
 
 /**
  * Created by davida on 23.2.2015.
@@ -26,10 +25,10 @@ public class Rule {
     }
 
     public boolean isPostRule() {
-        return this.strategy.getClass().isAssignableFrom(PostRuleStrategy.class);
+        return this.strategy instanceof PostRuleStrategy;
     }
 
     public boolean isPreRule() {
-        return this.strategy.getClass().isAssignableFrom(PreRuleStrategy.class);
+        return this.strategy instanceof PreRuleStrategy;
     }
 }

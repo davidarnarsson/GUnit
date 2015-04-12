@@ -2,7 +2,6 @@
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import edu.chl.gunit.core.data.Statistics;
 import edu.chl.gunit.core.data.tables.records.JacocoresultRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
@@ -25,7 +24,7 @@ public class TestBranchCoveragePerClassRule {
     public void testGetNoClasses() {
         JaCoCoResultService mockService = mock(JaCoCoResultService.class);
 
-        when(mockService.getLatestJaCoCoResult("org.test", "Testclass", 1)).thenReturn(null);
+        when(mockService.getLatestJaCoCoResult("org.test", "Testclass")).thenReturn(null);
         GamificationContext mockCtx = mock(GamificationContext.class);
         List<JacocoresultRecord> records = new ArrayList<>();
         records.add(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 1, 0, 1, 0, 2, 1, 1, 0, 2));
@@ -43,7 +42,7 @@ public class TestBranchCoveragePerClassRule {
     public void testGetPointsForClass() {
         JaCoCoResultService mockService = mock(JaCoCoResultService.class);
 
-        when(mockService.getLatestJaCoCoResult("org.test", "Testclass", 1)).thenReturn(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 100, 0, 1, 0, 2, 1, 1, 0, 1));
+        when(mockService.getLatestJaCoCoResult("org.test", "Testclass")).thenReturn(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 100, 0, 1, 0, 2, 1, 1, 0, 1));
         GamificationContext mockCtx = mock(GamificationContext.class);
         List<JacocoresultRecord> records = new ArrayList<>();
         records.add(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 80, 20, 1, 0, 2, 1, 1, 0, 2));
@@ -61,7 +60,7 @@ public class TestBranchCoveragePerClassRule {
     public void testGetMaxPointsForClass() {
         JaCoCoResultService mockService = mock(JaCoCoResultService.class);
 
-        when(mockService.getLatestJaCoCoResult("org.test", "Testclass", 1)).thenReturn(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 100, 0, 1, 0, 2, 1, 1, 0, 1));
+        when(mockService.getLatestJaCoCoResult("org.test", "Testclass")).thenReturn(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 100, 0, 1, 0, 2, 1, 1, 0, 1));
         GamificationContext mockCtx = mock(GamificationContext.class);
         List<JacocoresultRecord> records = new ArrayList<>();
         records.add(new JacocoresultRecord(1, "Testclass", "org.test", null, 1, 0, 40, 60, 1, 0, 2, 1, 1, 0, 2));

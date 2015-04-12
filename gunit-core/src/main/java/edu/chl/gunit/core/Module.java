@@ -36,6 +36,8 @@ public class Module extends AbstractModule {
         bind(UserBadgeService.class).to(UserBadgeServiceImpl.class);
         bind(BadgeService.class).to(BadgeServiceImpl.class);
         bind(RuleResultService.class).to(RuleResultServiceImpl.class);
+        bind(ClassSetupUsageService.class).to(ClassSetupUsageServiceImpl.class);
+        bind(TestSmellService.class).to(TestSmellServiceImpl.class);
     }
 
     public Module(DBProvider provider) {

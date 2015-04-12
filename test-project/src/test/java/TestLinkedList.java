@@ -14,19 +14,33 @@ import org.junit.Test;
 public class TestLinkedList {
     String a;
     String b;
+    String c;
+    String d;
+    String e;
+    String f;
+    String g;
+    String h;
+    String i;
+    String j;
+
     @Before
     public void setup() {
         b = null;
         a = "2";
+        j = "b";
     }
 
     @Test
     public void testRemoveAt() {
+        String derp = "asd";
+        String derp2 = "asd";
+        String derp3 = "asd";
+        String derp4 = "asd";
         LinkedList<String> ll = new LinkedList<>();
         ll.insert("derp");
         ll.insert("derp2");
         ll.removeAt(0);
-
+        assertTrue("b is null", b == null);
         assertEquals("last should be first now", "derp2", ll.get(0));
         assertTrue(ll.size() == 1);
     }

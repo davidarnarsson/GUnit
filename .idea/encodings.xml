@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/gunit-commons" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gunit-commons/src/test/resources/report.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/gunit-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gunit-maven-plugin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gunit-maven-plugin/src/test/resources/TEST-TestWallet.xml" charset="UTF-8" />

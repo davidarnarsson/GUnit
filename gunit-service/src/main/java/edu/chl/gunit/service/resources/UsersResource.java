@@ -99,6 +99,8 @@ public class UsersResource extends AbstractResource<UserRecord, UserService, Api
             ar.setRegardingUser(users.getOrDefault(ar.getRegardingUserId(), null));
         });
 
+        r.sort((x,y) -> y.getSession().getDate().compareTo(x.getSession().getDate()));
+
         return r;
     }
 

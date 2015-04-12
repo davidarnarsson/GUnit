@@ -73,10 +73,10 @@ app.run(function($rootScope, $auth, $location, $processing) {
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && !/^\/login/gi.test(next.$$route.originalPath) && !$auth.isLoggedIn()) {
       evt.preventDefault();
-      $processing.stop();
+      //$processing.stop();
       $location.url('/login');
     } else {
-      $processing.start($auth.user().id);
+     // $processing.start($auth.user().id);
       next.$$route.user = $auth.user();
     }
   });

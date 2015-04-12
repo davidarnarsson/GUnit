@@ -4,7 +4,7 @@ import edu.chl.gunit.core.data.Statistics;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
-import edu.chl.gunit.core.gamification.rules.InstructionCoveragePreRule;
+import edu.chl.gunit.core.gamification.rules.InstructionCoverageRule;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
 import edu.chl.gunit.core.services.SessionService;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class TestInstructionCoverageRule {
 
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,0.30,0,0,0,0));
 
-        InstructionCoveragePreRule rule = new InstructionCoveragePreRule(mockService);
+        InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.0,0,0,0,0),null,null,null);
 
@@ -45,7 +45,7 @@ public class TestInstructionCoverageRule {
 
         when(mockService.getLatestSession(1, SessionStatus.Processed)).thenReturn(new SessionRecord(1,1,null,0.0,0.0,0.29,0,0,0,0));
 
-        InstructionCoveragePreRule rule = new InstructionCoveragePreRule(mockService);
+        InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.0,0,0,0,0),null,null,null);
 
@@ -64,7 +64,7 @@ public class TestInstructionCoverageRule {
         Statistics statistics = new Statistics();
         statistics.setInstructionCoverage(0.201);
 
-        InstructionCoveragePreRule rule = new InstructionCoveragePreRule(mockService);
+        InstructionCoverageRule rule = new InstructionCoverageRule(mockService);
 
         GamificationContext ctx = new GamificationContext(statistics,new SessionRecord(1,1,null,0.0,0.0,0.201,0,0,0,0),null,null,null);
 

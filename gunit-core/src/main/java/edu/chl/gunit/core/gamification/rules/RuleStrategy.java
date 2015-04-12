@@ -1,7 +1,7 @@
 package edu.chl.gunit.core.gamification.rules;
 
 /**
- * Created by davida on 31.3.2015.
+ * Created by davida on 7.4.2015.
  */
 public interface RuleStrategy {
 }

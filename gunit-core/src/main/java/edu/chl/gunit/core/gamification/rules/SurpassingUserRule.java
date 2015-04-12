@@ -6,10 +6,12 @@ import edu.chl.gunit.core.data.tables.records.UserRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.gamification.rules.annotations.PostRule;
 import edu.chl.gunit.core.services.UserService;
+import org.codehaus.plexus.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -35,16 +37,13 @@ public class SurpassingUserRule implements PostRuleStrategy {
 
         int newTotalPoints = me.get().getPoints() + points;
         // get all users that are surpassed
-        Stream<UserRecord> surpassedUsers = users.stream()
-                .filter(x -> x.getPoints() >= me.get().getPoints() && x.getPoints() < newTotalPoints);
+        List<UserRecord> surpassedUsers = users.stream()
+                .filter(x -> x.getPoints() >= me.get().getPoints() && x.getPoints() < newTotalPoints)
+                .filter(x -> x.getId() != me.get().getId())
+                .collect(Collectors.toList());
 
-        if (surpassedUsers.count() > 0) {
-            String usernames = surpassedUsers.reduce("", (a, b) -> String.format("%s, %s", a, b.getName()), (a, b) -> a + b);
-
-            if (surpassedUsers.count() > 1) {
-                int lastcomma = usernames.lastIndexOf(',');
-                usernames = String.format("%s og%s", usernames.substring(0, lastcomma-1), usernames.substring(lastcomma));
-            }
+        if (surpassedUsers.size() > 0) {
+            String usernames = getUsernameString(surpassedUsers);
 
             RuleResult rr = new RuleResult();
             rr.setMessage(String.format("Vel gert! Þú fórst fram úr %s á stigaborðinu með %d stigin þín!", usernames, newTotalPoints));
@@ -52,5 +51,15 @@ public class SurpassingUserRule implements PostRuleStrategy {
         }
 
         return null;
+    }
+
+    public String getUsernameString(List<UserRecord> surpassedUsers) {
+        String usernames = StringUtils.join(surpassedUsers.stream().map(UserRecord::getName).toArray(),", ");
+
+        if (surpassedUsers.size() > 1) {
+            int lastcomma = usernames.lastIndexOf(',');
+            usernames = String.format("%s og%s", usernames.substring(0, lastcomma), usernames.substring(lastcomma+1));
+        }
+        return usernames;
     }
 }

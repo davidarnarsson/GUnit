@@ -11,14 +11,14 @@ import javax.inject.Inject;
 /**
  * Created by davida on 7.3.2015.
  */
-public class InstructionCoveragePreRule implements PreRuleStrategy {
+public class InstructionCoverageRule implements PreRuleStrategy {
 
 
     SessionService sessionService;
 
 
     @Inject
-    public InstructionCoveragePreRule(SessionService sessionService) {
+    public InstructionCoverageRule(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 
@@ -39,10 +39,10 @@ public class InstructionCoveragePreRule implements PreRuleStrategy {
         int lastPercent =  (int)Math.floor((lastCoverage * 100) / 10.0);
 
         if (percent - lastPercent < 0) {
-            result.setMessage(String.format("Instruction coverage lækkaði úr %.2f%% niður í %.2f%%!", lastCoverage, currentCoverage));
+            result.setMessage(String.format("Instruction coverage lækkaði úr %.2f%% niður í %.2f%%!", lastCoverage * 100, currentCoverage * 100));
             result.setPointsAwarded(-lastPercent);
         } else if (percent - lastPercent > 0) {
-            result.setMessage(String.format("Instruction coverage hækkaði úr %.2f%% í %.2f%%! Vel gert!", lastCoverage, currentCoverage));
+            result.setMessage(String.format("Instruction coverage hækkaði úr %.2f%% í %.2f%%! Vel gert!", lastCoverage * 100, currentCoverage * 100));
             result.setPointsAwarded(percent);
         }
 

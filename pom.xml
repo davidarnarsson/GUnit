@@ -34,6 +34,8 @@
         </plugins>
     </build>
     -->
+    
+
     <distributionManagement>
         <repository>
             <id>axlabond.in</id>
@@ -95,10 +97,11 @@
                 <artifactId>gunit-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <developerName>davida2</developerName>
+                    <developerName>klemmi</developerName>
                     <gunitWsLocation>http://localhost:8080/api</gunitWsLocation>
                     <jacocoReportCsvFolder>target/jacoco</jacocoReportCsvFolder>
                     <unitTestReportsFolder>target/test-reports</unitTestReportsFolder>
+                    <testHoundReportDirectory>target/testhound-reports</testHoundReportDirectory>
                 </configuration>
                 <executions>
                     <execution>

@@ -6,7 +6,7 @@ import edu.chl.gunit.core.gamification.GamificationContext;
 /**
  * Created by davida on 12.3.2015.
  */
-public class ExecutionRule implements RuleStrategy{
+public class ExecutionRule implements PreRuleStrategy {
     @Override
     public RuleResult calculate(GamificationContext ctx, RuleRecord self) {
         RuleResult result = new RuleResult();

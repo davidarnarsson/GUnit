@@ -1,6 +1,5 @@
 package edu.chl.gunit.core.gamification.rules;
 
-import com.google.inject.Inject;
 import edu.chl.gunit.core.data.tables.records.BadgeRecord;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.data.tables.records.UserRecord;
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * Created by davida on 9.3.2015.
  */
-public abstract class BadgeRule implements RuleStrategy {
+public abstract class BadgeRule implements PreRuleStrategy {
 
     private final UserService userService;
     private final UserBadgeService userBadgeService;

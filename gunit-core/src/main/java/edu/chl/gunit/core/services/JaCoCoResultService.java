@@ -10,5 +10,5 @@ import edu.chl.gunit.core.data.tables.records.SessionRecord;
 public interface JaCoCoResultService extends Service<JacocoresultRecord> {
     JacocoresultRecord createFromResult(ApiJaCoCoResult r, SessionRecord s);
 
-    JacocoresultRecord getLatestJaCoCoResult(String packageName, String className, Integer userId);
+    JacocoresultRecord getLatestJaCoCoResult(String packageName, String className);
 }

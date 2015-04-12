@@ -55,13 +55,12 @@ public class JaCoCoResultServiceImpl extends AbstractService<JacocoresultRecord>
     }
 
     @Override
-    public JacocoresultRecord getLatestJaCoCoResult(String packageName, String className, Integer userId) {
+    public JacocoresultRecord getLatestJaCoCoResult(String packageName, String className) {
         try (DBContext ctx = ctx()) {
 
             Result<JacocoresultRecord> result = ctx.dsl.select(JACOCORESULT.as("j").fields()).from(JACOCORESULT.as("j"))
                     .join(Tables.SESSION.as("s")).on(
                             field("s.sessionId").eq(field("j.sessionId"))
-                                    .and(field("s.sessionId").eq(userId))
                                     .and(field("s.sessionStatus").eq(SessionStatus.Processed.getStatusCode())))
                     .where(field("j.className").eq(className).and(field("j.packageName").eq(packageName)))
                     .orderBy(field("s.date").desc())

@@ -21,6 +21,7 @@ public class Statistics {
 
     /* The total instruction coverage for a given session */
     private double instructionCoverage;
+    private int testSmells;
 
 
     public Statistics() {
@@ -61,4 +62,11 @@ public class Statistics {
     }
 
 
+    public void setTestSmells(int testSmells) {
+        this.testSmells = testSmells;
+    }
+
+    public int getTestSmells() {
+        return testSmells;
+    }
 }

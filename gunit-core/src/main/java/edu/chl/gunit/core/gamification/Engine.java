@@ -1,8 +1,6 @@
 package edu.chl.gunit.core.gamification;
 
 import com.google.inject.Inject;
-import edu.chl.gunit.core.data.tables.Badge;
-import edu.chl.gunit.core.data.tables.records.BadgeRecord;
 import edu.chl.gunit.core.gamification.rules.*;
 
 import java.util.ArrayList;

@@ -1,20 +1,21 @@
 package edu.chl.gunit.plugin;
 
-import edu.chl.gunit.commons.api.ApiJaCoCoResult;
-import edu.chl.gunit.commons.api.TestRunRequest;
-import edu.chl.gunit.commons.api.ApiTestSuiteResults;
+import edu.chl.gunit.commons.api.*;
 import edu.chl.gunit.commons.input.jacoco.JaCoCoCSVReader;
 import edu.chl.gunit.commons.input.jacoco.JaCoCoResultException;
 import edu.chl.gunit.commons.input.junit.JUnitResultException;
 import edu.chl.gunit.commons.input.junit.JUnitXMLReader;
 
+import edu.chl.gunit.commons.input.testhound.TesthoundXMLReader;
 import edu.chl.gunit.service.client.Client;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.codehaus.plexus.util.FileUtils;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,7 +94,7 @@ public class GUnitMojo extends AbstractMojo {
                 }
             };
 
-            List<File> jacocoFiles = new ArrayList<>();
+            List<File> jacocoFiles = new ArrayList<File>();
 
             crawlDirectory(jacocoReportCsvFolder, filter, jacocoFiles);
 
@@ -112,6 +113,30 @@ public class GUnitMojo extends AbstractMojo {
             getLog().warn("Could not read coverage reports folder!");
         }
 
+        if (testHoundReportDirectory != null && testHoundReportDirectory.isDirectory()) {
+            FilenameFilter filter  = new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.startsWith("report") && name.endsWith("xml");
+                }
+            };
+
+            List<File> testhoundfiles = new ArrayList<File>();
+
+            crawlDirectory(testHoundReportDirectory, filter, testhoundfiles);
+            TesthoundXMLReader testhoundXMLReader = new TesthoundXMLReader();
+            for (File f: testhoundfiles) {
+                try {
+                    TesthoundResult r = testhoundXMLReader.readTesthoundData(f);
+                    if (r != null) {
+                        req.getTesthoundResults().add(r);
+                    }
+
+                } catch (XPathExpressionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         Client client = new Client(gunitWsLocation);
 
@@ -149,8 +174,11 @@ public class GUnitMojo extends AbstractMojo {
 
         filesFound.addAll(Arrays.asList(directory.listFiles(filter)));
 
-        File[] subDirectories = directory.listFiles(pathname -> {
-            return pathname.isDirectory();
+        File[] subDirectories = directory.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }
         });
 
         for (File subDirectory : subDirectories) {

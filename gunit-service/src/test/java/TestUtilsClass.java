@@ -4,6 +4,7 @@
 
 import edu.chl.gunit.commons.api.ApiJaCoCoResult;
 import edu.chl.gunit.commons.api.ApiSession;
+import edu.chl.gunit.commons.api.SessionStatus;
 import edu.chl.gunit.core.data.tables.records.JacocoresultRecord;
 import edu.chl.gunit.core.data.tables.records.SessionRecord;
 import edu.chl.gunit.service.api.Utils;
@@ -39,7 +40,7 @@ public class TestUtilsClass {
 
     @Test
     public void testFromSession() {
-        SessionRecord r = new SessionRecord(1,2,new Timestamp(3),4.0,5.0,6.0,7,8,9,10);
+        SessionRecord r = new SessionRecord(1,2,new Timestamp(3),4.0,5.0,6.0,7,8,9, SessionStatus.New.getStatusCode());
 
         ApiSession a = Utils.from(r);
         assertEquals(a.getBadgesEarned(), r.getBadgesearned());

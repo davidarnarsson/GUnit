@@ -22,12 +22,12 @@ import javax.inject.Inject;
      >  50-60% < 	:	11 stig
      > 60%		:	15 stig
  */
-public class BranchCoveragePreRule implements PreRuleStrategy {
+public class BranchCoverageRule implements PreRuleStrategy {
 
     SessionService sessionService;
 
     @Inject
-    public BranchCoveragePreRule(SessionService sessionService) {
+    public BranchCoverageRule(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 
@@ -50,9 +50,9 @@ public class BranchCoveragePreRule implements PreRuleStrategy {
         result.setPointsAwarded(calculatePoints(percent,lastPercent));
 
         if (result.getPointsAwarded() > 0) {
-            result.setMessage(String.format("Þú hækkaðir branch coverage upp í %.2f%%! Vel gert!", currentCoverage));
+            result.setMessage(String.format("Þú hækkaðir branch coverage upp í %.2f%%! Vel gert!", currentCoverage * 100));
         } else if (result.getPointsAwarded() < 0) {
-            result.setMessage(String.format("Branch coverage lækkaði úr %.2f%% í %.2f%%!", lastCoverage, currentCoverage));
+            result.setMessage(String.format("Branch coverage lækkaði úr %.2f%% í %.2f%%!", lastCoverage * 100, currentCoverage * 100));
         }
 
         return result;

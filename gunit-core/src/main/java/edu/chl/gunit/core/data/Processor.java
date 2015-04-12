@@ -3,10 +3,13 @@ package edu.chl.gunit.core.data;
 import com.google.inject.Inject;
 import edu.chl.gunit.commons.api.ApiJaCoCoResult;
 import edu.chl.gunit.commons.api.ApiTestSuiteResults;
+import edu.chl.gunit.commons.api.TesthoundResult;
 import edu.chl.gunit.core.data.tables.records.*;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.gamification.rules.RuleResult;
+import edu.chl.gunit.core.services.ClassSetupUsageService;
 import edu.chl.gunit.core.services.RuleResultService;
+import edu.chl.gunit.core.services.TestSmellService;
 import edu.chl.gunit.core.services.UserBadgeService;
 
 import java.sql.Timestamp;
@@ -44,6 +47,12 @@ public class Processor {
     @Inject
     RuleResultService ruleResultService;
 
+    @Inject
+    ClassSetupUsageService classSetupUsageService;
+
+    @Inject
+    TestSmellService testSmellService;
+
     public SessionRecord createNewProcessSession(String user) {
         UserRecord userRecord = userService.getOrCreate(user);
         SessionRecord sessionRecord = sessionService.create(userRecord.getId());
@@ -51,24 +60,24 @@ public class Processor {
         return sessionRecord;
     }
 
-    public GamificationContext process(SessionRecord session, List<ApiJaCoCoResult> coverageResults, List<ApiTestSuiteResults> testSuiteResults) {
+    public GamificationContext process(SessionRecord session, List<ApiJaCoCoResult> coverageResults, List<ApiTestSuiteResults> testSuiteResults, List<TesthoundResult> testhoundResults) {
 
 
         // calculate statistics and update session accordingly
-        Statistics statistics = calculator.calculateStatistics(coverageResults, testSuiteResults);
+        Statistics statistics = calculator.calculateStatistics(coverageResults, testSuiteResults, testhoundResults);
 
         // save session
         session.setLinecoverage(statistics.getLineCoverage());
         session.setBranchcoverage(statistics.getBranchCoverage());
         session.setInstructioncoverage(statistics.getInstructionCoverage());
         session.setNewtests(statistics.getNewTestCases().size());
-
+        session.setTotaltestsmells(statistics.getTestSmells());
         sessionService.update(session);
+
         List<JacocoresultRecord> jacocoresultRecords = new ArrayList<>();
         List<TestsuiteresultRecord> testsuiteresultRecords = new ArrayList<>();
         List<SuitetestcaseRecord> suitetestcaseRecords = new ArrayList<>();
         if (coverageResults != null && coverageResults.size() > 0) {
-
             jacocoresultRecords = coverageResults.stream().map(x -> jaCoCoResultService.createFromResult(x, session)).collect(Collectors.toList());
         }
 
@@ -85,7 +94,27 @@ public class Processor {
             }).collect(Collectors.toList());
         }
 
+        if (testhoundResults != null) {
+            testhoundResults.stream().forEach(y -> {
+
+                y.getClassSetupUsages().stream().forEach(x -> {
+                    ClasssetupusageRecord clu = classSetupUsageService.create(x, session.getSessionid());
+
+                    createTestSmell(clu, x.getDeadFields(), "DeadField");
+                    createTestSmell(clu, x.getDetachedMethods(), "DetachedMethod");
+                    createTestSmell(clu, x.getGeneralFixtureMethods(), "GeneralFixtureMethod");
+                });
+            });
+        }
+
         return new GamificationContext(statistics, session, jacocoresultRecords, testsuiteresultRecords, suitetestcaseRecords);
+    }
+
+    private void createTestSmell(ClasssetupusageRecord clu, List<String> offenders, String type) {
+        offenders.stream().forEach(o -> {
+            TestsmellRecord r = new TestsmellRecord(null, type,clu.getId(),o, clu.getClassname());
+            testSmellService.create(r);
+        });
     }
 
     public void markSessionAsProcessed(SessionRecord session) {

@@ -18,7 +18,7 @@ import java.util.Objects;
 /**
  * Created by davida on 26.2.2015.
  */
-public class TestADayPreRule implements PreRuleStrategy {
+public class TestADayRule implements PreRuleStrategy {
 
     @Inject
     UserBadgeService userBadgeService;

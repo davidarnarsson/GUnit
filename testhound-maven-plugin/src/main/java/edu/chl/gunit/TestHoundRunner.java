@@ -17,6 +17,6 @@ public class TestHoundRunner extends ExperiementMain {
 
     public ArrayList<ClassSetupUsage> run(HashSet<String> classes, ClazzLoader loader, File outDir, File templateLocation) {
 
-        return analyseTests(classes, new FixtureAnalyser(loader), new AllReportGenerator(outDir.getAbsolutePath(), templateLocation.getAbsolutePath()));
+        return analyseTests(classes, new FixtureAnalyser(loader), new DummyReportGenerator(outDir.getAbsolutePath(), templateLocation.getAbsolutePath()));
     }
 }

@@ -5,6 +5,7 @@ import edu.chl.gunit.core.data.tables.records.JacocoresultRecord;
 import edu.chl.gunit.core.data.tables.records.RuleRecord;
 import edu.chl.gunit.core.gamification.GamificationContext;
 import edu.chl.gunit.core.services.JaCoCoResultService;
+import org.jooq.tools.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +34,13 @@ public class BranchCoveragePerClassRule implements PreRuleStrategy {
     @Override
     public RuleResult calculate(GamificationContext ctx, RuleRecord self) {
         List<JacocoresultRecord> affectedClasses = ctx.getJacocoresultRecords().stream()
-                .filter(x -> x.getComplexitycovered() > 0)
+                .filter(x -> x.getBranchcovered() > 0)
                 .collect(Collectors.toList());
 
 
         List<JacocoresultRecord> lastResults = affectedClasses.stream()
-                .map(x -> jaCoCoResultService.getLatestJaCoCoResult(x.getPackagename(), x.getClassname(), ctx.getSession().getUserid()))
+                .map(x -> jaCoCoResultService.getLatestJaCoCoResult(x.getPackagename(), x.getClassname()))
+                .filter(x -> x != null)
                 .collect(Collectors.toList());
 
 
@@ -46,7 +48,7 @@ public class BranchCoveragePerClassRule implements PreRuleStrategy {
         //      get the last result
         //      if not result then set lastBranch to 0
         //      calculate percentage of coverage for both last and current
-        //      scale the total possible score based on the total cyclomatic complexity
+        //      scale the total possible score based on the total branch complexity
         //      calculate points for each based on percentage -- score can be negative
 
         RuleResult result = new RuleResult();
@@ -55,7 +57,7 @@ public class BranchCoveragePerClassRule implements PreRuleStrategy {
 
         for (JacocoresultRecord affectedClass : affectedClasses) {
             JacocoresultRecord lastResult = lastResults.stream()
-                    .filter(x -> x.getClassname().equals(affectedClass.getClassname()) && x.getPackagename().equals(affectedClass.getPackagename()))
+                    .filter(x -> StringUtils.equals(x.getClassname(), affectedClass.getClassname()) && StringUtils.equals(x.getPackagename(), affectedClass.getPackagename()))
                     .findFirst().orElse(null);
 
             double lastBranchCoverage = 0.0;
@@ -65,12 +67,14 @@ public class BranchCoveragePerClassRule implements PreRuleStrategy {
 
                 lastBranchCoverage = (lastResult.getBranchcovered() / (double) (lastResult.getBranchcovered() + lastResult.getBranchmissed())) * 100;
             }
+            // median branch  complexity is 40
+            int maxPoints = Math.max(1, (int)Math.round(Math.min(5, (affectedClass.getBranchcovered() + affectedClass.getBranchmissed()) / 40.0 * 5)));
 
             double currentBranchCoverage = (affectedClass.getBranchcovered() / (double) (affectedClass.getBranchcovered() + affectedClass.getBranchmissed())) * 100;
             //(int)Math.floor(Math.min(5.0, (currentBranchCoverage * (5 / 75.0))))
             if (Math.abs(currentBranchCoverage - lastBranchCoverage) >= 10) {
                 ClassResult r = new ClassResult();
-                r.points = (int) (Math.max(-1, Math.min(1, currentBranchCoverage - lastBranchCoverage)) * Math.round(Math.min(5.0, (currentBranchCoverage * (5 / 50.0)))));
+                r.points = (int) (Math.max(-1, Math.min(1, currentBranchCoverage - lastBranchCoverage)) * Math.round(Math.min(maxPoints, (currentBranchCoverage * (maxPoints / 50.0)))));
                 r.message = String.format("%d stig fyrir að ná branch coverage klasans %s.%s úr %.0f%% %s í %.0f%%\n",
                         r.points,
                         affectedClass.getPackagename(),

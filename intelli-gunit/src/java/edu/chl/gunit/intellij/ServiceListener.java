@@ -1,12 +1,14 @@
 package edu.chl.gunit.intellij;
 
-import com.btr.proxy.util.Logger;
+
 import com.google.common.collect.ImmutableSortedMap;
 import edu.chl.gunit.intellij.pollers.MessagePoller;
 import edu.chl.gunit.intellij.recipients.MessageRecipient;
 import edu.chl.gunit.service.client.Client;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Ivar on 04/03/15.
@@ -121,7 +123,7 @@ public class ServiceListener implements Runnable {
             }
 
         } catch (Exception e) {
-            Logger.log(getClass(), Logger.LogLevel.ERROR, "Unable to perform poll with poller " + poller.getClass().getCanonicalName(), poller, this.client);
+            Logger.getLogger(getClass().getCanonicalName()).log(Level.SEVERE, "Unable to perform poll with poller " + poller.getClass().getCanonicalName());
         }
         finally {
             if (!poller.oneTime()) {

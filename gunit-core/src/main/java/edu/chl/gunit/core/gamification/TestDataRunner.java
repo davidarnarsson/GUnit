@@ -56,7 +56,7 @@ public class TestDataRunner implements Runnable {
         assert this.request != null;
 
         try {
-            GamificationContext results = processor.process(session, request.getCoverageResults(), request.getTestResults());
+            GamificationContext results = processor.process(session, request.getCoverageResults(), request.getTestResults(), request.getTesthoundResults());
 
             List<RuleResult> ruleResults = engine.calculatePoints(results);
 

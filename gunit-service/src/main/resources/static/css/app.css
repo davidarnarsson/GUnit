@@ -6574,6 +6574,14 @@ header {
   font-weight: bold;
   color: darkgreen;
 }
+table.table tr.failed {
+  background: lightcoral;
+}
+table.table tr.processing {
+  background: lightgray;
+  color: #707070;
+  font-style: italic;
+}
 .chart-container {
   position: relative;
   height: 320px;
@@ -6597,4 +6605,14 @@ header {
   left: -15px;
   width: 9px;
   height: 9px;
+}
+.available-badge {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.available-badge figlabel .name {
+  font-weight: bold;
+  text-align: center;
 }
