@@ -6551,10 +6551,14 @@ header {
   margin-top: 20px;
 }
 .message {
+  padding-top: 25px;
   position: relative;
 }
 .message:first-child {
   margin-top: 10px;
+}
+.message pre {
+  word-wrap: normal;
 }
 .message p {
   text-align: center;
@@ -6615,4 +6619,10 @@ table.table tr.processing {
 .available-badge figlabel .name {
   font-weight: bold;
   text-align: center;
+}
+.smells ul li strong {
+  cursor: pointer;
+}
+.player-sessions tr {
+  cursor: pointer;
 }

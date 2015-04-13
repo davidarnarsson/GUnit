@@ -6,7 +6,7 @@
 
     <groupId>edu.chl.gunit</groupId>
     <artifactId>gunit-core</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <properties>
         <gunit.source.version>1.8</gunit.source.version>
         <gunit.target.version>1.8</gunit.target.version>
@@ -23,7 +23,7 @@
     <parent>
         <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
     <dependencies>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>edu.chl.gunit</groupId>
             <artifactId>gunit-commons</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>

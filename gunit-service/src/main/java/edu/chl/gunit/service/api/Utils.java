@@ -44,6 +44,7 @@ public class Utils {
         s.setSessionId(record.getSessionid());
         s.setSessionStatus(record.getSessionstatus());
         s.setUserId(record.getUserid());
+        s.setTestSmells(record.getTotaltestsmells());
         return s;
     }
 
@@ -98,5 +99,32 @@ public class Utils {
         r.setRegardingUserId(i.getRegardinguserid());
 
         return r;
+    }
+
+    public static ApiClassSetupUsage from(ClasssetupusageRecord r) {
+        if (r == null) return null;
+
+        ApiClassSetupUsage u = new ApiClassSetupUsage();
+        u.setClassName(r.getClassname());
+        u.setId(r.getId());
+        u.setSessionId(r.getSessionid());
+        u.setTestSmellCount(r.getTestsmells());
+
+        return u;
+    }
+
+    public static ApiTestSmell from(TestsmellRecord r) {
+        if (r == null) {
+            return null;
+        }
+
+        ApiTestSmell sm = new ApiTestSmell();
+        sm.setId(r.getId());
+        sm.setClassSetupUsageId(r.getClasssetupusageid());
+        sm.setName(r.getTestcasename());
+        sm.setType(r.getType());
+
+        return sm;
+
     }
 }

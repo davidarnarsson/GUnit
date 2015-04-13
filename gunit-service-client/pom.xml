@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.chl.gunit</groupId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>GUnit Service Client</name>
     <artifactId>gunit-service-client</artifactId>
     <packaging>jar</packaging>
@@ -12,14 +12,14 @@
     <parent>
         <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
     <dependencies>
         <dependency>
             <groupId>edu.chl.gunit</groupId>
             <artifactId>gunit-commons</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>

@@ -42,6 +42,7 @@ public class GUnitServiceApp extends Application<AppConfig> {
         environment.jersey().register(new StatisticsResource(facade));
         environment.jersey().register(facade.getInjector().getInstance(SessionResource.class));
         environment.jersey().register(facade.getInjector().getInstance(CoverageResource.class));
+        environment.jersey().register(facade.getInjector().getInstance(TestSmellResource.class));
     }
 
     @Override

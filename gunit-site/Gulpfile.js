@@ -87,8 +87,11 @@ gulp.task('assets', function () {
   var html = gulp.src('assets/**.html')
     .pipe(gulp.dest(destination))
     .pipe(connect.reload());
-
-  return html;
+  var fonts = gulp.src('assets/fonts')
+    .pipe(gulp.dest(destination));
+  var fonts2 = gulp.src('assets/fonts/**')
+    .pipe(gulp.dest(destination + '/fonts'));
+  return merge(html, fonts,fonts2);
 });
 
 gulp.task('connect' ,function() {

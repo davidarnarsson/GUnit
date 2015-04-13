@@ -27,6 +27,9 @@ app.config(function ($routeProvider) {
             return $api.getStatistics($auth.user().id, page || 0);
           }
           return null;
+        },
+        smells: function ($api, $auth) {
+          return $api.getLatestSmells($auth.user().id);
         }
       }
     }).

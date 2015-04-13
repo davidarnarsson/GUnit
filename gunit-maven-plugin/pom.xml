@@ -6,7 +6,7 @@
 
     <groupId>edu.chl.gunit</groupId>
     <artifactId>gunit-maven-plugin</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>maven-plugin</packaging>
     <name>GUnit Maven Plugin</name>
 
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>edu.chl.gunit</groupId>
             <artifactId>gunit-core</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
 
         <dependency>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>edu.chl.gunit</groupId>
             <artifactId>gunit-service-client</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 

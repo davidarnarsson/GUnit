@@ -19,8 +19,17 @@ public class ApiSession {
     private Timestamp date;
     private Double instructionCoverage;
     private Double branchCoverage;
+    private Integer testSmells;
 
 
+    @JsonProperty
+    public Integer getTestSmells() {
+        return testSmells;
+    }
+
+    public void setTestSmells(Integer testSmells) {
+        this.testSmells = testSmells;
+    }
 
     public void setBadgesEarned(Integer badgesEarned) {
         this.badgesEarned = badgesEarned;

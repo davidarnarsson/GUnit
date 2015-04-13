@@ -1,6 +1,6 @@
 
 
-var serviceUrl = 'http://localhost:8080/api';
+var serviceUrl = '/api';
 
 module.exports = function ($http) {
   return {
@@ -43,6 +43,9 @@ module.exports = function ($http) {
     },
     getRules: function() {
       return $http.get(serviceUrl + '/rules');
+    },
+    getLatestSmells: function(userId) {
+      return $http.get(serviceUrl + '/smells/'+ userId);
     }
   };
 };

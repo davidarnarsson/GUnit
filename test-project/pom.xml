@@ -12,7 +12,7 @@
     <parent>
         <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
     <properties>
@@ -51,7 +51,7 @@
             <plugin>
                 <groupId>edu.chl.gunit</groupId>
                 <artifactId>testhound-maven-plugin</artifactId>
-                <version>0.0.1</version>
+                <version>0.0.2</version>
                 <configuration>
                     <outputDirectory>../target</outputDirectory>
                 </configuration>

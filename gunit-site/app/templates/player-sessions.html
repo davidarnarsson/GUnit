@@ -1,5 +1,5 @@
 
-<table class="table table-xs table-striped table-hover">
+<table class="table table-xs table-striped player-sessions table-hover">
     <thead>
     <th>Dags.</th>
     <th class="xs-hidden">Branch coverage</th>
@@ -10,7 +10,7 @@
     <th>Orður</th>
     </thead>
     <tbody>
-    <tr ng-repeat="row in sessions.value" ng-class="{'failed': row.sessionStatus == 2, 'processing': row.sessionStatus == 0}" ng-click="showSession(row.sessionId)">
+    <tr ng-repeat="row in sessions.value " ng-class="{'failed': row.sessionStatus == 2, 'processing': row.sessionStatus == 0}" ng-click="showSession(row.sessionId)">
         <td ng-bind="row.date | date:'medium'"></td>
         <td class="xs-hidden">{{row.branchCoverage * 100 | number:2}}%</td>
         <td class="xs-hidden">{{row.lineCoverage * 100 | number:2}}%</td>

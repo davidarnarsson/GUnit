@@ -4,7 +4,7 @@
   <groupId>edu.chl.gunit</groupId>
   <artifactId>gunit-service</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
     <properties>
         <!-- web service deployment properties -->
     </properties>
@@ -13,7 +13,7 @@
     <parent>
         <artifactId>gunit-parent</artifactId>
         <groupId>edu.chl.gunit</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <relativePath>../gunit-parent/pom.xml</relativePath>
     </parent>
   <dependencies>
@@ -36,7 +36,7 @@
       <dependency>
           <groupId>edu.chl.gunit</groupId>
           <artifactId>gunit-core</artifactId>
-          <version>0.0.1</version>
+          <version>0.0.2</version>
       </dependency>
       <dependency>
           <groupId>mysql</groupId>

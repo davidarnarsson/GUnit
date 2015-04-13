@@ -30,12 +30,12 @@
     <div class="col-md-6">
         <tabset id="front-page-tabs">
             <tab heading="Nýjasta nýtt">
-                <div class="message" ng-repeat="(key,message) in messages">
-                    <span class="date"> <a ng-href="#/session/{{key}}">Úr lotunni þann {{ message[0].session.date | date:'dd. MMM @ hh:mm' }}</a></span>
+                <div class="message" ng-repeat="session in messages">
+                    <span class="date"> <a ng-href="#/session/{{session.sessionId}}">Úr lotunni þann {{ session.date | date:'dd. MMM @ hh:mm' }}</a></span>
 
-                    <span class="points-earned">  {{ message[0].session.pointsCollected }} stig!</span>
+                    <span class="points-earned">  {{ session.pointsCollected }} stig!</span>
                     <ul>
-                        <li ng-repeat="m in message">
+                        <li ng-repeat="m in session.messages">
                             <pre ng-bind="m.message"></pre>
                         </li>
                     </ul>
@@ -48,7 +48,29 @@
             </tab>
 
             <tab heading="Prófkóðaþefir">
+                <accordion close-others="true">
+                    <accordion-group ng-repeat="usage in smells">
+                        <accordion-heading>
+                            {{usage.className}} <i ng-show="usage.testSmellCount" class="pull-right text-warning glyphicon glyphicon-warning-sign"></i>
+                        </accordion-heading>
 
+                        <alert type="success" ng-show="!usage.testSmellCount">
+                            <i class="glyphicon glyphicon-thumbs-up"></i> Engin prófkóðaþefur hér!
+                        </alert>
+
+                        <div class="smells" ng-show="usage.testSmellCount">
+                            <p> <strong>O ó!</strong> Eftirfarandi prófkóðaþefir fundust:</p>
+                            <ul>
+                                <li ng-repeat="smell in usage.testSmells" ng-class="{'text-warning' :smell.type == 'DeadField', 'text-danger' : smell.type != 'DeadField'}">
+                                    <strong ng-click="openModal('smells/dead-field.html')" ng-show="smell.type == 'DeadField'">Dauður reitur</strong>
+                                    <strong ng-click="openModal('smells/general-fixture.html')" ng-show="smell.type == 'GeneralFixture'">General fixture</strong>
+                                    <strong ng-click="openModal('smells/inline-setup.html')" ng-show="smell.type == 'InlineSetup'">Inline setup</strong>
+                                    <strong ng-click="openModal('smells/detached-method.html')" ng-show="smell.type == 'DetachedMethod'">Detached Method</strong>: {{smell.name}}
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
             </tab>
         </tabset>
 

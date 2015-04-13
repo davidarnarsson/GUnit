@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Próflota þann {{sessionData.session.date | date:'medium'}}</h2>
-    <table class="table">
+    <table class="table table-striped table-hover session-table">
         <thead>
         <tr>
             <th></th>
@@ -13,31 +13,31 @@
         </thead>
         <tbody>
         <tr>
-            <td class="label">Stig</td>
+            <td class="session-label">Stig</td>
             <td ng-bind="sessionData.session.pointsCollected"></td>
             <td ng-bind="sessionData.user.points"></td>
-            <td class="label">Heildarstigafjöldi</td>
+            <td class="session-label">Heildarstigafjöldi</td>
 
         </tr>
 
         <tr>
-            <td class="label">Branch coverage</td>
+            <td class="session-label">Branch coverage</td>
             <td>{{sessionData.session.branchCoverage * 100 | number:2}}%</td>
             <td>{{sessionData.user.lastBranchCoverage * 100 | number:2}}%</td>
-            <td class="label">Síðasta branch coverage</td>
+            <td class="session-label">Síðasta branch coverage</td>
         </tr>
 
         <tr>
-            <td class="label">Instruction coverage</td>
+            <td class="session-label">Instruction coverage</td>
             <td>{{sessionData.session.instructionCoverage * 100 | number:2}}%</td>
             <td>{{sessionData.user.lastInstructionCoverage * 100 | number:2}}%</td>
-            <td class="label">Síðasta Instruction coverage</td>
+            <td class="session-label">Síðasta Instruction coverage</td>
         </tr>
         <tr>
-            <td class="label">Ný einingapróf</td>
+            <td class="session-label">Ný einingapróf</td>
             <td ng-bind="sessionData.session.newTests"></td>
             <td ng-bind="sessionData.user.totalWrittenTests"></td>
-            <td class="label">Heildarfjöldi einingaprófana</td>
+            <td class="session-label">Heildarfjöldi einingaprófana</td>
         </tr>
 
         </tbody>

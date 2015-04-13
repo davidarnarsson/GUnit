@@ -87,8 +87,10 @@ public class BranchCoveragePerClassRule implements PreRuleStrategy {
         }
 
         if (results.size() > 0) {
-            result.setMessage(results.stream().reduce("Vel gert! Þú fékkst: \n",(x, y) -> x + y.message, (a,b) -> a + b));
-            result.setPointsAwarded(results.stream().mapToInt(r -> r.points).sum());
+            int points = results.stream().mapToInt(r -> r.points).sum();
+            String heading = points > 0 ? "Vel gert! " : "";
+            result.setMessage(results.stream().reduce(heading + "Þú fékkst: \n",(x, y) -> x + y.message, (a,b) -> a + b));
+            result.setPointsAwarded(points);
         }
 
         return result;
