@@ -51,7 +51,7 @@
             <plugin>
                 <groupId>edu.chl.gunit</groupId>
                 <artifactId>testhound-maven-plugin</artifactId>
-                <version>0.0.2</version>
+                <version>0.0.2.1</version>
                 <configuration>
                     <jarFile>target/test-project-0.0.2.jar</jarFile>
                     <outputDirectory>../target</outputDirectory>

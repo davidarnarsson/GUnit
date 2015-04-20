@@ -85,7 +85,7 @@
             <plugin>
                 <groupId>edu.chl.gunit</groupId>
                 <artifactId>testhound-maven-plugin</artifactId>
-                <version>0.0.2</version>
+                <version>0.0.2.1</version>
                 <executions>
                     <execution>
                         <id>run testhound</id>
