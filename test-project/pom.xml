@@ -53,6 +53,7 @@
                 <artifactId>testhound-maven-plugin</artifactId>
                 <version>0.0.2</version>
                 <configuration>
+                    <jarFile>target/test-project-0.0.2.jar</jarFile>
                     <outputDirectory>../target</outputDirectory>
                 </configuration>
                 <executions>

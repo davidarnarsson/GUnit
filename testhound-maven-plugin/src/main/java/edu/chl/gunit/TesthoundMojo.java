@@ -116,6 +116,10 @@ public class TesthoundMojo
     protected ArtifactRepository localRepository;
 
 
+    @Parameter(property = "jarFile")
+    protected File jarFile;
+
+
     public void execute() throws MojoExecutionException {
 
         System.out.println("Preparing templates...");
@@ -133,7 +137,17 @@ public class TesthoundMojo
             getLog().info("Testhound is not able to analyze projects of type " + project.getArtifact().getType());
             return;
         }
-        libs.add(new File(filename));
+        File artifactFile = jarFile;
+
+        if (artifactFile == null) {
+            artifactFile = new File(filename);
+        }
+
+        if (!artifactFile.exists()) {
+            throw new MojoExecutionException("Unable to locate output file " + artifactFile.getAbsolutePath() + "! Unable to analyze using Testhound!");
+        }
+
+        libs.add(artifactFile);
 
         // resolve project deps
         for (Artifact a : project.getDependencyArtifacts()) {
